@@ -5,7 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://c2kw46q0bpc3r" path="res://Scenes/ship_greybox.tscn" id="4_ed2pg"]
 [ext_resource type="PackedScene" uid="uid://sr6350pw18lo" path="res://Scenes/speedlines.tscn" id="5_g0pj6"]
 [ext_resource type="PackedScene" uid="uid://ct8r5tilx1632" path="res://Scenes/computer.tscn" id="5_rdsav"]
-[ext_resource type="PackedScene" uid="uid://c1wai34u14ogt" path="res://Scenes/valve.tscn" id="6_g0pj6"]
+[ext_resource type="PackedScene" path="res://Scenes/valve.tscn" id="6_g0pj6"]
+[ext_resource type="PackedScene" uid="uid://ccetrajvpu778" path="res://Scenes/button_object.tscn" id="7_7oy3y"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ed2pg"]
 panorama = ExtResource("3_4snwc")
@@ -20,7 +21,7 @@ sky = SubResource("Sky_rdsav")
 [node name="Node3D2" type="Node3D" unique_id=441259406]
 
 [node name="Camera" parent="." unique_id=129220480 instance=ExtResource("1_k2eo1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.30175698, -1.1920929e-07, 0.71876764)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.719)
 _cameraSpeed = 0.5
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1389699873]
@@ -40,3 +41,19 @@ transform = Transform3D(0.12568662, 0, 0, 0, 0.13916422, 0, 0, 0, 1, 0.000658065
 
 [node name="valve" parent="." unique_id=1192847290 instance=ExtResource("6_g0pj6")]
 transform = Transform3D(-0.90426147, 0, -0.42697912, 0, 1, 0, 0.42697912, 0, -0.90426147, -0.14219522, 0, -3.3449643)
+
+[node name="button_object" parent="." unique_id=544792818 instance=ExtResource("7_7oy3y")]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 3.1457152, 0, -3.734985)
+lookDestination = "right"
+
+[node name="button_object2" parent="." unique_id=1928394670 instance=ExtResource("7_7oy3y")]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -3.146, 0, -3.7255993)
+lookDestination = "left"
+
+[node name="button_object3" parent="." unique_id=1536329482 instance=ExtResource("7_7oy3y")]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 3.868034, 0, -1.6100624)
+lookDestination = "forward"
+
+[node name="button_object4" parent="." unique_id=1254905360 instance=ExtResource("7_7oy3y")]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, -3.868, 0, -1.61)
+lookDestination = "forward"

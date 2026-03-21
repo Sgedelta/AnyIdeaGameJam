@@ -43,43 +43,43 @@ public partial class GameManager : Node
 		// Posted by Dan Rigby, modified by community. See post 'Timeline' for change history
 		// Retrieved 2026-03-21, License - CC BY-SA 4.0
 		string password = "default";
-        Random random = new Random();
+		Random random = new Random();
 
 
-        switch (passwordType)
+		switch (passwordType)
 		{
 			case "captcha":
-                string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+[{]},<.>/?`~|";
-                char[] stringChars = new char[passwordLength +2];
-                
-                for (int i = 0; i < stringChars.Length; i++)
-                {
-                    stringChars[i] = chars[random.Next(chars.Length)];
-                }
-                password = new string(stringChars);
-                break;
+				string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+[{]},<.>/?`~|";
+				char[] stringChars = new char[passwordLength +2];
+				
+				for (int i = 0; i < stringChars.Length; i++)
+				{
+					stringChars[i] = chars[random.Next(chars.Length)];
+				}
+				password = new string(stringChars);
+				break;
 			case "sequence":
 				string directions = "UDLR";
 				char[] directionChars = new char[passwordLength];
-                for (int i = 0; i < directionChars.Length; i++)
-                {
-                    directionChars[i] = directions[random.Next(directions.Length)];
-                }
+				for (int i = 0; i < directionChars.Length; i++)
+				{
+					directionChars[i] = directions[random.Next(directions.Length)];
+				}
 				password = new string(directionChars);
-                break;
+				break;
 			case "pin":
 				string nums = "1234567890";
-                char[] numChars = new char[passwordLength];
-                for (int i = 0; i < numChars.Length; i++)
-                {
-                    numChars[i] = nums[random.Next(nums.Length)];
-                }
+				char[] numChars = new char[passwordLength];
+				for (int i = 0; i < numChars.Length; i++)
+				{
+					numChars[i] = nums[random.Next(nums.Length)];
+				}
 				password = new string(numChars);
-                break;
+				break;
 			default:
 				break;
 		}
 		return password;
 
-    }
+	}
 }
