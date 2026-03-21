@@ -79,7 +79,7 @@ public partial class TypingUiContainer : PanelContainer
 		{
 			case "engine_on":
 				//ToDo GENERATE CAPTCHA AND PASS TO GM
-				_rich_output.AppendText($"[code]Enter Captcha In Engine to Power On.[br][/code][font=res://Assets/Fonts/crooked/Crooked.ttf]TEMP CAPTCHA[/font]");
+				_rich_output.AppendText($"[code]Enter Captcha In Engine to Power On.[br][/code][font=res://Assets/Fonts/crooked/Crooked.ttf]{GameManager.Instance.CreatePassword("captcha", 10)}[/font]");
 				break;
 
 			case "port_pass":
@@ -93,7 +93,7 @@ public partial class TypingUiContainer : PanelContainer
                 break;
 
             case "HELP!":
-				_rich_output.AppendText("[code]Valid Inputs:[br]HELP! - Get Help![br]port_pass - see port engine password[br]starboard_pass - see starboard engine password[br]engine_on - begin engine engage sequence[code]");
+				_rich_output.AppendText("[code][font_size=50]Valid Inputs:[br]HELP! - Get Help![br]port_pass - see port engine password[br]starboard_pass - see starboard engine password[br]engine_on - begin engine engage sequence[/font_size][code]");
 				break;
 
 			default:
