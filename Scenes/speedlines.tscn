@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://sr6350pw18lo"]
+
+[ext_resource type="PackedScene" uid="uid://bxsg1g7hcwprf" path="res://Scenes/UI/speedlines_ui.tscn" id="1_6wltp"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_6wltp"]
+viewport_path = NodePath("Sprite3D/SubViewport")
+
+[node name="Node3D" type="Node3D" unique_id=1459631009]
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=998715720]
+texture = SubResource("ViewportTexture_6wltp")
+
+[node name="SubViewport" type="SubViewport" parent="Sprite3D" unique_id=75836454]
+transparent_bg = true
+size = Vector2i(3980, 2160)
+
+[node name="Control" parent="Sprite3D/SubViewport" unique_id=1081055178 instance=ExtResource("1_6wltp")]
