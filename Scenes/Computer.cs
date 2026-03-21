@@ -5,6 +5,7 @@ public partial class Computer : StaticBody3D
 {
 	private TypingUiContainer _typingUI;
 	private SubViewport _subViewport;
+	private float inputDeadzone = .2f; //you could tie this to the godot method but fuck that for this rn
 
 
 	// Called when the node enters the scene tree for the first time.
@@ -26,9 +27,13 @@ public partial class Computer : StaticBody3D
 		{
 			CheckFocus((@event as InputEventMouseButton));
 		}
-		else if(@event is not (InputEventKey or InputEventMouseMotion))
+		else if(@event is not (InputEventKey or InputEventMouseMotion) && (@event is InputEventJoypadMotion && Math.Abs((@event as InputEventJoypadMotion).AxisValue) > inputDeadzone))
 		{
-			GD.Print("UNFOCUS");
+			GD.Print(@event);
+			if(@event is InputEventJoypadMotion)
+			{
+				GD.Print((@event as InputEventJoypadMotion).AxisValue);
+			}
 			_typingUI.FocusTyping(false);
 		}
 
