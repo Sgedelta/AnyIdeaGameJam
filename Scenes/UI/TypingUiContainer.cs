@@ -79,7 +79,7 @@ public partial class TypingUiContainer : PanelContainer
 		{
 			case "engine_on":
 				//ToDo GENERATE CAPTCHA AND PASS TO GM
-				_rich_output.AppendText($"[code]Enter Captcha In Engine to Power On.[br][/code][font=res://Assets/Fonts/crooked/Crooked.ttf]TEMP CAPTCHA[/font]");
+				_rich_output.AppendText($"[code]Enter Captcha In Engine to Power On.[br][/code][font=res://Assets/Fonts/crooked/Crooked.ttf]{GameManager.Instance.CreatePassword("captcha", 10)}[/font]");
 				break;
 
 			case "port_pass":
