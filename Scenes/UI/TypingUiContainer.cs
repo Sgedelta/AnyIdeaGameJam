@@ -6,6 +6,7 @@ public partial class TypingUiContainer : PanelContainer
 	private bool _showing = false;
 
 	private LineEdit _le_input;
+	private RichTextLabel _rich_output; 
 	private Tween _showHideTween;
 
 	[Export] float showHideSpeed = 10;
@@ -19,13 +20,12 @@ public partial class TypingUiContainer : PanelContainer
 	public override void _Ready()
 	{
 		_le_input = GetNode<LineEdit>("TypingMargins/LineEdit");
+		_rich_output = GetNode<RichTextLabel>("DisplayMargins/Display");
 
 		_le_input.FocusEntered += ShowScreen;
 		_le_input.FocusExited += HideScreen;
 		//FocusEntered += ShowScreen;
 		//FocusExited += HideScreen;
-
-		FocusTyping(true);
 
     }
 
@@ -73,9 +73,32 @@ public partial class TypingUiContainer : PanelContainer
 	private void ProcessTextInput()
 	{
 		string exactText = _le_input.Text;
-
-		switch(exactText)
+        _rich_output.Clear();
+        //no one told you it was okay to program like this.
+        switch (exactText)
 		{
+			case "engine_on":
+				//ToDo GENERATE CAPTCHA AND PASS TO GM
+				_rich_output.AppendText($"[code]Enter Captcha In Engine to Power On.[br][/code][font=res://Assets/Fonts/crooked/Crooked.ttf]TEMP CAPTCHA[/font]");
+				break;
+
+			case "port_pass":
+				//ToDo GENERATE PASS AND PASS TO GM
+				_rich_output.AppendText($"[code]Port Engine Password is[/code]");
+				break;
+
+            case "starboard_pass":
+                //ToDo GENERATE PASS AND PASS TO GM
+                _rich_output.AppendText($"[code]Starboard Engine Password is[/code]");
+                break;
+
+            case "HELP!":
+				_rich_output.AppendText("[code]Valid Inputs:[br]HELP! - Get Help![br]port_pass - see port engine password[br]starboard_pass - see starboard engine password[br]engine_on - begin engine engage sequence[code]");
+				break;
+
+			default:
+				_rich_output.AppendText("[code]Invalid Input! use \"HELP!\"![/code]");
+				break;
 
 		}
 
@@ -102,7 +125,10 @@ public partial class TypingUiContainer : PanelContainer
 		}
 		_showing = true;
 
-		if (_showHideTween != null && _showHideTween.IsRunning())
+        _rich_output.Clear();
+        _le_input.Text = "";
+
+        if (_showHideTween != null && _showHideTween.IsRunning())
 		{
 			_showHideTween.Kill();
 		}
@@ -128,6 +154,9 @@ public partial class TypingUiContainer : PanelContainer
 		}
 		
 		_showing = false;
+
+        _rich_output.Clear();
+        _le_input.Text = "";
 
         if (_showHideTween != null && _showHideTween.IsRunning())
         {
