@@ -1,0 +1,151 @@
+[gd_scene format=3 uid="uid://c66xt55l1n6yh"]
+
+[ext_resource type="Script" uid="uid://3wfahpp7hqi5" path="res://Scenes/UI/numpad_ui.gd" id="1_wlyyi"]
+
+[node name="NumpadUI" type="Control" unique_id=1091299902]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wlyyi")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2139322772]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1737.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=1896876384]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/MarginContainer" unique_id=1809747966]
+layout_mode = 2
+color = Color(0.18359044, 0.18359044, 0.18359044, 1)
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer" unique_id=518213100]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 100
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer" unique_id=941473187]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 3
+
+[node name="Button7" type="Button" parent="VBoxContainer/GridContainer" unique_id=1944392118]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 50
+toggle_mode = true
+text = "7"
+
+[node name="Button8" type="Button" parent="VBoxContainer/GridContainer" unique_id=1468150718]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 50
+toggle_mode = true
+text = "8"
+
+[node name="Button9" type="Button" parent="VBoxContainer/GridContainer" unique_id=967918188]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 50
+toggle_mode = true
+text = "9"
+
+[node name="Button4" type="Button" parent="VBoxContainer/GridContainer" unique_id=916089143]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 50
+toggle_mode = true
+text = "4"
+
+[node name="Button5" type="Button" parent="VBoxContainer/GridContainer" unique_id=748817981]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 50
+toggle_mode = true
+text = "5"
+
+[node name="Button6" type="Button" parent="VBoxContainer/GridContainer" unique_id=2066423986]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 50
+toggle_mode = true
+text = "6"
+
+[node name="Button1" type="Button" parent="VBoxContainer/GridContainer" unique_id=1764478726]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 50
+toggle_mode = true
+text = "1"
+
+[node name="Button2" type="Button" parent="VBoxContainer/GridContainer" unique_id=1589052165]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 50
+toggle_mode = true
+text = "2"
+
+[node name="Button3" type="Button" parent="VBoxContainer/GridContainer" unique_id=679755530]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 50
+toggle_mode = true
+text = "3"
+
+[node name="ButtonClear" type="Button" parent="VBoxContainer/GridContainer" unique_id=957557017]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 50
+toggle_mode = true
+text = "Clear"
+
+[node name="Button0" type="Button" parent="VBoxContainer/GridContainer" unique_id=2050304152]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 50
+toggle_mode = true
+text = "0"
+
+[node name="ButtonEnter" type="Button" parent="VBoxContainer/GridContainer" unique_id=1426920407]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 50
+toggle_mode = true
+text = "Enter"
+
+[connection signal="pressed" from="VBoxContainer/GridContainer/Button7" to="." method="_on_button_7_pressed"]
+[connection signal="pressed" from="VBoxContainer/GridContainer/Button8" to="." method="_on_button_8_pressed"]
+[connection signal="pressed" from="VBoxContainer/GridContainer/Button9" to="." method="_on_button_9_pressed"]
+[connection signal="pressed" from="VBoxContainer/GridContainer/Button4" to="." method="_on_button_4_pressed"]
+[connection signal="pressed" from="VBoxContainer/GridContainer/Button5" to="." method="_on_button_5_pressed"]
+[connection signal="pressed" from="VBoxContainer/GridContainer/Button6" to="." method="_on_button_6_pressed"]
+[connection signal="pressed" from="VBoxContainer/GridContainer/Button1" to="." method="_on_button_1_pressed"]
+[connection signal="pressed" from="VBoxContainer/GridContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/GridContainer/Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="VBoxContainer/GridContainer/ButtonClear" to="." method="_on_button_c_pressed"]
+[connection signal="pressed" from="VBoxContainer/GridContainer/Button0" to="." method="_on_button_0_pressed"]
+[connection signal="pressed" from="VBoxContainer/GridContainer/ButtonEnter" to="." method="_on_button_enter_pressed"]

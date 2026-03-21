@@ -12,8 +12,8 @@ public partial class Computer : StaticBody3D
 	public override void _Ready()
 	{
 		_typingUI = GetNode<TypingUiContainer>("Screen/SubViewport/TypingUIContainer");
-        _subViewport = GetNode<SubViewport>("Screen/SubViewport");
-    }
+		_subViewport = GetNode<SubViewport>("Screen/SubViewport");
+	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
@@ -21,9 +21,9 @@ public partial class Computer : StaticBody3D
 	}
 
 
-    public override void _Input(InputEvent @event)
-    {
-        if(@event.IsAction("mouse_left") && @event.IsActionReleased("mouse_left"))
+	public override void _Input(InputEvent @event)
+	{
+		if(@event.IsAction("mouse_left") && @event.IsActionReleased("mouse_left"))
 		{
 			CheckFocus((@event as InputEventMouseButton));
 		}
@@ -39,7 +39,7 @@ public partial class Computer : StaticBody3D
 
 		_subViewport.PushInput(@event);
 		
-    }
+	}
 
 	public void CheckFocus(InputEventMouseButton e)
 	{
