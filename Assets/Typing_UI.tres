@@ -2,6 +2,12 @@
 
 [ext_resource type="StyleBox" uid="uid://dxa51k61tjslj" path="res://Assets/typing_stylebox.tres" id="1_hb8c6"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ind11"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yjmbb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qluy6"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0qsfs"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hb8c6"]
@@ -9,6 +15,13 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lf27p"]
 
 [resource]
+LineEdit/colors/caret_color = Color(0.18039216, 0.9529412, 0.30980393, 1)
+LineEdit/colors/font_color = Color(0.18039216, 0.9529412, 0.30980393, 1)
+LineEdit/colors/font_selected_color = Color(0.18039216, 0.9529412, 0.30980393, 1)
+LineEdit/font_sizes/font_size = 50
+LineEdit/styles/focus = SubResource("StyleBoxEmpty_ind11")
+LineEdit/styles/normal = SubResource("StyleBoxEmpty_yjmbb")
+LineEdit/styles/read_only = SubResource("StyleBoxEmpty_qluy6")
 PanelContainer/styles/panel = ExtResource("1_hb8c6")
 TextEdit/colors/caret_color = Color(0.18039216, 0.9529412, 0.30980393, 1)
 TextEdit/colors/font_color = Color(0.18039216, 0.9529412, 0.30980393, 1)

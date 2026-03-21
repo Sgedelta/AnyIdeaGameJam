@@ -5,15 +5,22 @@
 [ext_resource type="Script" uid="uid://bxefw0sjoxfeg" path="res://Scenes/UI/TypingUiContainer.cs" id="3_qm1c8"]
 
 [node name="TypingUIContainer" type="PanelContainer" unique_id=910965241]
-custom_minimum_size = Vector2(600, 450)
-offset_right = 40.0
-offset_bottom = 40.0
+clip_contents = true
+custom_minimum_size = Vector2(900, 0)
+offset_top = 450.0
+offset_right = 600.0
+offset_bottom = 550.0
+pivot_offset = Vector2(0, 450)
+size_flags_horizontal = 0
+size_flags_vertical = 4
 theme = ExtResource("1_vwtrp")
 theme_override_styles/panel = ExtResource("2_q1i8d")
 script = ExtResource("3_qm1c8")
+showHideSpeed = 1.0
+showScale = Vector2(900, 450)
+hideScale = Vector2(900, 100)
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2041625362]
-custom_minimum_size = Vector2(0, 75)
+[node name="TypingMargins" type="MarginContainer" parent="." unique_id=2041625362]
 layout_mode = 2
 size_flags_vertical = 8
 theme = ExtResource("1_vwtrp")
@@ -21,6 +28,11 @@ theme_override_constants/margin_left = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 25
 
-[node name="TextEdit" type="TextEdit" parent="MarginContainer" unique_id=15330672]
+[node name="LineEdit" type="LineEdit" parent="TypingMargins" unique_id=1689155546]
 layout_mode = 2
 theme = ExtResource("1_vwtrp")
+keep_editing_on_text_submit = true
+context_menu_enabled = false
+emoji_menu_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false

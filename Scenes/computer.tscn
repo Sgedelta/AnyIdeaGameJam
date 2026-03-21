@@ -1,11 +1,16 @@
 [gd_scene format=3 uid="uid://ct8r5tilx1632"]
 
 [ext_resource type="PackedScene" uid="uid://dpir7truatl8q" path="res://Scenes/UI/typing_ui_container.tscn" id="1_4xga7"]
+[ext_resource type="Script" uid="uid://coh0mdw437jeq" path="res://Scenes/Computer.cs" id="1_j2xe6"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_4xga7"]
-viewport_path = NodePath("Sprite3D/SubViewport")
+[sub_resource type="ViewportTexture" id="ViewportTexture_j2xe6"]
+viewport_path = NodePath("Screen/SubViewport")
 
-[node name="Computer" type="Node3D" unique_id=1549007900]
+[sub_resource type="BoxShape3D" id="BoxShape3D_m1ujp"]
+size = Vector3(1.2714844, 0.43414307, 0.6923828)
+
+[node name="Computer" type="StaticBody3D" unique_id=768165443]
+script = ExtResource("1_j2xe6")
 
 [node name="Greybox" type="CSGCombiner3D" parent="." unique_id=1206402837]
 
@@ -22,16 +27,22 @@ size = Vector3(1.078, 0.038, 0.3)
 transform = Transform3D(1, 0, 0, 0, 0.96517646, -0.26159966, 0, 0.26159966, 0.96517646, 0, 0.030168816, 0.008056835)
 size = Vector3(0.95, 0.038, 0.25)
 
-[node name="Sprite3D" type="Sprite3D" parent="." unique_id=990515359]
+[node name="Screen" type="Sprite3D" parent="." unique_id=990515359]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8050517, -0.29210833)
-texture = SubResource("ViewportTexture_4xga7")
+texture = SubResource("ViewportTexture_j2xe6")
 
-[node name="SubViewport" type="SubViewport" parent="Sprite3D" unique_id=1554812538]
+[node name="SubViewport" type="SubViewport" parent="Screen" unique_id=1554812538]
 transparent_bg = true
-size = Vector2i(200, 150)
-size_2d_override = Vector2i(600, 450)
+physics_object_picking = true
+size = Vector2i(300, 150)
+size_2d_override = Vector2i(900, 450)
 size_2d_override_stretch = true
 
-[node name="TypingUIContainer" parent="Sprite3D/SubViewport" unique_id=910965241 instance=ExtResource("1_4xga7")]
-offset_right = 600.0
-offset_bottom = 450.0
+[node name="TypingUIContainer" parent="Screen/SubViewport" unique_id=910965241 instance=ExtResource("1_4xga7")]
+focus_mode = 2
+
+[node name="HitBox" type="CollisionShape3D" parent="." unique_id=415102437]
+transform = Transform3D(1, 0, 0, 0, 0.9717719, -0.23592238, 0, 0.23592238, 0.9717719, 0, 0, 0.10679799)
+shape = SubResource("BoxShape3D_m1ujp")
+
+[editable path="Screen/SubViewport/TypingUIContainer"]
