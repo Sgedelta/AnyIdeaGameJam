@@ -1,0 +1,17 @@
+[gd_resource type="Theme" format=3 uid="uid://tta21xxxbt1l"]
+
+[ext_resource type="StyleBox" uid="uid://dxa51k61tjslj" path="res://Assets/typing_stylebox.tres" id="1_hb8c6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0qsfs"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hb8c6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lf27p"]
+
+[resource]
+PanelContainer/styles/panel = ExtResource("1_hb8c6")
+TextEdit/colors/caret_color = Color(0.18039216, 0.9529412, 0.30980393, 1)
+TextEdit/colors/font_color = Color(0.18039216, 0.9529412, 0.30980393, 1)
+TextEdit/styles/focus = SubResource("StyleBoxEmpty_0qsfs")
+TextEdit/styles/normal = SubResource("StyleBoxEmpty_hb8c6")
+TextEdit/styles/read_only = SubResource("StyleBoxEmpty_lf27p")

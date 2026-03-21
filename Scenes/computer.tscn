@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://ct8r5tilx1632"]
+
+[ext_resource type="PackedScene" uid="uid://dpir7truatl8q" path="res://Scenes/UI/typing_ui_container.tscn" id="1_4xga7"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_4xga7"]
+viewport_path = NodePath("Sprite3D/SubViewport")
+
+[node name="Computer" type="Node3D" unique_id=1549007900]
+
+[node name="Greybox" type="CSGCombiner3D" parent="." unique_id=1206402837]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Greybox" unique_id=2075350356]
+transform = Transform3D(1, 0, 0, 0, 0.96517646, -0.26159966, 0, 0.26159966, 0.96517646, 0, 0, 0)
+size = Vector3(1.2, 0.1, 0.4)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Greybox" unique_id=2030006516]
+transform = Transform3D(1, 0, 0, 0, 0.96517646, -0.26159966, 0, 0.26159966, 0.96517646, 0, 0.052550375, 0.008056835)
+operation = 2
+size = Vector3(1.078, 0.038, 0.3)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Greybox" unique_id=1245783528]
+transform = Transform3D(1, 0, 0, 0, 0.96517646, -0.26159966, 0, 0.26159966, 0.96517646, 0, 0.030168816, 0.008056835)
+size = Vector3(0.95, 0.038, 0.25)
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=990515359]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8050517, -0.29210833)
+texture = SubResource("ViewportTexture_4xga7")
+
+[node name="SubViewport" type="SubViewport" parent="Sprite3D" unique_id=1554812538]
+transparent_bg = true
+size = Vector2i(200, 150)
+size_2d_override = Vector2i(600, 450)
+size_2d_override_stretch = true
+
+[node name="TypingUIContainer" parent="Sprite3D/SubViewport" unique_id=910965241 instance=ExtResource("1_4xga7")]
+offset_right = 600.0
+offset_bottom = 450.0

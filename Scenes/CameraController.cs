@@ -12,18 +12,18 @@ public partial class CameraController : Camera3D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		Tween tester = CreateTween();
-
-		tester.TweenCallback(Callable.From(() => { TweenCameraToLoc("fucked"); }));
-        tester.TweenCallback(Callable.From(() => { TweenCameraToLoc("right"); })).SetDelay(_cameraSpeed * 2);
-
-        tester.TweenCallback(Callable.From(() => { TweenCameraToLoc("backward"); })).SetDelay(_cameraSpeed * 2);
-
-        tester.TweenCallback(Callable.From(() => { TweenCameraToLoc("fucked"); })).SetDelay(_cameraSpeed * 2);
-        tester.TweenCallback(Callable.From(() => { TweenCameraToLoc("backward"); })).SetDelay(_cameraSpeed * 2);
-        tester.TweenCallback(Callable.From(() => { TweenCameraToLoc("forward"); })).SetDelay(_cameraSpeed * 2);
-        tester.TweenCallback(Callable.From(() => { TweenCameraToLoc("backward"); })).SetDelay(_cameraSpeed * 2);
-        tester.TweenCallback(Callable.From(() => { TweenCameraToLoc("forward"); })).SetDelay(_cameraSpeed * 2);
+		//Tween tester = CreateTween();
+		//
+		//tester.TweenCallback(Callable.From(() => { TweenCameraToLoc("fucked"); }));
+        //tester.TweenCallback(Callable.From(() => { TweenCameraToLoc("right"); })).SetDelay(_cameraSpeed * 2);
+		//
+        //tester.TweenCallback(Callable.From(() => { TweenCameraToLoc("backward"); })).SetDelay(_cameraSpeed * 2);
+		//
+        //tester.TweenCallback(Callable.From(() => { TweenCameraToLoc("fucked"); })).SetDelay(_cameraSpeed * 2);
+        //tester.TweenCallback(Callable.From(() => { TweenCameraToLoc("backward"); })).SetDelay(_cameraSpeed * 2);
+        //tester.TweenCallback(Callable.From(() => { TweenCameraToLoc("forward"); })).SetDelay(_cameraSpeed * 2);
+        //tester.TweenCallback(Callable.From(() => { TweenCameraToLoc("backward"); })).SetDelay(_cameraSpeed * 2);
+        //tester.TweenCallback(Callable.From(() => { TweenCameraToLoc("forward"); })).SetDelay(_cameraSpeed * 2);
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

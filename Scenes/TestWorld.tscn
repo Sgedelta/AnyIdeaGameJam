@@ -1,10 +1,9 @@
 [gd_scene format=3 uid="uid://b77o8iiek1xnq"]
 
 [ext_resource type="PackedScene" uid="uid://s405dih1rl6d" path="res://Scenes/camera_control.tscn" id="1_k2eo1"]
-[ext_resource type="Texture2D" uid="uid://ck85h8n0ugj5k" path="res://icon.svg" id="2_se0eo"]
 [ext_resource type="Texture2D" uid="uid://dtale27i7hab0" path="res://Assets/Sprites/Space_Skymap.png" id="3_4snwc"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_se0eo"]
+[ext_resource type="PackedScene" uid="uid://c2kw46q0bpc3r" path="res://Scenes/ship_greybox.tscn" id="4_ed2pg"]
+[ext_resource type="PackedScene" uid="uid://ct8r5tilx1632" path="res://Scenes/computer.tscn" id="5_rdsav"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ed2pg"]
 panorama = ExtResource("3_4snwc")
@@ -25,21 +24,11 @@ _cameraSpeed = 0.5
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1389699873]
 transform = Transform3D(1, 0, 0, 0, 0.19541556, 0.9807205, 0, -0.9807205, 0.19541556, 0, 0, -1.1822615)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1793053056]
-transform = Transform3D(8.051519, 0, 0, 0, 0.13439745, 0, 0, 0, 12.540765, 0, -0.54705656, -0.57479835)
-mesh = SubResource("BoxMesh_se0eo")
-
-[node name="Lefty" type="Sprite3D" parent="." unique_id=1526456083]
-transform = Transform3D(-0.05076721, 0, 0.9987105, 0, 1, 0, -0.9987105, 0, -0.05076721, -1.652866, 0, 0)
-texture = ExtResource("2_se0eo")
-
-[node name="Righty" type="Sprite3D" parent="." unique_id=329175902]
-transform = Transform3D(-0.05076721, 0, 0.9987105, 0.627845, -0.7776838, 0.03191509, 0.776681, 0.6286556, 0.039480835, 1.7670683, 0, 0)
-texture = ExtResource("2_se0eo")
-
-[node name="Forwardy" type="Sprite3D" parent="." unique_id=61653486]
-transform = Transform3D(-0.7780523, -0.6281982, -0.0013576596, 0.39840487, -0.49511123, 0.7721001, -0.48570397, 0.60019314, 0.6354996, 0.3043443, 0, -2.1839685)
-texture = ExtResource("2_se0eo")
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1477872571]
 environment = SubResource("Environment_se0eo")
+
+[node name="ShipGreyboxCombiner" parent="." unique_id=991475515 instance=ExtResource("4_ed2pg")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="Computer" parent="." unique_id=1549007900 instance=ExtResource("5_rdsav")]
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 0.005420327, -1, -2.1120648)
