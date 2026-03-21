@@ -1,9 +1,14 @@
 [gd_scene format=3 uid="uid://c1wai34u14ogt"]
 
+[ext_resource type="Script" uid="uid://bmwyxs3vbuc3b" path="res://Scenes/Valve.cs" id="1_6aevd"]
+
 [sub_resource type="TubeTrailMesh" id="TubeTrailMesh_eyhu5"]
 
-[node name="valve" type="Node3D" unique_id=1192847290]
+[node name="Valve" type="Node3D" unique_id=1192847290 node_paths=PackedStringArray("_valveDisplay")]
+script = ExtResource("1_6aevd")
+_valveDisplay = NodePath("MeshInstance3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1430034741]
 transform = Transform3D(1, 0, 0, 0, -5.5039555e-09, -1, 0, 0.12591583, -4.371139e-08, 0, 0, 0)
+rotation_order = 1
 mesh = SubResource("TubeTrailMesh_eyhu5")

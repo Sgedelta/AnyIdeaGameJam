@@ -17,7 +17,7 @@ sky_material = SubResource("PanoramaSkyMaterial_ed2pg")
 background_mode = 2
 sky = SubResource("Sky_rdsav")
 
-[node name="Node3D" type="Node3D" unique_id=441259406]
+[node name="Node3D2" type="Node3D" unique_id=441259406]
 
 [node name="Camera" parent="." unique_id=129220480 instance=ExtResource("1_k2eo1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.30175698, -1.1920929e-07, 0.71876764)
@@ -39,4 +39,4 @@ transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 0.43
 transform = Transform3D(0.12568662, 0, 0, 0, 0.13916422, 0, 0, 0, 1, 0.0006580651, 1.2128685, -5.08145)
 
 [node name="valve" parent="." unique_id=1192847290 instance=ExtResource("6_g0pj6")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3.5095267, 0, 0.041728247)
+transform = Transform3D(-0.90426147, 0, -0.42697912, 0, 1, 0, 0.42697912, 0, -0.90426147, -0.14219522, 0, -3.3449643)
