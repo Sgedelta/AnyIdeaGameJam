@@ -32,7 +32,4 @@ environment = SubResource("Environment_se0eo")
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
 [node name="Computer" parent="." unique_id=1549007900 instance=ExtResource("5_rdsav")]
-transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 0.005420327, -1, -2.1120648)
-
-[node name="Node3D" parent="." unique_id=1459631009 instance=ExtResource("5_g0pj6")]
-transform = Transform3D(0.1260078, 0, 0, 0, 0.13926272, 0, 0, 0, 0.15, 0.0007817745, 1.2020617, -5.0871987)
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 0.4382323, -1, -2.1120648)
