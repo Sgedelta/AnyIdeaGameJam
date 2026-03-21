@@ -15,16 +15,16 @@ public partial class CameraController : Camera3D
 		//Tween tester = CreateTween();
 		//
 		//tester.TweenCallback(Callable.From(() => { TweenCameraToLoc("fucked"); }));
-        //tester.TweenCallback(Callable.From(() => { TweenCameraToLoc("right"); })).SetDelay(_cameraSpeed * 2);
+		//tester.TweenCallback(Callable.From(() => { TweenCameraToLoc("right"); })).SetDelay(_cameraSpeed * 2);
 		//
-        //tester.TweenCallback(Callable.From(() => { TweenCameraToLoc("backward"); })).SetDelay(_cameraSpeed * 2);
+		//tester.TweenCallback(Callable.From(() => { TweenCameraToLoc("backward"); })).SetDelay(_cameraSpeed * 2);
 		//
-        //tester.TweenCallback(Callable.From(() => { TweenCameraToLoc("fucked"); })).SetDelay(_cameraSpeed * 2);
-        //tester.TweenCallback(Callable.From(() => { TweenCameraToLoc("backward"); })).SetDelay(_cameraSpeed * 2);
-        //tester.TweenCallback(Callable.From(() => { TweenCameraToLoc("forward"); })).SetDelay(_cameraSpeed * 2);
-        //tester.TweenCallback(Callable.From(() => { TweenCameraToLoc("backward"); })).SetDelay(_cameraSpeed * 2);
-        //tester.TweenCallback(Callable.From(() => { TweenCameraToLoc("forward"); })).SetDelay(_cameraSpeed * 2);
-    }
+		//tester.TweenCallback(Callable.From(() => { TweenCameraToLoc("fucked"); })).SetDelay(_cameraSpeed * 2);
+		//tester.TweenCallback(Callable.From(() => { TweenCameraToLoc("backward"); })).SetDelay(_cameraSpeed * 2);
+		//tester.TweenCallback(Callable.From(() => { TweenCameraToLoc("forward"); })).SetDelay(_cameraSpeed * 2);
+		//tester.TweenCallback(Callable.From(() => { TweenCameraToLoc("backward"); })).SetDelay(_cameraSpeed * 2);
+		//tester.TweenCallback(Callable.From(() => { TweenCameraToLoc("forward"); })).SetDelay(_cameraSpeed * 2);
+	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
@@ -53,9 +53,9 @@ public partial class CameraController : Camera3D
 			//now, if its more than 180, subtract from 360 (negative to keep direction)
 		diff = new Vector3(
 			Mathf.Abs(diff.X) > 180 ? -360 + diff.X : diff.X,
-            Mathf.Abs(diff.Y) > 180 ? -360 + diff.Y : diff.Y,
-            Mathf.Abs(diff.Z) > 180 ? -360 + diff.Z : diff.Z
-            );
+			Mathf.Abs(diff.Y) > 180 ? -360 + diff.Y : diff.Y,
+			Mathf.Abs(diff.Z) > 180 ? -360 + diff.Z : diff.Z
+			);
 			//get change and apply to current position so we "snap" to the right position no matter where we are
 		locToGoTo = RotationDegrees + diff;
 
