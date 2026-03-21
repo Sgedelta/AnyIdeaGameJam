@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://c1wai34u14ogt"]
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_eyhu5"]
+
+[node name="valve" type="Node3D" unique_id=1192847290]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1430034741]
+transform = Transform3D(1, 0, 0, 0, -5.5039555e-09, -1, 0, 0.12591583, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("TubeTrailMesh_eyhu5")
