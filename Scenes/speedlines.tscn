@@ -5,7 +5,7 @@
 [sub_resource type="ViewportTexture" id="ViewportTexture_6wltp"]
 viewport_path = NodePath("Sprite3D/SubViewport")
 
-[node name="Node3D" type="Node3D" unique_id=1459631009]
+[node name="Speedlines" type="Node3D" unique_id=1459631009]
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=998715720]
 texture = SubResource("ViewportTexture_6wltp")
