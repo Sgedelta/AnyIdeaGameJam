@@ -11,12 +11,31 @@ config_version=5
 [application]
 
 config/name="AnyIdeaGame"
-config/features=PackedStringArray("4.6", "Forward Plus")
+config/features=PackedStringArray("4.6", "C#", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameManager="*uid://dnedy5yi0umhe"
+
+[display]
+
+window/size/viewport_width=3980
+window/size/viewport_height=2160
+window/size/window_width_override=1920
+window/size/window_height_override=1080
+window/stretch/mode="viewport"
 
 [dotnet]
 
 project/assembly_name="AnyIdeaGame"
+
+[input]
+
+Attack={
+"deadzone": 0.2,
+"events": []
+}
 
 [physics]
 

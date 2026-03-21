@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://s405dih1rl6d"]
+
+[ext_resource type="Script" uid="uid://c5xgqhmayoxeb" path="res://Scenes/CameraController.cs" id="1_jsgnu"]
+
+[node name="Camera" type="Camera3D" unique_id=129220480]
+script = ExtResource("1_jsgnu")
+_cameraLocs = Dictionary[String, Vector3]({
+"backward": Vector3(0, 180, 0),
+"forward": Vector3(0, 0, 0),
+"left": Vector3(0, 90, 0),
+"right": Vector3(0, -90, 0)
+})
