@@ -2,6 +2,14 @@ using Godot;
 using Godot.Collections;
 using System;
 
+public enum CameraFacing
+{
+	Forward,
+	Right,
+	Left,
+	Backward
+}
+
 public partial class CameraController : Camera3D
 {
 
@@ -31,6 +39,9 @@ public partial class CameraController : Camera3D
 	{
 
 	}
+
+
+
 
 
 	public void TweenCameraToLoc(string locName)
