@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://ccetrajvpu778" path="res://Scenes/button_object.tscn" id="7_7oy3y"]
 [ext_resource type="PackedScene" uid="uid://ci6e4jyohf33s" path="res://Scenes/right_valve_thruster.tscn" id="8_4e6cy"]
 [ext_resource type="PhysicsMaterial" uid="uid://dnrgyxqqmryww" path="res://Assets/Materials/PhysicsMats/Bouncy.tres" id="11_0rqgs"]
+[ext_resource type="PackedScene" uid="uid://cqy5d4syqsc0d" path="res://Scenes/asteroid_field.tscn" id="12_icgjy"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ed2pg"]
 panorama = ExtResource("3_4snwc")
@@ -22,7 +23,7 @@ sky_material = SubResource("PanoramaSkyMaterial_ed2pg")
 background_mode = 2
 sky = SubResource("Sky_rdsav")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_0rqgs"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_l0hd3"]
 viewport_path = NodePath("Screen/SubViewport")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1jowa"]
@@ -83,7 +84,7 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0
 transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 0.4382323, -1, -2.1120648)
 
 [node name="Screen" parent="Computer" index="1" unique_id=990515359]
-texture = SubResource("ViewportTexture_0rqgs")
+texture = SubResource("ViewportTexture_l0hd3")
 
 [node name="Speedlines" parent="." unique_id=1459631009 instance=ExtResource("5_g0pj6")]
 transform = Transform3D(0.12568662, 0, 0, 0, 0.13916422, 0, 0, 0, 1, 0.0006580651, 1.2128685, -5.08145)
@@ -99,10 +100,14 @@ physics_material_override = ExtResource("11_0rqgs")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.74542236, 0, -0.9850464)
 shape = SubResource("BoxShape3D_1jowa")
 
+[node name="AsteroidField" parent="." unique_id=97329334 instance=ExtResource("12_icgjy")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 2, -1.25, -2)
+
 [editable path="Camera/button_object"]
 [editable path="Camera/button_object2"]
 [editable path="Camera/AlienHands"]
 [editable path="Camera/AlienHands/alienDaddyRIG_12"]
 [editable path="Battery"]
+[editable path="ShipGreyboxCombiner"]
 [editable path="Computer"]
 [editable path="Computer/Screen/SubViewport/TypingUIContainer"]

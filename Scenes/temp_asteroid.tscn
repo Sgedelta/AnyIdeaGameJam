@@ -1,14 +1,16 @@
 [gd_scene format=3 uid="uid://bx2ubee3wuqom"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_2b285"]
+radius = 3.0
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2b285"]
 albedo_color = Color(0.37, 0.15416667, 0, 1)
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_2b285"]
+[node name="Area3D" type="Area3D" unique_id=407412021 groups=["asteroid"]]
 
-[node name="TempAsteroid" type="CSGSphere3D" unique_id=1656509517]
-material = SubResource("StandardMaterial3D_2b285")
-
-[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=742384681]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=1987856059]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1987856059]
 shape = SubResource("SphereShape3D_2b285")
+
+[node name="TempAsteroid" type="CSGSphere3D" parent="." unique_id=1656509517]
+radius = 3.0
+material = SubResource("StandardMaterial3D_2b285")
