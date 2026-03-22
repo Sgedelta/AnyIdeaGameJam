@@ -52,114 +52,114 @@ public partial class Battery : RigidBody3D, IHandable
                 {
                     TimeLeft += Mathf.Min((float)delta * (HandCount - 2), TimeToDrop);
                 }
-
-
-                if (HandCount > 0)
-                {
-                    //get hand forwards
-                    int forwardHands = GetForwardHandCount();
-
-                    if (forwardHands > _heldHands.Count / 2f)
-                    {
-                        //figure out forward pos
-                        Vector3 batteryPos = Vector3.Zero;
-                        Vector3 batteryRot = Vector3.Zero;
-
-                        for (int i = 0; i < _heldHands.Count; i++)
-                        {
-                            Vector3 handPos = Vector3.Zero;
-                            switch (_heldHands[i])
-                            {
-                                case HandType.Mouse:
-                                    handPos = GameManager.Instance.Hands.mHandTarget.GlobalPosition;
-                                    break;
-
-                                case HandType.KeyL:
-                                    handPos = GameManager.Instance.Hands.kLHandTarget.GlobalPosition;
-                                    break;
-
-                                case HandType.KeyR:
-                                    handPos = GameManager.Instance.Hands.kRHandTarget.GlobalPosition;
-                                    break;
-
-                                case HandType.ContL:
-                                    handPos = GameManager.Instance.Hands.cLHandTarget.GlobalPosition;
-                                    break;
-
-                                case HandType.ContR:
-                                    handPos = GameManager.Instance.Hands.cRHandTarget.GlobalPosition;
-                                    break;
-                            }
-                            batteryPos += handPos / _heldHands.Count;
-
-                        }
-
-                        batteryPos = (batteryPos - GetViewport().GetCamera3D().GlobalPosition).Normalized() * _holdDist;
-
-
-                        GlobalPosition = batteryPos;
-                        RotationDegrees = batteryRot;
-                        //give control
-                        bool controlAllowed = true;
-                        foreach (HandType type in _heldHands)
-                        {
-                            switch (type)
-                            {
-                                case HandType.Mouse:
-                                    GameManager.Instance.HCont.mouseControl = controlAllowed;
-                                    break;
-
-                                case HandType.KeyL:
-                                    GameManager.Instance.HCont.keyboardControlL = controlAllowed;
-                                    break;
-
-                                case HandType.KeyR:
-                                    GameManager.Instance.HCont.keyboardControlR = controlAllowed;
-                                    break;
-
-                                case HandType.ContL:
-                                    GameManager.Instance.HCont.controllerControlL = controlAllowed;
-                                    break;
-
-                                case HandType.ContR:
-                                    GameManager.Instance.HCont.controllerControlR = controlAllowed;
-                                    break;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        SetBatteryToInPos();
-                    }
-
-
-                }
             }
-            else
+
+            if (HandCount > 0)
             {
-                TimeLeft = TimeToDrop;
+                //get hand forwards
+                int forwardHands = GetForwardHandCount();
 
-                if (HandCount >= 2)
+                if (forwardHands > _heldHands.Count / 2f)
                 {
-                    //get hand forwards
-                    int forwardHands = GetForwardHandCount();
+                    //figure out forward pos
+                    Vector3 batteryPos = Vector3.Zero;
+                    Vector3 batteryRot = Vector3.Zero;
 
-                    if (forwardHands <= _heldHands.Count / 2f)
+                    for (int i = 0; i < _heldHands.Count; i++)
                     {
-                        SetBatteryToInPos();
-                        Inserted = false;
-                        return;
+                        Vector3 handPos = Vector3.Zero;
+                        switch (_heldHands[i])
+                        {
+                            case HandType.Mouse:
+                                handPos = GameManager.Instance.Hands.mHandTarget.GlobalPosition;
+                                break;
+
+                            case HandType.KeyL:
+                                handPos = GameManager.Instance.Hands.kLHandTarget.GlobalPosition;
+                                break;
+
+                            case HandType.KeyR:
+                                handPos = GameManager.Instance.Hands.kRHandTarget.GlobalPosition;
+                                break;
+
+                            case HandType.ContL:
+                                handPos = GameManager.Instance.Hands.cLHandTarget.GlobalPosition;
+                                break;
+
+                            case HandType.ContR:
+                                handPos = GameManager.Instance.Hands.cRHandTarget.GlobalPosition;
+                                break;
+                        }
+                        batteryPos += handPos / _heldHands.Count;
+
                     }
 
+                    batteryPos = (batteryPos - GetViewport().GetCamera3D().GlobalPosition).Normalized() * _holdDist;
+
+
+                    GlobalPosition = batteryPos;
+                    RotationDegrees = batteryRot;
+                    //give control
+                    bool controlAllowed = true;
+                    foreach (HandType type in _heldHands)
+                    {
+                        switch (type)
+                        {
+                            case HandType.Mouse:
+                                GameManager.Instance.HCont.mouseControl = controlAllowed;
+                                break;
+
+                            case HandType.KeyL:
+                                GameManager.Instance.HCont.keyboardControlL = controlAllowed;
+                                break;
+
+                            case HandType.KeyR:
+                                GameManager.Instance.HCont.keyboardControlR = controlAllowed;
+                                break;
+
+                            case HandType.ContL:
+                                GameManager.Instance.HCont.controllerControlL = controlAllowed;
+                                break;
+
+                            case HandType.ContR:
+                                GameManager.Instance.HCont.controllerControlR = controlAllowed;
+                                break;
+                        }
+                    }
+                }
+                else
+                {
+                    SetBatteryToInPos();
                 }
 
-                if (InsertLoc != null)
-                {
-                    GlobalPosition = InsertLoc.BatterySnapLoc.GlobalPosition;
-                    RotationDegrees = InsertLoc.BatterySnapLoc.GlobalRotationDegrees;
-                }
+
             }
         }
+        else
+        {
+            TimeLeft = TimeToDrop;
+
+            if (HandCount >= 2)
+            {
+                //get hand forwards
+                int forwardHands = GetForwardHandCount();
+
+                if (forwardHands <= _heldHands.Count / 2f)
+                {
+                    SetBatteryToInPos();
+                    Inserted = false;
+                    return;
+                }
+
+            }
+
+            if (InsertLoc != null)
+            {
+                GlobalPosition = InsertLoc.BatterySnapLoc.GlobalPosition;
+                RotationDegrees = InsertLoc.BatterySnapLoc.GlobalRotationDegrees;
+            }
+        }
+    }
 
 
     public void Drop(bool doImpuse = true)
