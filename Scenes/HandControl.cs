@@ -105,241 +105,16 @@ public partial class HandControl : Node2D
     {
         //TODO: update input to call other CastChecks correctly
         Vector2 inControl = Vector2.Zero;
-        switch (@event)
-        {
-            case InputEventMouseButton:
-                InputEventMouseButton me = @event as InputEventMouseButton;
-
-                if (me.ButtonIndex == MouseButton.Left )
-                {
-                    MouseCastCheck(me.Pressed);
-                }
-                else if(me.ButtonIndex == MouseButton.Right)
-                {
-                    SetHandExtent(HandType.Mouse, me.Pressed ? 1 : 0);
-                }
-
-
-
-                break;
-
-            case InputEventMouseMotion:
-
-                if (!mouseControl)
-                {
-                    return;
-                }
-                mHand.Position = (@event as InputEventMouseMotion).Position;
-                break;
-
-            case InputEventKey:
-                InputEventKey ke = @event as InputEventKey;
-
-                if (ke.IsEcho())
-                {
-                    return;
-                }
-
-                //these *could* go in switch but... naw
-
-                if(ke.Keycode == Key.Ctrl)
-                {
-                    SetHandExtent(
-                        ke.Location == KeyLocation.Left ? HandType.KeyL : HandType.KeyR,
-                        ke.Pressed ? 1 : 0
-                        );
-                }
-                else if(ke.Keycode == Key.Shift)
-                {
-                    GD.Print($"{ke.Keycode} | {ke.Location}");
-                    if(ke.Location == KeyLocation.Left)
-                    {
-                        KeyLeftCastCheck(ke.Pressed);
-                    }
-                    else
-                    {
-                        KeyRightCastCheck(ke.Pressed);
-                    }
-                }
-
-                switch (ke.Keycode)
-                {
-                    case Key.W:
-                        if (!keyboardControlL)
-                        {
-                            return;
-                        }
-                        inControl = Vector2.Up;
-                        break;
-                    case Key.Up:
-                        if (!keyboardControlR)
-                        {
-                            return;
-                        }
-                        inControl = Vector2.Up;
-                        break;
-
-                    case Key.S:
-                        if (!keyboardControlL)
-                        {
-                            return;
-                        }
-                        inControl = Vector2.Down;
-                        break;
-                    case Key.Down:
-                        if (!keyboardControlR)
-                        {
-                            return;
-                        }
-                        inControl = Vector2.Down;
-                        break;
-
-                    case Key.A:
-                        if (!keyboardControlL)
-                        {
-                            return;
-                        }
-                        inControl = Vector2.Left;
-                        break;
-                    case Key.Left:
-                        if (!keyboardControlR)
-                        {
-                            return;
-                        }
-                        inControl = Vector2.Left;
-                        break;
-
-                    case Key.D:
-                        if (!keyboardControlL)
-                        {
-                            return;
-                        }
-                        inControl = Vector2.Right;
-                        break;
-                    case Key.Right:
-                        if (!keyboardControlR)
-                        {
-                            return;
-                        }
-                        inControl = Vector2.Right;
-                        break;
-
-
-                }
-
-                if (ke.IsReleased())
-                {
-                    inControl *= -1; //do the opposite
-                }
-
-                if (ke.Keycode == Key.W || ke.Keycode == Key.A || ke.Keycode == Key.S || ke.Keycode == Key.D)
-                {
-                    kLHandVel += inControl;
-                }
-                else if (ke.Keycode == Key.Up || ke.Keycode == Key.Left || ke.Keycode == Key.Down || ke.Keycode == Key.Right)
-                {
-                    kRHandVel += inControl;
-                }
-
-
-                break;
-
-            case InputEventJoypadButton:
-                InputEventJoypadButton jbe = @event as InputEventJoypadButton;
-
-                if (jbe.ButtonIndex == JoyButton.LeftShoulder)
-                {
-                    ContLeftCastCheck(jbe.Pressed);
-                }
-                if(jbe.ButtonIndex == JoyButton.RightShoulder)
-                {
-                    ContRightCastCheck(jbe.Pressed);
-                }
-
-                break;
-
-            case InputEventJoypadMotion:
-                InputEventJoypadMotion je = @event as InputEventJoypadMotion;
-
-                if(je.Axis == JoyAxis.TriggerLeft)
-                {
-                    SetHandExtent(HandType.ContL, je.AxisValue);
-                    return;
-                } 
-                else if(je.Axis == JoyAxis.TriggerRight)
-                {
-                    SetHandExtent(HandType.ContR, je.AxisValue);
-                    return;
-                }
-
-                if ((je.Axis == JoyAxis.LeftX || je.Axis == JoyAxis.LeftY) && !controllerControlL ||
-                    (je.Axis == JoyAxis.RightX || je.Axis == JoyAxis.RightY) && !controllerControlR)
-                {
-                    return;
-                }
-
-                
-
-
-
-                if (je.Axis == JoyAxis.LeftX || je.Axis == JoyAxis.RightX)
-                {
-                    //psuedo deadzone
-                    if (je.AxisValue > -.2f && je.AxisValue < .2f)
-                    {
-                        inControl.X = 0;
-                    }
-                    else
-                    {
-                        inControl.X = je.AxisValue;
-                    }
-                }
-                if (je.Axis == JoyAxis.LeftY || je.Axis == JoyAxis.RightY)
-                {
-                    //psuedo deadzone
-                    if (je.AxisValue > -.2f && je.AxisValue < .2f)
-                    {
-                        inControl.Y = 0;
-                    }
-                    else
-                    {
-                        inControl.Y = je.AxisValue;
-                    }
-                }
-
-
-
-                switch(je.Axis)
-                {
-                    case JoyAxis.LeftY:
-                        cLHandVel.Y = inControl.Y;
-                        break;
-
-                    case JoyAxis.LeftX:
-                        cLHandVel.X = inControl.X;
-                        break;
-
-                    case JoyAxis.RightY:
-                        cRHandVel.Y = inControl.Y;
-                        break;
-
-	}
-
-
-	public override void _Input(InputEvent @event)
-	{
-		//TODO: update input to call other CastChecks correctly
-		Vector2 inControl = Vector2.Zero;
 		switch (@event)
 		{
 			case InputEventMouseButton:
 				InputEventMouseButton me = @event as InputEventMouseButton;
 
-				if (me.ButtonIndex == MouseButton.Left )
+				if (me.ButtonIndex == MouseButton.Left)
 				{
 					MouseCastCheck(me.Pressed);
 				}
-				else if(me.ButtonIndex == MouseButton.Right)
+				else if (me.ButtonIndex == MouseButton.Right)
 				{
 					SetHandExtent(HandType.Mouse, me.Pressed ? 1 : 0);
 				}
@@ -367,17 +142,17 @@ public partial class HandControl : Node2D
 
 				//these *could* go in switch but... naw
 
-				if(ke.Keycode == Key.Ctrl)
+				if (ke.Keycode == Key.Ctrl)
 				{
 					SetHandExtent(
 						ke.Location == KeyLocation.Left ? HandType.KeyL : HandType.KeyR,
 						ke.Pressed ? 1 : 0
 						);
 				}
-				else if(ke.Keycode == Key.Shift)
+				else if (ke.Keycode == Key.Shift)
 				{
 					GD.Print($"{ke.Keycode} | {ke.Location}");
-					if(ke.Location == KeyLocation.Left)
+					if (ke.Location == KeyLocation.Left)
 					{
 						KeyLeftCastCheck(ke.Pressed);
 					}
@@ -476,7 +251,7 @@ public partial class HandControl : Node2D
 				{
 					ContLeftCastCheck(jbe.Pressed);
 				}
-				if(jbe.ButtonIndex == JoyButton.RightShoulder)
+				if (jbe.ButtonIndex == JoyButton.RightShoulder)
 				{
 					ContRightCastCheck(jbe.Pressed);
 				}
@@ -486,13 +261,15 @@ public partial class HandControl : Node2D
 			case InputEventJoypadMotion:
 				InputEventJoypadMotion je = @event as InputEventJoypadMotion;
 
-				if(je.Axis == JoyAxis.TriggerLeft)
+				if (je.Axis == JoyAxis.TriggerLeft)
 				{
 					SetHandExtent(HandType.ContL, je.AxisValue);
-				} 
-				else if(je.Axis == JoyAxis.TriggerRight)
+					return;
+				}
+				else if (je.Axis == JoyAxis.TriggerRight)
 				{
 					SetHandExtent(HandType.ContR, je.AxisValue);
+					return;
 				}
 
 				if ((je.Axis == JoyAxis.LeftX || je.Axis == JoyAxis.LeftY) && !controllerControlL ||
@@ -500,20 +277,39 @@ public partial class HandControl : Node2D
 				{
 					return;
 				}
-				
 
-				if(je.Axis == JoyAxis.LeftX || je.Axis == JoyAxis.RightX)
+
+
+
+
+				if (je.Axis == JoyAxis.LeftX || je.Axis == JoyAxis.RightX)
 				{
-					inControl.X = je.AxisValue;
+					//psuedo deadzone
+					if (je.AxisValue > -.2f && je.AxisValue < .2f)
+					{
+						inControl.X = 0;
+					}
+					else
+					{
+						inControl.X = je.AxisValue;
+					}
 				}
 				if (je.Axis == JoyAxis.LeftY || je.Axis == JoyAxis.RightY)
 				{
-					inControl.Y = je.AxisValue;
+					//psuedo deadzone
+					if (je.AxisValue > -.2f && je.AxisValue < .2f)
+					{
+						inControl.Y = 0;
+					}
+					else
+					{
+						inControl.Y = je.AxisValue;
+					}
 				}
 
 
 
-				switch(je.Axis)
+				switch (je.Axis)
 				{
 					case JoyAxis.LeftY:
 						cLHandVel.Y = inControl.Y;
@@ -527,16 +323,15 @@ public partial class HandControl : Node2D
 						cRHandVel.Y = inControl.Y;
 						break;
 
-					case JoyAxis.RightX:
-						cRHandVel.X = inControl.X;
-						break;
 				}
-
-
-				break;
-		}
+			break;
+        }
 		
+
 	}
+
+
+	
 
     private void CastTargetsIntoWorld()
     {

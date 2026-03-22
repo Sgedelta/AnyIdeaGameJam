@@ -1,12 +1,19 @@
 [gd_scene format=3 uid="uid://tvng83y8umbd"]
 
+[ext_resource type="Script" uid="uid://dfmytqi1g4psl" path="res://Scenes/AlienHands.cs" id="1_4pvyt"]
 [ext_resource type="PackedScene" uid="uid://cs42ug1jkrwpb" path="res://Assets/3D/alienDaddyRIG_12.fbx" id="1_vh66l"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_vh66l"]
 radius = 0.05
 height = 0.1
 
-[node name="AlienHands" type="Node3D" unique_id=1243474369]
+[node name="AlienHands" type="Node3D" unique_id=1243474369 node_paths=PackedStringArray("mHandTarget", "kLHandTarget", "kRHandTarget", "cLHandTarget", "cRHandTarget")]
+script = ExtResource("1_4pvyt")
+mHandTarget = NodePath("mTarget")
+kLHandTarget = NodePath("kLTarget")
+kRHandTarget = NodePath("kRTarget")
+cLHandTarget = NodePath("cLTarget")
+cRHandTarget = NodePath("cRTarget")
 
 [node name="alienDaddyRIG_12" parent="." unique_id=1246719506 instance=ExtResource("1_vh66l")]
 

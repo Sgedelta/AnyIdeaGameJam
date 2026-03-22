@@ -12,10 +12,11 @@ public partial class Battery : RigidBody3D, IHandable
 
 	public int HandCount = 0;
 
-	public float TimeToDrop = 5;
-	public float TimeLeft = 5;
+    public float TimeToDrop = 10;
+    public float TimeLeft = 10;
 
-	private float _dropImpulseStrength = 5;
+    private float _dropImpulseStrength = 5;
+    private float _holdDist = 3f;
 
 	private RandomNumberGenerator rng;
 
@@ -88,32 +89,121 @@ public partial class Battery : RigidBody3D, IHandable
 					
 				}
 
-				if(forwardHands > _heldHands.Count / 2f)
-				{
-					Node3D batteryPos = GetViewport().GetCamera3D().GetNode<Node3D>("BatteryPushLoc");
-					GlobalPosition = batteryPos.Position;
-					RotationDegrees = batteryPos.RotationDegrees;
-				}
-				else
-				{
-					Node3D batteryPos = GetViewport().GetCamera3D().GetNode<Node3D>("BatteryHoldLoc");
-					GlobalPosition = batteryPos.Position;
-					RotationDegrees = batteryPos.RotationDegrees;
-				}
+                if(forwardHands > _heldHands.Count / 2f)
+                {
+                    //figure out forward pos
+                    Vector3 batteryPos = Vector3.Zero;
+                    Vector3 batteryRot = Vector3.Zero;
 
-				
-			}
-		}
-		else
-		{
-			TimeLeft = TimeToDrop;
-			if(InsertLoc != null)
-			{
-				GlobalPosition = InsertLoc.BatterySnapLoc.GlobalPosition;
-				RotationDegrees = InsertLoc.BatterySnapLoc.RotationDegrees;
-			}
-		}
-	}
+                    for(int i = 0; i < _heldHands.Count; i++)
+                    {
+                        Vector3 handPos = Vector3.Zero;
+                        switch (_heldHands[i])
+                        {
+                            case HandType.Mouse:
+                                handPos = GameManager.Instance.Hands.mHandTarget.GlobalPosition;
+                                break;
+
+                            case HandType.KeyL:
+                                handPos = GameManager.Instance.Hands.kLHandTarget.GlobalPosition;
+                                break;
+
+                            case HandType.KeyR:
+                                handPos = GameManager.Instance.Hands.kRHandTarget.GlobalPosition;
+                                break;
+
+                            case HandType.ContL:
+                                handPos = GameManager.Instance.Hands.cLHandTarget.GlobalPosition;
+                                break;
+
+                            case HandType.ContR:
+                                handPos = GameManager.Instance.Hands.cRHandTarget.GlobalPosition;
+                                break;
+                        }
+                        batteryPos += handPos / _heldHands.Count;
+
+                    }
+
+                    batteryPos = (batteryPos - GetViewport().GetCamera3D().GlobalPosition).Normalized() * _holdDist;
+
+
+                    GlobalPosition = batteryPos;
+                    RotationDegrees = batteryRot;
+                    //give control
+                    bool controlAllowed = true;
+                    foreach (HandType type in _heldHands)
+                    {
+                        switch (type)
+                        {
+                            case HandType.Mouse:
+                                GameManager.Instance.HCont.mouseControl = controlAllowed;
+                                break;
+
+                            case HandType.KeyL:
+                                GameManager.Instance.HCont.keyboardControlL = controlAllowed;
+                                break;
+
+                            case HandType.KeyR:
+                                GameManager.Instance.HCont.keyboardControlR = controlAllowed;
+                                break;
+
+                            case HandType.ContL:
+                                GameManager.Instance.HCont.controllerControlL = controlAllowed;
+                                break;
+
+                            case HandType.ContR:
+                                GameManager.Instance.HCont.controllerControlR = controlAllowed;
+                                break;
+                        }
+                    }
+                }
+                else
+                {
+                    Node3D batteryPos = GetViewport().GetCamera3D().GetNode<Node3D>("BatteryHoldLoc");
+                    GlobalPosition = batteryPos.Position;
+                    RotationDegrees = batteryPos.RotationDegrees;
+                    //take control
+                    bool controlAllowed = false;
+                    foreach (HandType type in _heldHands)
+                    {
+                        switch(type)
+                        {
+                            case HandType.Mouse:
+                                GameManager.Instance.HCont.mouseControl = controlAllowed;
+                                break;
+
+                            case HandType.KeyL:
+                                GameManager.Instance.HCont.keyboardControlL = controlAllowed;
+                                break;
+
+                            case HandType.KeyR:
+                                GameManager.Instance.HCont.keyboardControlR = controlAllowed;
+                                break;
+
+                            case HandType.ContL:
+                                GameManager.Instance.HCont.controllerControlL = controlAllowed;
+                                break;
+
+                            case HandType.ContR:
+                                GameManager.Instance.HCont.controllerControlR = controlAllowed;
+                                break;
+                        }
+                    }
+                }
+
+                
+            }
+        }
+        else
+        {
+            TimeLeft = TimeToDrop;
+            if(InsertLoc != null)
+            {
+                GlobalPosition = InsertLoc.BatterySnapLoc.GlobalPosition;
+                RotationDegrees = InsertLoc.BatterySnapLoc.GlobalRotationDegrees;
+            }
+        }
+    }
 
 	private void Drop()
 	{
@@ -152,67 +242,67 @@ public partial class Battery : RigidBody3D, IHandable
 	{
 		IsActive = state;
 
-		if(_handInputTargets.ContainsKey(inputHand))
-		{
-			//for every input hand that could go on this
-			foreach (HandType controlledHand in _handInputTargets[inputHand].Keys)
-			{
-				if(state)
-				{
-					_heldHands.Add(controlledHand);
-				}
-				else if(_heldHands.Contains(controlledHand))
-				{
-					 _heldHands.Remove(controlledHand);
-				}
-				HandCount += state ? 1 : -1;
-				CheckGrabState(state);
-				//get all of the possible hands its controlling and set them correctly
-				switch (controlledHand)
-				{
-					case HandType.Mouse:
-						GameManager.Instance.HCont.mHandOverride = GetNode<Node3D>(_handInputTargets[inputHand][controlledHand]);
-						GameManager.Instance.HCont.mouseControl = !state;
+        if(_handInputTargets.ContainsKey(inputHand))
+        {
+            //for every input hand that could go on this
+            foreach (HandType controlledHand in _handInputTargets[inputHand].Keys)
+            {
+                if(state)
+                {
+                    _heldHands.Add(controlledHand);
+                }
+                else if(_heldHands.Contains(controlledHand))
+                {
+                     _heldHands.Remove(controlledHand);
+                }
+                HandCount += state ? 1 : -1;
+                CheckGrabState(state);
+                //get all of the possible hands its controlling and set them correctly
+                switch (controlledHand)
+                {
+                    case HandType.Mouse:
+                        GameManager.Instance.HCont.mHandOverride = GetNode<Node3D>(_handInputTargets[inputHand][controlledHand]);
+                        GameManager.Instance.HCont.mouseControl = true;
 
 						
 						break;
 
-					case HandType.KeyL:
-						GameManager.Instance.HCont.kLHandOverride = GetNode<Node3D>(_handInputTargets[inputHand][controlledHand]);
-						GameManager.Instance.HCont.keyboardControlL = !state;
-						if (state)
-						{
-							GameManager.Instance.HCont.kLHandVel = Vector2.Zero;
+                    case HandType.KeyL:
+                        GameManager.Instance.HCont.kLHandOverride = GetNode<Node3D>(_handInputTargets[inputHand][controlledHand]);
+                        GameManager.Instance.HCont.keyboardControlL = true;
+                        if (state)
+                        {
+                            GameManager.Instance.HCont.kLHandVel = Vector2.Zero;
 
 						}
 						break;
 
-					case HandType.KeyR:
-						GameManager.Instance.HCont.kRHandOverride = GetNode<Node3D>(_handInputTargets[inputHand][controlledHand]);
-						GameManager.Instance.HCont.keyboardControlR = !state;
-						if (state)
-						{
-							GameManager.Instance.HCont.kRHandVel = Vector2.Zero;
+                    case HandType.KeyR:
+                        GameManager.Instance.HCont.kRHandOverride = GetNode<Node3D>(_handInputTargets[inputHand][controlledHand]);
+                        GameManager.Instance.HCont.keyboardControlR = true;
+                        if (state)
+                        {
+                            GameManager.Instance.HCont.kRHandVel = Vector2.Zero;
 
 						}
 						break;
 
-					case HandType.ContL:
-						GameManager.Instance.HCont.cLHandOverride = GetNode<Node3D>(_handInputTargets[inputHand][controlledHand]);
-						GameManager.Instance.HCont.controllerControlL = !state;
-						if (state)
-						{
-							GameManager.Instance.HCont.cLHandVel = Vector2.Zero;
+                    case HandType.ContL:
+                        GameManager.Instance.HCont.cLHandOverride = GetNode<Node3D>(_handInputTargets[inputHand][controlledHand]);
+                        GameManager.Instance.HCont.controllerControlL = true;
+                        if (state)
+                        {
+                            GameManager.Instance.HCont.cLHandVel = Vector2.Zero;
 
 						}
 						break;
 
-					case HandType.ContR:
-						GameManager.Instance.HCont.cRHandOverride = GetNode<Node3D>(_handInputTargets[inputHand][controlledHand]);
-						GameManager.Instance.HCont.controllerControlR = !state;
-						if (state)
-						{
-							GameManager.Instance.HCont.cRHandVel = Vector2.Zero;
+                    case HandType.ContR:
+                        GameManager.Instance.HCont.cRHandOverride = GetNode<Node3D>(_handInputTargets[inputHand][controlledHand]);
+                        GameManager.Instance.HCont.controllerControlR = true;
+                        if (state)
+                        {
+                            GameManager.Instance.HCont.cRHandVel = Vector2.Zero;
 
 						}
 						break;
