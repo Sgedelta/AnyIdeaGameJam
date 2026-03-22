@@ -3,6 +3,9 @@ using System;
 
 public partial class TypingUiContainer : PanelContainer
 {
+	[Signal] delegate void PasswordCorrectEventHandler();
+	[Export] bool _enterCapVersion = false;
+
 	private bool _showing = false;
 
 	private LineEdit _le_input;
@@ -36,9 +39,13 @@ public partial class TypingUiContainer : PanelContainer
 
 	public void FocusTyping(bool focus)
 	{
-		if(focus)
+		if (focus)
 		{
 			_le_input.GrabFocus();
+			if (_enterCapVersion)
+			{
+				_rich_output.AppendText("[code]Enter Captcha...[/code]");
+			}
 		}
 		else
 		{
@@ -73,8 +80,26 @@ public partial class TypingUiContainer : PanelContainer
 	{
 		string exactText = _le_input.Text;
 		_rich_output.Clear();
-		//no one told you it was okay to program like this.
-		switch (exactText)
+        _le_input.Text = "";
+
+		if(_enterCapVersion)
+		{
+            if (exactText == GameManager.Instance.CaptchaAnswer)
+            {
+				EmitSignal(SignalName.PasswordCorrect);
+                _rich_output.AppendText("[code]Correct! Valve Unlocked![/code]");
+            }
+			else
+			{
+                _rich_output.AppendText("[code]Invalid Input! Captcha Regenerated![/code]");
+            }
+            GameManager.Instance.CreatePassword("captcha", 10);
+
+            return;
+		}
+
+        //no one told you it was okay to program like this.
+        switch (exactText)
 		{
 			case "engine_on":
 				GameManager.Instance.CaptchaAnswer = GameManager.Instance.CreatePassword("captcha", 10);
@@ -98,16 +123,12 @@ public partial class TypingUiContainer : PanelContainer
 				_rich_output.AppendText("[code]Valid Inputs:[br]HELP! - Get Help![br]port_pass - see port engine password[br]starboard_pass - see starboard engine password[br]engine_on - begin engine engage sequence[code]");
 				break;
 			default:
-				if(exactText == GameManager.Instance.CaptchaAnswer)
-				{
-					_rich_output.AppendText("[code]Yippee! That's right![/code]");
-				}
-				else _rich_output.AppendText("[code]Invalid Input! use \"HELP!\"![/code]");
+				_rich_output.AppendText("[code]Invalid Input! use \"HELP!\"![/code]");
 				break;
 
 		}
 
-		_le_input.Text = "";
+		
 	}
 
 	public void HideScreenINSTANT()

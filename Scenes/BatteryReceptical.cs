@@ -70,6 +70,10 @@ public partial class BatteryReceptical : Area3D
 
         batt.Inserted = insert;
         batt.InsertLoc = this;
+		if (insert)
+		{
+			batt.Drop(false);
+		}
         Powered = insert;
 		EmitSignal(SignalName.OnPoweredChanged, insert);
     }

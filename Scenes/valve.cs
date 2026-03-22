@@ -10,7 +10,8 @@ public partial class valve : Node, IHandable
 	[Export] private int _numHalfRotsNeeded = 10;
 	[Export] private bool _rot_cc = false; //if this rotates counter clockwise, instead of clockwise
 	[Export] private bool _is_right_stick = false; //if this uses the right stick, instead of the left stick
-	public bool isLocked = true;
+	public bool IsLocked = true;
+	private bool hasOpened = false;
 
 	private int _halfRotsCompleted = 0;
 
@@ -106,7 +107,7 @@ public partial class valve : Node, IHandable
 
     public override void _Input(InputEvent @event)
 	{
-		if(!IsActive || isLocked)
+		if(!IsActive || IsLocked)
 		{
             return;
         }
@@ -196,11 +197,32 @@ public partial class valve : Node, IHandable
 	{
 		if( _halfRotsCompleted == _numHalfRotsNeeded )
 		{
+			hasOpened = true;
 			EmitSignal(SignalName.RotationCompleted);
-		}
+            SetActive(HandType.Mouse, false);
+            SetActive(HandType.KeyL, false);
+            SetActive(HandType.KeyR, false);
+            SetActive(HandType.ContL, false);
+            SetActive(HandType.ContR, false);
+        }
 		else if(_halfRotsCompleted == 0)
 		{
+			CheckRelock();
 			EmitSignal(SignalName.CounterRotationCompleted);
+		}
+	}
+
+	public void CheckRelock()
+	{
+		if(hasOpened)
+		{
+			IsLocked = true;
+			hasOpened = false;
+            SetActive(HandType.Mouse, false);
+            SetActive(HandType.KeyL,  false);
+            SetActive(HandType.KeyR,  false);
+            SetActive(HandType.ContL, false);
+            SetActive(HandType.ContR, false);
 		}
 	}
 }

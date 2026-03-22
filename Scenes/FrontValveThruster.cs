@@ -2,42 +2,69 @@ using Godot;
 using Godot.Collections;
 using System;
 
-public partial class Door : StaticBody3D, IHandable
+public partial class FrontValveThruster : StaticBody3D, IHandable
 {
-	
-
-
-	[Signal] public delegate void RotationCompletedEventHandler();
-	[Signal] public delegate void CounterRotationCompletedEventHandler();
-	
-	public bool IsOpen = false;
-	public bool IsLocked { get; set; } = true;
-
-	private Tween _rotateTween;
-	private float _rotateAnimationSpeed = 0.5f;
-
-
-	[Export] int rotDir = 1;
-
-    public bool IsActive { get; set; }
-
+    private float inputDeadzone = .2f; //you could tie this to the godot method but fuck that for this rn
+    private TypingUiContainer _typingUI;
+    private SubViewport _subviewport;
     [Export] private Dictionary<HandType, Dictionary<HandType, NodePath>> _handInputTargets = new Dictionary<HandType, Dictionary<HandType, NodePath>>();
-
     public Dictionary<HandType, Dictionary<HandType, NodePath>> HandInputTargets { get { return _handInputTargets; } }
 
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
-	{
-	}
+    public bool IsActive { get; set; } = false;
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
+    public override void _Ready()
+    {
+        _typingUI = GetNode<TypingUiContainer>("Screen/SubViewport/TypingUIContainer");
+        _subviewport = GetNode<SubViewport>("Screen/SubViewport");
+        _typingUI.Connect(TypingUiContainer.SignalName.PasswordCorrect, Callable.From(OnPasswordSuccess));
+    }
+
+    private void OnPasswordSuccess()
+    {
+        GD.Print("password correct, unlock valve");
+        var valveNode = GetNode<valve>("DoorPivot/valve");
+        valveNode.IsLocked = false;
+        _typingUI.FocusTyping(false);
+        SetActive(HandType.Mouse, false);
+    }
+
+    public override void _Input(InputEvent @event)
+    {
+        if (!IsActive)
+            return;
+
+        _subviewport.PushInput(@event);
+        if (@event is not (InputEventKey or InputEventMouseMotion) && (@event is InputEventJoypadMotion && Math.Abs((@event as InputEventJoypadMotion).AxisValue) > inputDeadzone))
+        {
+            GD.Print(@event);
+            if (@event is InputEventJoypadMotion)
+            {
+                GD.Print((@event as InputEventJoypadMotion).AxisValue);
+            }
+            _typingUI.FocusTyping(false);
+        }
+    }
+
+    public void OnClicked()
+    {
+        SetActive(HandType.Mouse, true);
+        _typingUI.FocusTyping(true);
+    }
 
     public void SetActive(HandType inputHand, bool state)
     {
         IsActive = state;
+
+        GD.Print("I am now " + state);
+
+        if (state)
+        {
+            _typingUI.FocusTyping(true);
+        }
+        else
+        {
+            _typingUI.FocusTyping(false);
+        }
 
         if (_handInputTargets.ContainsKey(inputHand))
         {
@@ -96,66 +123,4 @@ public partial class Door : StaticBody3D, IHandable
 
         }
     }
-
-    public override void _Input(InputEvent @event)
-	{
-		if(!IsActive)
-		{
-			return;
-		}
-
-		if (@event.IsActionPressed("mouse-scrolldown"))
-		{
-			// If valve door is unlocked, animate to open
-			if (!IsLocked)
-			{
-				if(_rotateTween != null && _rotateTween.IsRunning())
-				{
-					_rotateTween.Kill();
-				}
-
-				_rotateTween = CreateTween();
-
-				_rotateTween.TweenProperty(this, "rotation", new Vector3(0, Mathf.DegToRad(117.2f), 0) * rotDir, _rotateAnimationSpeed);
-				IsOpen = true;
-			}
-		}
-
-		if (@event.IsActionPressed("mouse-scrollup"))
-		{
-			// If valve door is open, animate to close
-			if (IsOpen)
-			{
-				if (_rotateTween != null && _rotateTween.IsRunning())
-				{
-					_rotateTween.Kill();
-				}
-
-				_rotateTween = CreateTween();
-
-				_rotateTween.TweenProperty(this, "rotation", new Vector3(0, 0, 0), _rotateAnimationSpeed);
-				IsOpen = false;
-			}
-		}
-	}
-
-	public void _on_valve_rotation_completed()
-	{
-		GD.Print("OPEN");
-
-		// If valve door is already open, do nothing
-		if (IsOpen) return;
-
-		// If valve door is locked, unlock it
-		if (IsLocked) IsLocked = false;
-	}
-
-	public void _on_valve_counter_rotation_completed()
-	{
-		// Can't lock valve door if door is still open
-		if (IsOpen) return;
-
-		// If valve door is unlocked, lock it
-		if (!IsLocked) IsLocked = true;
-	}
 }

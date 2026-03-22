@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cdhqq8u7pmdv2" path="res://Scenes/BatteryReceptical.cs" id="1_d0g2r"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_d0g2r"]
+size = Vector3(0.6904297, 1.3669434, 0.5533447)
 
 [node name="BatteryReceptical" type="Area3D" unique_id=1981157617 node_paths=PackedStringArray("BatterySnapLoc")]
 script = ExtResource("1_d0g2r")

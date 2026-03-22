@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://by5s20ijj8mmg"
-path="res://.godot/imported/BatteryPort_01.fbx-cb02fb8d40c8fec368e76b124e0407b3.scn"
+uid="uid://b5s85lxuumavs"
+path="res://.godot/imported/batteryPortChamber_01.fbx-651853acfc4bfefbfb3f35246e979f27.scn"
 
 [deps]
 
-source_file="res://Assets/3D/BatteryPort_01.fbx"
-dest_files=["res://.godot/imported/BatteryPort_01.fbx-cb02fb8d40c8fec368e76b124e0407b3.scn"]
+source_file="res://Assets/3D/batteryPortChamber_01.fbx"
+dest_files=["res://.godot/imported/batteryPortChamber_01.fbx-651853acfc4bfefbfb3f35246e979f27.scn"]
 
 [params]
 

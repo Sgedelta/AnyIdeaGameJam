@@ -7,7 +7,7 @@ public partial class GameManager : Node
 	private static GameManager _instance;
 	public static GameManager Instance { get { return _instance; } }
 	public GameManager GDInstance { get { return _instance; } }
-	public string CaptchaAnswer = null;
+	public string CaptchaAnswer = "abcd";
 	//for right thruster
 	public string NumKeypadAnswer = null;
 	//for left thruster
@@ -33,7 +33,6 @@ public partial class GameManager : Node
 			QueueFree();
 			return;
 		}
-		GD.Print(CreatePassword("captcha", 50));
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

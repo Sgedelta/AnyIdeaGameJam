@@ -1,60 +1,79 @@
-[gd_scene format=3 uid="uid://dvkqkg176f5t8"]
+[gd_scene format=3 uid="uid://dtfsxrqpdtafh"]
 
 [ext_resource type="Script" uid="uid://d18n4173udo5l" path="res://Scenes/left_valve_thruster.cs" id="1_b4m1k"]
 [ext_resource type="Script" uid="uid://uhlng0unopcr" path="res://Scenes/Door.cs" id="2_1cjq7"]
+[ext_resource type="PackedScene" uid="uid://b5s85lxuumavs" path="res://Assets/3D/batteryPortChamber_01.fbx" id="2_ugdr8"]
+[ext_resource type="PackedScene" uid="uid://bomyf5vdv05ro" path="res://Scenes/battery_receptical.tscn" id="3_hoc6p"]
 [ext_resource type="PackedScene" uid="uid://c1wai34u14ogt" path="res://Scenes/valve.tscn" id="3_roiyr"]
 [ext_resource type="PackedScene" uid="uid://c66xt55l1n6yh" path="res://Scenes/UI/numpad_ui.tscn" id="4_b4m1k"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_7ve1r"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yift7"]
+[ext_resource type="Script" uid="uid://chjbyvjkwh02s" path="res://Scenes/always_set_local_pos.gd" id="4_bsqie"]
+[ext_resource type="PackedScene" uid="uid://bd31eewqtxkee" path="res://Assets/3D/batteryPortDoor_01.fbx" id="6_s3ivw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yift7"]
-size = Vector3(2.1902466, 1.55896, 1)
+size = Vector3(0.7780304, 0.4417839, 0.057617188)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8y26p"]
+size = Vector3(0.7647705, 1.4434738, 0.12054443)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_qe1q4"]
 viewport_path = NodePath("Screen/SubViewport")
 
-[node name="left_valve_thruster" type="StaticBody3D" unique_id=2053884060]
+[node name="right_valve_thruster" type="StaticBody3D" unique_id=2053884060]
 script = ExtResource("1_b4m1k")
 _handInputTargets = Dictionary[int, Dictionary]({
 0: {
 0: NodePath("MHandPos"),
-1: NodePath("LHandPos")
+2: NodePath("RHandPos")
 }
 })
 
-[node name="BatteryContainer" type="MeshInstance3D" parent="." unique_id=2094303822]
-transform = Transform3D(2.0878859, 0, 0, 0, 1.4303395, 0, 0, 0, 0.99999905, 0, 0, 0)
-mesh = SubResource("BoxMesh_7ve1r")
+[node name="batteryPortChamber_01" parent="." unique_id=347355076 instance=ExtResource("2_ugdr8")]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 0, 0)
 
-[node name="DoorPivot" type="MeshInstance3D" parent="." unique_id=878374372]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.47208726, 0, 0.57501656)
+[node name="BatteryReceptical" parent="." unique_id=1981157617 instance=ExtResource("3_hoc6p")]
+
+[node name="CollisionShape3D" parent="BatteryReceptical" index="0" unique_id=509130770]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06298828, 0.630249, -0.038757324)
+
+[node name="BatterySnap" parent="BatteryReceptical" index="1" unique_id=412146979]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.67712295, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=927871506 node_paths=PackedStringArray("Follow")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0079422, 0.1595099, 0.323938)
+shape = SubResource("BoxShape3D_yift7")
+script = ExtResource("4_bsqie")
+Follow = NodePath("../DoorPivot")
+
+[node name="DoorPivot" type="StaticBody3D" parent="." unique_id=941818453]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.29532254, 0, 0.27478462)
 script = ExtResource("2_1cjq7")
+rotDir = -1
+_handInputTargets = Dictionary[int, Dictionary]({
+0: {
+0: NodePath("mHandOpenPos")
+}
+})
 
-[node name="valve" parent="DoorPivot" unique_id=1192847290 node_paths=PackedStringArray("_valveDisplay") instance=ExtResource("3_roiyr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.490914, 0, -0.011843562)
+[node name="batteryPortDoor_01" parent="DoorPivot" unique_id=1489070251 instance=ExtResource("6_s3ivw")]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0.28573483, 0, -0.27910224)
+
+[node name="valve" parent="DoorPivot" unique_id=1192847290 instance=ExtResource("3_roiyr")]
+transform = Transform3D(-0.4, 0, -6.039832e-08, 0, 0.4, 0, 6.039832e-08, 0, -0.4, 0.28716975, 0.9573772, 0.08454895)
 _handInputTargets = Dictionary[int, Dictionary]({
 3: {
-1: NodePath("../KeyboardGrab"),
-2: NodePath("../KeyboardGrab"),
-3: NodePath("HandlePos")
+3: NodePath("valveHandle_01/valveHandle/HandlePos")
 }
 })
-_valveDisplay = NodePath("MeshInstance3D")
 
-[node name="MeshInstance3D" parent="DoorPivot/valve" index="0" unique_id=1430034741]
-material_override = SubResource("StandardMaterial3D_yift7")
+[node name="mHandOpenPos" type="Node3D" parent="DoorPivot" unique_id=256965740]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7602543, 0.56747574, -0.57121253)
 
-[node name="KeyboardGrab" type="Node3D" parent="DoorPivot" unique_id=430774140]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0095652, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=927871506]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.013458252, 0.012878418, 0)
-shape = SubResource("BoxShape3D_yift7")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DoorPivot" unique_id=328268785]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2783066, 0.65229416, 0.015167236)
+shape = SubResource("BoxShape3D_8y26p")
 
 [node name="Screen" type="Sprite3D" parent="." unique_id=1025664600]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0.8103683)
+transform = Transform3D(0.075, 0, 0, 0, 0.075, 0, 0, 0, 0.075, 0, 0.59032035, 0.7352674)
 texture = SubResource("ViewportTexture_qe1q4")
 
 [node name="SubViewport" type="SubViewport" parent="Screen" unique_id=1616433209]
@@ -75,15 +94,17 @@ grow_vertical = 1
 hide_pos = Vector2(-1480, 0)
 
 [node name="LHandPos" type="Node3D" parent="." unique_id=693874860]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2740778, 0.041449755, 0.12389141)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6639395, 0.14805487, 0.4562121)
 
 [node name="RHandPos" type="Node3D" parent="." unique_id=721162625]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1967604, 0.041449755, 0.12389141)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.56255674, 0.15660974, 0.61367756)
 
 [node name="MHandPos" type="Node3D" parent="." unique_id=1133435335]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0684764, 0.50147015, 0.20179474)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0919224, -0.11800605, 0.20179474)
 
 [connection signal="CounterRotationCompleted" from="DoorPivot/valve" to="DoorPivot" method="_on_valve_counter_rotation_completed"]
 [connection signal="RotationCompleted" from="DoorPivot/valve" to="DoorPivot" method="_on_valve_rotation_completed"]
 
+[editable path="BatteryReceptical"]
 [editable path="DoorPivot/valve"]
+[editable path="DoorPivot/valve/valveHandle_01"]

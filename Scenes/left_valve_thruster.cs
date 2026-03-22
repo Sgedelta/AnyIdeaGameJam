@@ -23,7 +23,7 @@ public partial class left_valve_thruster: StaticBody3D, IHandable
 	{
 		GD.Print("password correct, unlock valve");
 		var valveNode = GetNode<valve>("DoorPivot/valve");
-		valveNode.isLocked = false;
+		valveNode.IsLocked = false;
 		_numpadUI.Call("hide_ui");
 		SetActive(HandType.Mouse, false);
 	}

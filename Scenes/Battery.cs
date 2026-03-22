@@ -160,7 +160,7 @@ public partial class Battery : RigidBody3D, IHandable
         }
     }
 
-	private void Drop()
+	public void Drop(bool doImpuse = true)
 	{
 		if(Dropped)
 		{
@@ -174,6 +174,10 @@ public partial class Battery : RigidBody3D, IHandable
 		SetActive(HandType.ContR, false);
 		HandCount = 0;
 
+        if(!doImpuse)
+        {
+            return;
+        }
 
 		this.ApplyImpulse(new Vector3(rng.RandfRange(-1, 1), rng.RandfRange(-1, 1), rng.RandfRange(-1, 1)).Normalized() * _dropImpulseStrength);
 	}
