@@ -2,7 +2,7 @@ using Godot;
 using Godot.Collections;
 using System;
 
-public partial class valve_thruster: StaticBody3D, IHandable
+public partial class left_valve_thruster: StaticBody3D, IHandable
 {
 	private float inputDeadzone = .2f; //you could tie this to the godot method but fuck that for this rn
 	private Control _arrowsUI;
@@ -24,37 +24,50 @@ public partial class valve_thruster: StaticBody3D, IHandable
 			return;
 		
 		_subviewport.PushInput(@event);
-		
+		if (@event is InputEventJoypadMotion motionEvent)
+		{
+			if(Mathf.Abs(motionEvent.AxisValue) > inputDeadzone)
+			{
+				_arrowsUI.Call("hide_ui");
+				SetActive(HandType.Mouse, false);
+			}
+			return;
+		}
 		if (@event is InputEventJoypadButton joyEvent && joyEvent.Pressed)
 		{
-			switch ((JoyButton)joyEvent.ButtonIndex)
+			bool isDpad = joyEvent.ButtonIndex >= JoyButton.DpadUp &&
+						joyEvent.ButtonIndex <= JoyButton.DpadRight;
+			if(!isDpad)
 			{
-				case JoyButton.DpadUp:
-				case JoyButton.DpadDown:
-				case JoyButton.DpadLeft:
-				case JoyButton.DpadRight:
-					return;
-			};
+				_arrowsUI.Call("hide_ui");
+				SetActive(HandType.Mouse, false);
+				return;
+			}
 		}
 		if((@event is InputEventMouseButton mouseEvent && mouseEvent.Pressed) ||
 			(@event is InputEventKey keyEvent && keyEvent.Pressed))
 		{
-			if(_arrowsUI.HasMethod("hide_ui"))
-				_arrowsUI.Call("hide_ui");
-			IsActive = false;
+			_arrowsUI.Call("hide_ui");
+			SetActive(HandType.Mouse, false);
 		}
 	}
 
 	public void OnClicked()
 	{
-		IsActive = true;
-		if(_arrowsUI.HasMethod("show_ui"))
-			_arrowsUI.Call("show_ui");
+		SetActive(HandType.Mouse, true);
+		_arrowsUI.Call("show_ui");
 	}
 
 	public void SetActive(HandType inputHand, bool state)
 	{
 		IsActive = state;
+		
+		if(state) {
+			_arrowsUI.Call("show_ui");
+		}
+		else {
+			_arrowsUI.Call("hide_ui");
+		}
 
 		if (_handInputTargets.ContainsKey(inputHand))
 		{

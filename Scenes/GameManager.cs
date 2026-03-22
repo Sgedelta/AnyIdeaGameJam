@@ -38,14 +38,14 @@ public partial class GameManager : Node
 	public override void _Process(double delta)
 	{
 
-    }
-    /// <summary>
-    /// Creates a randomized password. "captcha" provides a string of alphanumerical characters. "sequence" provides a string of compass directions. "pin" provides a string of numbers
-    /// </summary>
-    /// <param name="passwordType">"captcha" provides a string of alphanumerical characters. "sequence" provides a string of compass directions. "pin" provides a string of numbers</param>
-    /// <param name="passwordLength">How many digits in the password?</param>
-    /// <returns></returns>
-    public virtual string CreatePassword(string passwordType = "captcha", int passwordLength = 6)
+	}
+	/// <summary>
+	/// Creates a randomized password. "captcha" provides a string of alphanumerical characters. "sequence" provides a string of compass directions. "pin" provides a string of numbers
+	/// </summary>
+	/// <param name="passwordType">"captcha" provides a string of alphanumerical characters. "sequence" provides a string of compass directions. "pin" provides a string of numbers</param>
+	/// <param name="passwordLength">How many digits in the password?</param>
+	/// <returns></returns>
+	public virtual string CreatePassword(string passwordType = "captcha", int passwordLength = 6)
 	{
 		// Source - https://stackoverflow.com/a/1344258
 		// Posted by Dan Rigby, modified by community. See post 'Timeline' for change history
@@ -57,15 +57,15 @@ public partial class GameManager : Node
 		switch (passwordType)
 		{
 			case "captcha":
-                string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+[{]},<.>/?`~|\\ ";
-                char[] stringChars = new char[passwordLength];
-                for (int i = 0; i < stringChars.Length; i++)
-                {
-                    stringChars[i] = chars[random.Next(chars.Length)];
-                }
+				string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+[{]},<.>/?`~|\\ ";
+				char[] stringChars = new char[passwordLength];
+				for (int i = 0; i < stringChars.Length; i++)
+				{
+					stringChars[i] = chars[random.Next(chars.Length)];
+				}
 				
-                password = new string(stringChars);
-                break;
+				password = new string(stringChars);
+				break;
 			case "sequence":
 				string directions = "UDLR";
 				char[] directionChars = new char[passwordLength];
