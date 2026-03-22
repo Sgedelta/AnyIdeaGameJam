@@ -405,11 +405,23 @@ shape = SubResource("BoxShape3D_uqg11")
 [node name="right_valve_thruster" parent="." unique_id=2053884060 instance=ExtResource("20_yyk6s")]
 transform = Transform3D(-6.556708e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.556708e-08, 5.4626074, 0, 0)
 
+[node name="BatteryReceptical" parent="right_valve_thruster" index="1" unique_id=1981157617 groups=["RRecep"]]
+
+[node name="DoorPivot" parent="right_valve_thruster" index="3" unique_id=941818453 groups=["RDoor"]]
+
+[node name="valve" parent="right_valve_thruster/DoorPivot" index="1" unique_id=1192847290 groups=["RValve"]]
+
 [node name="Screen" parent="right_valve_thruster" index="4" unique_id=1025664600]
 texture = SubResource("ViewportTexture_uqg11")
 
 [node name="left_valve_thruster" parent="." unique_id=1693458027 instance=ExtResource("21_2l41g")]
 transform = Transform3D(-6.556708e-08, 0, 1.5, 0, 1.5, 0, -1.5, 0, -6.556708e-08, -5.435914, 0, 0)
+
+[node name="BatteryReceptical" parent="left_valve_thruster" index="1" unique_id=1981157617 groups=["LRecep"]]
+
+[node name="DoorPivot" parent="left_valve_thruster" index="3" unique_id=941818453 groups=["LDoor"]]
+
+[node name="valve" parent="left_valve_thruster/DoorPivot" index="1" unique_id=1192847290 groups=["LValve"]]
 
 [node name="Screen" parent="left_valve_thruster" index="4" unique_id=1025664600]
 texture = SubResource("ViewportTexture_djixh")
@@ -417,11 +429,23 @@ texture = SubResource("ViewportTexture_djixh")
 [node name="front_left_valve_thruster" parent="." unique_id=1034884493 instance=ExtResource("22_cymet")]
 transform = Transform3D(1.299038, 0, 0.75, 0, 1.5, 0, -0.75, 0, 1.299038, -2.1787245, -5.9604645e-08, -4.4573956)
 
+[node name="BatteryReceptical" parent="front_left_valve_thruster" index="1" unique_id=1981157617 groups=["FLRecep"]]
+
+[node name="DoorPivot" parent="front_left_valve_thruster" index="3" unique_id=941818453 groups=["FLDoor"]]
+
+[node name="valve" parent="front_left_valve_thruster/DoorPivot" index="1" unique_id=1192847290 groups=["FLValve"]]
+
 [node name="Screen" parent="front_left_valve_thruster" index="4" unique_id=1025664600]
 texture = SubResource("ViewportTexture_malqr")
 
 [node name="front_right_valve_thruster2" parent="." unique_id=1257279248 instance=ExtResource("23_uqg11")]
 transform = Transform3D(1.299038, 0, -0.75, 0, 1.5, 0, 0.75, 0, 1.299038, 2.17, 0, -4.45)
+
+[node name="BatteryReceptical" parent="front_right_valve_thruster2" index="1" unique_id=1981157617 groups=["FRRecep"]]
+
+[node name="DoorPivot" parent="front_right_valve_thruster2" index="3" unique_id=941818453 groups=["FRDoor"]]
+
+[node name="valve" parent="front_right_valve_thruster2/DoorPivot" index="1" unique_id=1192847290 groups=["FRValve"]]
 
 [node name="Screen" parent="front_right_valve_thruster2" index="4" unique_id=1025664600]
 texture = SubResource("ViewportTexture_xdwae")
