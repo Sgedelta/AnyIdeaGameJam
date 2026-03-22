@@ -41,10 +41,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.192287, 3.7453456, -428.5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.399638, 3.7453487, -520.287)
 
 [node name="Goal" parent="." unique_id=1773536465 instance=ExtResource("3_liqqo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -623.59894)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -702.536)
 
 [node name="destinationPlanet_02" parent="." unique_id=1247638025 instance=ExtResource("4_liqqo")]
-transform = Transform3D(13.295001, 0, 0, 0, 13.295001, 0, 0, 0, 13.295001, 0, 0, -712.0244)
+transform = Transform3D(13.295001, 0, 0, 0, 13.295001, 0, 0, 0, 13.295001, 0, 0, -790.9614)
 
 [node name="pSphere1" parent="destinationPlanet_02" index="0" unique_id=350797217]
 surface_material_override/0 = SubResource("StandardMaterial3D_wxsqp")
