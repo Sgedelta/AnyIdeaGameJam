@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://fipslcloxboc" path="res://Assets/Materials/Textures/alienDaddyRIG_12_roboTentacleMAT_BaseColor.png" id="4_4dmr8"]
 [ext_resource type="PackedScene" uid="uid://vd7iv10tqu55" path="res://Scenes/hand_control.tscn" id="4_l35xd"]
 [ext_resource type="Texture2D" uid="uid://dxb1lup65dj5n" path="res://Assets/Materials/Textures/alienDaddyRIG_12_standardSurface1_BaseColor.png" id="5_45gs1"]
+[ext_resource type="Script" uid="uid://cithr8cqkn5vd" path="res://Scenes/timer.cs" id="6_2l41g"]
 [ext_resource type="Texture2D" uid="uid://dtale27i7hab0" path="res://Assets/Sprites/Space_Skymap.png" id="6_c45ay"]
 [ext_resource type="PackedScene" uid="uid://c2kw46q0bpc3r" path="res://Scenes/ship_greybox.tscn" id="7_05j4n"]
 [ext_resource type="PackedScene" path="res://Scenes/asteroid_field.tscn" id="7_deu8g"]
@@ -54,6 +55,9 @@ viewport_path = NodePath("Screen/SubViewport")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1jowa"]
 size = Vector3(17.3656, 1, 20.907837)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2l41g"]
+size = Vector3(4.325, 4.742, 3.8891406)
 
 [node name="Node3D2" type="Node3D" unique_id=441259406]
 
@@ -269,6 +273,13 @@ surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 [node name="pCylinder162" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="60" unique_id=1457334562]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
+[node name="Label" type="Label" parent="Camera" unique_id=1376686123]
+offset_right = 466.0
+offset_bottom = 126.0
+theme_override_font_sizes/font_size = 69
+text = "asdasdasdasd"
+script = ExtResource("6_2l41g")
+
 [node name="HandControl" parent="." unique_id=713415373 node_paths=PackedStringArray("mHandTarget", "kHandLTarget", "kHandRTarget", "cHandLTarget", "cHandRTarget") instance=ExtResource("4_l35xd")]
 mHandTarget = NodePath("../Camera/AlienHands/mTarget")
 kHandLTarget = NodePath("../Camera/AlienHands/kLTarget")
@@ -284,6 +295,7 @@ environment = SubResource("Environment_se0eo")
 
 [node name="ShipGreyboxCombiner" parent="." unique_id=991475515 instance=ExtResource("7_05j4n")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 31.498058)
+visible = false
 
 [node name="AsteroidField" parent="." unique_id=97329334 instance=ExtResource("7_deu8g")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, -2.557, -30.848)
@@ -327,6 +339,12 @@ surface_material_override/0 = ExtResource("16_45gs1")
 
 [node name="TopTubing" parent="shipBase_04" index="2" unique_id=1386301162]
 material_override = ExtResource("16_45gs1")
+
+[node name="Area3D" type="Area3D" parent="shipBase_04" unique_id=1984255918]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="shipBase_04/Area3D" unique_id=1479745698]
+transform = Transform3D(0.99999976, 0, -3.32534e-12, 0, 0.99999976, 0, 0, 0, 0.99999964, -3.723244e-12, 1.4199214, 1.0849965)
+shape = SubResource("BoxShape3D_2l41g")
 
 [node name="Table" type="Node3D" parent="." unique_id=969831789]
 
