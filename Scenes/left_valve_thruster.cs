@@ -2,61 +2,82 @@ using Godot;
 using Godot.Collections;
 using System;
 
-public partial class Computer : StaticBody3D, IHandable
+public partial class left_valve_thruster: StaticBody3D, IHandable
 {
-	private TypingUiContainer _typingUI;
-	private SubViewport _subViewport;
 	private float inputDeadzone = .2f; //you could tie this to the godot method but fuck that for this rn
-
-	public bool IsActive { get; set; }
-
+	private Control _arrowsUI;
+	private SubViewport _subviewport;
 	[Export] private Dictionary<HandType, Dictionary<HandType, NodePath>> _handInputTargets = new Dictionary<HandType, Dictionary<HandType, NodePath>>();
-
 	public Dictionary<HandType, Dictionary<HandType, NodePath>> HandInputTargets { get { return _handInputTargets; } }
 
+	public bool IsActive { get; set; } = false;
 
-
-	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		_typingUI = GetNode<TypingUiContainer>("Screen/SubViewport/TypingUIContainer");
-		_subViewport = GetNode<SubViewport>("Screen/SubViewport");
+		_arrowsUI = GetNode<Control>("Screen/SubViewport/ArrowsUI");
+		_subviewport = GetNode<SubViewport>("Screen/SubViewport");
+		_arrowsUI.Connect("password_correct", Callable.From(OnPasswordSuccess));
 	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
+	
+	private void OnPasswordSuccess()
 	{
+		GD.Print("password correct, unlock valve");
+		var valveNode = GetNode<valve>("DoorPivot/valve");
+		valveNode.isLocked = false;
+		_arrowsUI.Call("hide_ui");
+		SetActive(HandType.Mouse, false);
 	}
-
 
 	public override void _Input(InputEvent @event)
 	{
-		if(!IsActive)
+		if (!IsActive)
+			return;
+		
+		_subviewport.PushInput(@event);
+		if (@event is InputEventJoypadMotion motionEvent)
 		{
+			if(Mathf.Abs(motionEvent.AxisValue) > inputDeadzone)
+			{
+				_arrowsUI.Call("hide_ui");
+				SetActive(HandType.Mouse, false);
+			}
 			return;
 		}
-
-		if(@event is not (InputEventKey or InputEventMouseMotion) && (@event is InputEventJoypadMotion && Math.Abs((@event as InputEventJoypadMotion).AxisValue) > inputDeadzone))
+		if (@event is InputEventJoypadButton joyEvent && joyEvent.Pressed)
 		{
-			GD.Print(@event);
-			if(@event is InputEventJoypadMotion)
+			bool isDpad = joyEvent.ButtonIndex >= JoyButton.DpadUp &&
+						joyEvent.ButtonIndex <= JoyButton.DpadRight;
+			if(!isDpad)
 			{
-				GD.Print((@event as InputEventJoypadMotion).AxisValue);
+				_arrowsUI.Call("hide_ui");
+				SetActive(HandType.Mouse, false);
+				return;
 			}
-			_typingUI.FocusTyping(false);
 		}
+		if((@event is InputEventMouseButton mouseEvent && mouseEvent.Pressed) ||
+			(@event is InputEventKey keyEvent && keyEvent.Pressed))
+		{
+			_arrowsUI.Call("hide_ui");
+			SetActive(HandType.Mouse, false);
+		}
+	}
 
-		_subViewport.PushInput(@event);
-		
+	public void OnClicked()
+	{
+		SetActive(HandType.Mouse, true);
+		_arrowsUI.Call("show_ui");
 	}
 
 	public void SetActive(HandType inputHand, bool state)
 	{
-        GD.Print(inputHand + " " + state);
 		IsActive = state;
-
-		//computer only
-		_typingUI.FocusTyping(state);
+		
+		if(state) {
+			_arrowsUI.Call("show_ui");
+		}
+		else {
+			_arrowsUI.Call("hide_ui");
+		}
 
 		if (_handInputTargets.ContainsKey(inputHand))
 		{
@@ -115,25 +136,4 @@ public partial class Computer : StaticBody3D, IHandable
 
 		}
 	}
-
-	public void CheckFocus(InputEventMouseButton e)
-	{
-		PhysicsDirectSpaceState3D spState = GetWorld3D().DirectSpaceState;
-		Vector2 mPos = e.Position;
-		Camera3D cam = GetViewport().GetCamera3D();
-
-		var origin = cam.ProjectRayOrigin(mPos);
-		var end = origin + cam.ProjectRayNormal(mPos) * 100;
-		var query = PhysicsRayQueryParameters3D.Create(origin, end);
-
-		var result = spState.IntersectRay(query);
-
-		if(result.ContainsKey("collider_id") && ((StaticBody3D)result["collider"]) == this)
-		{
-			GD.Print("trying to grab control");
-			_typingUI.FocusTyping(true);
-		}
-
-	}
-
 }
