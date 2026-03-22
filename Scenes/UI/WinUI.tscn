@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://c5oo3mmfsyfpt"]
 
-[ext_resource type="Script" uid="uid://dmkif2ciu07lw" path="res://Scenes/UI/WinLose.cs" id="1_o7aht"]
+[ext_resource type="Script" uid="uid://b3dy8jyvku02u" path="res://Scenes/UI/LoadMainMenu.cs" id="1_58q3a"]
 
-[node name="WinLoseUI" type="Control" unique_id=637772521]
+[node name="WinUI" type="Control" unique_id=637772521]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_o7aht")
+script = ExtResource("1_58q3a")
 
 [node name="Label" type="Label" parent="." unique_id=875775459]
 layout_mode = 0
