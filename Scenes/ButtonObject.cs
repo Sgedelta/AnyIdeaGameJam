@@ -50,29 +50,34 @@ public partial class ButtonObject : StaticBody3D
 
         if (result.ContainsKey("collider_id") && ((StaticBody3D)result["collider"]) == this)
         {
-            camera = (CameraController)GetViewport().GetCamera3D();
-
-            if (camera != null && !camera.tweenIsRunning)
-            {
-                directionIndex = goingRight ? directionIndex + 1 : directionIndex - 1;
-                foreach (var button in buttons)
-                {
-                    ButtonObject buttonObject = button as ButtonObject;
-                    buttonObject.UpdateDirectionIndex(directionIndex);
-                }
-                if (directionIndex < 0)
-                {
-                    directionIndex = directions.Length - 1;
-                }
-                if (directionIndex >= directions.Length)
-                {
-                    directionIndex = 0;
-                }
-                GD.Print(directionIndex);
-                camera.TweenCameraToLoc(directions[directionIndex]);
-            }
+            UpdateCameraTween();
         }
 
+    }
+
+    public void UpdateCameraTween()
+    {
+        camera = (CameraController)GetViewport().GetCamera3D();
+
+        if (camera != null && !camera.tweenIsRunning)
+        {
+            directionIndex = goingRight ? directionIndex + 1 : directionIndex - 1;
+            foreach (var button in buttons)
+            {
+                ButtonObject buttonObject = button as ButtonObject;
+                buttonObject.UpdateDirectionIndex(directionIndex);
+            }
+            if (directionIndex < 0)
+            {
+                directionIndex = directions.Length - 1;
+            }
+            if (directionIndex >= directions.Length)
+            {
+                directionIndex = 0;
+            }
+            GD.Print(directionIndex);
+            camera.TweenCameraToLoc(directions[directionIndex]);
+        }
     }
 
     public void UpdateDirectionIndex(int targetIndex)
