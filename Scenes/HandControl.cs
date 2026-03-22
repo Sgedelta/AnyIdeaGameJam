@@ -312,23 +312,23 @@ public partial class HandControl : Node2D
         Camera3D cam = GetViewport().GetCamera3D();
         PhysicsDirectSpaceState3D spState = cam.GetWorld3D().DirectSpaceState;
 
-        var mHandOrigin = cam.ProjectRayOrigin(mHand.Position);
+        var mHandOrigin = cam.GlobalPosition;//cam.ProjectRayOrigin(mHand.Position);
         var mHandEnd = mHandOrigin + cam.ProjectRayNormal(mHand.Position) * mHandLength;
         var mHandQuery = PhysicsRayQueryParameters3D.Create(mHandOrigin, mHandEnd);
 
-        var kLHandOrigin = cam.ProjectRayOrigin(kHandL.Position);
+        var kLHandOrigin = cam.GlobalPosition;//cam.ProjectRayOrigin(kHandL.Position);
         var kLHandEnd = kLHandOrigin + cam.ProjectRayNormal(kHandL.Position) * kLHandLength;
         var kLHandQuery = PhysicsRayQueryParameters3D.Create(kLHandOrigin, kLHandEnd);
 
-        var kRHandOrigin = cam.ProjectRayOrigin(kHandR.Position);
+        var kRHandOrigin = cam.GlobalPosition;//cam.ProjectRayOrigin(kHandR.Position);
         var kRHandEnd = kRHandOrigin + cam.ProjectRayNormal(kHandR.Position) * kRHandLength;
         var kRHandQuery = PhysicsRayQueryParameters3D.Create(kRHandOrigin, kRHandEnd);
 
-        var cLHandOrigin = cam.ProjectRayOrigin(cHandL.Position);
+        var cLHandOrigin = cam.GlobalPosition;//cam.ProjectRayOrigin(cHandL.Position);
         var cLHandEnd = cLHandOrigin + cam.ProjectRayNormal(cHandL.Position) * cLHandLength;
         var cLHandQuery = PhysicsRayQueryParameters3D.Create(cLHandOrigin, cLHandEnd);
 
-        var cRHandOrigin = cam.ProjectRayOrigin(cHandR.Position);
+        var cRHandOrigin = cam.GlobalPosition;//cam.ProjectRayOrigin(cHandR.Position);
         var cRHandEnd = cRHandOrigin + cam.ProjectRayNormal(cHandR.Position) * cRHandLength;
         var cRHandQuery = PhysicsRayQueryParameters3D.Create(cRHandOrigin, cRHandEnd);
 
@@ -368,7 +368,7 @@ public partial class HandControl : Node2D
         Camera3D cam = GetViewport().GetCamera3D();
         PhysicsDirectSpaceState3D spState = cam.GetWorld3D().DirectSpaceState;
 
-        var mHandOrigin = cam.ProjectRayOrigin(mHand.Position);
+        var mHandOrigin = cam.GlobalPosition;//cam.ProjectRayOrigin(mHand.Position);
         var mHandEnd = mHandOrigin + cam.ProjectRayNormal(mHand.Position) * mHandLength;
         var mHandQuery = PhysicsRayQueryParameters3D.Create(mHandOrigin, mHandEnd);
 
@@ -408,7 +408,7 @@ public partial class HandControl : Node2D
         Camera3D cam = GetViewport().GetCamera3D();
         PhysicsDirectSpaceState3D spState = cam.GetWorld3D().DirectSpaceState;
 
-        var kLHandOrigin = cam.ProjectRayOrigin(kHandL.Position);
+        var kLHandOrigin = cam.GlobalPosition;//cam.ProjectRayOrigin(kHandL.Position);
         var kLHandEnd = kLHandOrigin + cam.ProjectRayNormal(kHandL.Position) * kLHandLength;
         var kLHandQuery = PhysicsRayQueryParameters3D.Create(kLHandOrigin, kLHandEnd);
 
@@ -446,7 +446,7 @@ public partial class HandControl : Node2D
         Camera3D cam = GetViewport().GetCamera3D();
         PhysicsDirectSpaceState3D spState = cam.GetWorld3D().DirectSpaceState;
 
-        var kRHandOrigin = cam.ProjectRayOrigin(kHandR.Position);
+        var kRHandOrigin = cam.GlobalPosition;//cam.ProjectRayOrigin(kHandR.Position);
         var kRHandEnd = kRHandOrigin + cam.ProjectRayNormal(kHandR.Position) * kRHandLength;
         var kRHandQuery = PhysicsRayQueryParameters3D.Create(kRHandOrigin, kRHandEnd);
 
@@ -485,7 +485,7 @@ public partial class HandControl : Node2D
         Camera3D cam = GetViewport().GetCamera3D();
         PhysicsDirectSpaceState3D spState = cam.GetWorld3D().DirectSpaceState;
 
-        var cLHandOrigin = cam.ProjectRayOrigin(cHandL.Position);
+        var cLHandOrigin = cam.GlobalPosition;//cam.ProjectRayOrigin(cHandL.Position);
         var cLHandEnd = cLHandOrigin + cam.ProjectRayNormal(cHandL.Position) * cLHandLength;
         var cLHandQuery = PhysicsRayQueryParameters3D.Create(cLHandOrigin, cLHandEnd);
 
@@ -523,7 +523,7 @@ public partial class HandControl : Node2D
         Camera3D cam = GetViewport().GetCamera3D();
         PhysicsDirectSpaceState3D spState = cam.GetWorld3D().DirectSpaceState;
 
-        var cRHandOrigin = cam.ProjectRayOrigin(cHandR.Position);
+        var cRHandOrigin = cam.GlobalPosition;//cam.ProjectRayOrigin(cHandR.Position);
         var cRHandEnd = cRHandOrigin + cam.ProjectRayNormal(cHandR.Position) * cRHandLength;
         var cRHandQuery = PhysicsRayQueryParameters3D.Create(cRHandOrigin, cRHandEnd);
 
