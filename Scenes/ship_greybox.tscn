@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://c2kw46q0bpc3r"]
 
-[node name="ShipGreyboxCombiner" type="CSGCombiner3D" unique_id=991475515]
+[sub_resource type="BoxShape3D" id="BoxShape3D_y1bva"]
+size = Vector3(7, 7, 10.225)
+
+[node name="ShipGreyboxCombiner" type="CSGCombiner3D" unique_id=991475515 groups=["ship"]]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=813563963]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.91802645)
@@ -33,3 +36,8 @@ size = Vector3(3, 6, 4)
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 4.4257946, 0, -1.65077e-08)
 operation = 2
 size = Vector3(3, 5, 3)
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1651198275]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=268073463]
+shape = SubResource("BoxShape3D_y1bva")

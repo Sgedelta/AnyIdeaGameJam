@@ -82,17 +82,17 @@ public partial class TypingUiContainer : PanelContainer
 				_rich_output.AppendText($"[code]Please prove you are not human.[br][/code][font=res://Assets/Fonts/crooked/Crooked.ttf][s]{GameManager.Instance.CaptchaAnswer}[/s][/font]");
 				break;
 
-			case "port_pass":
+			case "starboard_pass":
 				GameManager.Instance.DirKeypadAnswer = GameManager.Instance.CreatePassword("sequence", 6);
-                //ToDo GENERATE PASS AND PASS TO GM
-                _rich_output.AppendText($"[code]Port Engine Password is: {GameManager.Instance.DirKeypadAnswer}[/code]");
+				//ToDo GENERATE PASS AND PASS TO GM
+				_rich_output.AppendText($"[code]Starboard Engine Password is: {GameManager.Instance.DirKeypadAnswer}[/code]");
 				break;
 
-            case "starboard_pass":
-                GameManager.Instance.NumKeypadAnswer = GameManager.Instance.CreatePassword("pin", 6);
-                //ToDo GENERATE PASS AND PASS TO GM
-                _rich_output.AppendText($"[code]Starboard Engine Password is: {GameManager.Instance.NumKeypadAnswer}[/code]");
-                break;
+			case "port_pass":
+				GameManager.Instance.NumKeypadAnswer = GameManager.Instance.CreatePassword("pin", 6);
+				//ToDo GENERATE PASS AND PASS TO GM
+				_rich_output.AppendText($"[code]Port Engine Password is: {GameManager.Instance.NumKeypadAnswer}[/code]");
+				break;
 
 			case "HELP!":
 				_rich_output.AppendText("[code]Valid Inputs:[br]HELP! - Get Help![br]port_pass - see port engine password[br]starboard_pass - see starboard engine password[br]engine_on - begin engine engage sequence[code]");
@@ -100,8 +100,8 @@ public partial class TypingUiContainer : PanelContainer
 			default:
 				if(exactText == GameManager.Instance.CaptchaAnswer)
 				{
-                    _rich_output.AppendText("[code]Yippee! That's right![/code]");
-                }
+					_rich_output.AppendText("[code]Yippee! That's right![/code]");
+				}
 				else _rich_output.AppendText("[code]Invalid Input! use \"HELP!\"![/code]");
 				break;
 
@@ -171,11 +171,11 @@ public partial class TypingUiContainer : PanelContainer
 		_showHideTween = CreateTween();
 		_showHideTween = CreateTween().SetParallel(true);
 
-        
-        _showHideTween.TweenProperty(this, "size", hideScale, showHideSpeed);
-        _showHideTween.TweenProperty(this, "position", hidePos - new Vector2(0, hideScale.Y), showHideSpeed);
-        _showHideTween.TweenProperty(this, "position", hidePos, showHideSpeed * .2).SetDelay(showHideSpeed);
+		
+		_showHideTween.TweenProperty(this, "size", hideScale, showHideSpeed);
+		_showHideTween.TweenProperty(this, "position", hidePos - new Vector2(0, hideScale.Y), showHideSpeed);
+		_showHideTween.TweenProperty(this, "position", hidePos, showHideSpeed * .2).SetDelay(showHideSpeed);
 
 
-    }
+	}
 }
