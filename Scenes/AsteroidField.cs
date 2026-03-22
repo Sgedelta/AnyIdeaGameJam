@@ -133,11 +133,11 @@ public partial class AsteroidField : Node3D
 	
 	public void HandleGoalCollision( Area3D areaChungus)
 	{
-        GD.Print("YIPEE");
+		GetTree().ChangeSceneToFile("res://Scenes/UI/WinUI.tscn");
     }
 
 	public void HandleAsteroidCollision(Area3D areaChungus)
 	{
-        GD.Print("oof");
+        GetTree().ChangeSceneToFile("res://Scenes/UI/LoseUI.tscn");
     }
 }
