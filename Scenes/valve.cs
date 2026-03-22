@@ -204,12 +204,15 @@ public partial class valve : Node, IHandable
             SetActive(HandType.KeyR, false);
             SetActive(HandType.ContL, false);
             SetActive(HandType.ContR, false);
+
+			_halfRotsCompleted = _numHalfRotsNeeded / 2;
         }
 		else if(_halfRotsCompleted == 0)
 		{
 			CheckRelock();
 			EmitSignal(SignalName.CounterRotationCompleted);
-		}
+            _halfRotsCompleted = _numHalfRotsNeeded / 2;
+        }
 	}
 
 	public void CheckRelock()
@@ -225,4 +228,6 @@ public partial class valve : Node, IHandable
             SetActive(HandType.ContR, false);
 		}
 	}
+
+
 }

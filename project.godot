@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="AnyIdeaGame"
-run/main_scene="uid://blg1dumkp5h7c"
+run/main_scene="uid://ctqj8mnmbu2yy"
 config/features=PackedStringArray("4.6", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -37,6 +37,8 @@ mainCamera=""
 cameraButtons=""
 ship=""
 asteroid=""
+rightThruster=""
+leftThruster=""
 LDoor=""
 FLDoor=""
 RDoor=""

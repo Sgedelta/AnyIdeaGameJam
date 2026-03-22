@@ -7,8 +7,8 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iubcq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mxnnr"]
-radius = 0.6
-height = 3.0
+radius = 0.171875
+height = 1.185791
 
 [node name="Battery" type="RigidBody3D" unique_id=708775602]
 script = ExtResource("1_mjabg")
@@ -31,19 +31,20 @@ _handInputTargets = Dictionary[int, Dictionary]({
 })
 
 [node name="Battery_01" parent="." unique_id=918110898 instance=ExtResource("2_23u8t")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, -1.3558993, 0)
+transform = Transform3D(2.25, 0, 0, 0, 2.25, 0, 0, 0, 2.25, 0, -1.3558993, 0)
 
 [node name="Battery" parent="Battery_01" index="0" unique_id=1729156485]
 material_override = ExtResource("3_l2pcn")
 surface_material_override/0 = SubResource("StandardMaterial3D_iubcq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2049426018]
+transform = Transform3D(2.25, 0, 0, 0, 2.25, 0, 0, 0, 2.25, 0, -0.34579468, 0)
 shape = SubResource("CapsuleShape3D_mxnnr")
 
 [node name="LeftHandSpot" type="Node3D" parent="." unique_id=1885501117]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3608115, 0)
+transform = Transform3D(2.25, 0, 0, 0, 2.25, 0, 0, 0, 2.25, 0, -1.3608115, 0)
 
 [node name="RightHandSpot" type="Node3D" parent="." unique_id=723050264]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1446512, 0)
+transform = Transform3D(2.25, 0, 0, 0, 2.25, 0, 0, 0, 2.25, 0, 1.1446512, 0)
 
 [editable path="Battery_01"]

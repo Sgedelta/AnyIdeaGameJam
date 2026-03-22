@@ -16,7 +16,7 @@ public partial class Battery : RigidBody3D, IHandable
     public float TimeLeft = 5;
 
     private float _dropImpulseStrength = 5;
-    private float _holdDist = 3f;
+    private float _holdDist = 4f;
 
     private RandomNumberGenerator rng;
 

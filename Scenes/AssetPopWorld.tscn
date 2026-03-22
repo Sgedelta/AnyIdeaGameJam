@@ -6,10 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://fipslcloxboc" path="res://Assets/Materials/Textures/alienDaddyRIG_12_roboTentacleMAT_BaseColor.png" id="4_4dmr8"]
 [ext_resource type="PackedScene" uid="uid://vd7iv10tqu55" path="res://Scenes/hand_control.tscn" id="4_l35xd"]
 [ext_resource type="Texture2D" uid="uid://dxb1lup65dj5n" path="res://Assets/Materials/Textures/alienDaddyRIG_12_standardSurface1_BaseColor.png" id="5_45gs1"]
-[ext_resource type="Script" path="res://Scenes/timer.cs" id="6_2l41g"]
+[ext_resource type="Script" uid="uid://cithr8cqkn5vd" path="res://Scenes/timer.cs" id="6_2l41g"]
 [ext_resource type="Texture2D" uid="uid://dtale27i7hab0" path="res://Assets/Sprites/Space_Skymap.png" id="6_c45ay"]
 [ext_resource type="PackedScene" uid="uid://c2kw46q0bpc3r" path="res://Scenes/ship_greybox.tscn" id="7_05j4n"]
 [ext_resource type="PackedScene" uid="uid://cqy5d4syqsc0d" path="res://Scenes/asteroid_field.tscn" id="7_deu8g"]
+[ext_resource type="PackedScene" uid="uid://dgxffd7rjiw5x" path="res://Scenes/battery.tscn" id="7_uqg11"]
 [ext_resource type="PackedScene" uid="uid://ct8r5tilx1632" path="res://Scenes/computer.tscn" id="8_ufqju"]
 [ext_resource type="PackedScene" uid="uid://sr6350pw18lo" path="res://Scenes/speedlines.tscn" id="9_4dmr8"]
 [ext_resource type="PackedScene" uid="uid://bpvvsk7sck7vt" path="res://Assets/3D/oven_02.fbx" id="11_l35xd"]
@@ -51,7 +52,7 @@ sky_material = SubResource("PanoramaSkyMaterial_ed2pg")
 background_mode = 2
 sky = SubResource("Sky_rdsav")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_cymet"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_uqg11"]
 viewport_path = NodePath("Screen/SubViewport")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2l41g"]
@@ -66,9 +67,6 @@ size = Vector3(1, 7, 14)
 [sub_resource type="BoxShape3D" id="BoxShape3D_uqg11"]
 size = Vector3(14, 7, 1)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_uqg11"]
-viewport_path = NodePath("Screen/SubViewport")
-
 [sub_resource type="ViewportTexture" id="ViewportTexture_djixh"]
 viewport_path = NodePath("Screen/SubViewport")
 
@@ -78,7 +76,16 @@ viewport_path = NodePath("Screen/SubViewport")
 [sub_resource type="ViewportTexture" id="ViewportTexture_xdwae"]
 viewport_path = NodePath("Screen/SubViewport")
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_uvu7x"]
+viewport_path = NodePath("Screen/SubViewport")
+
 [node name="Node3D2" type="Node3D" unique_id=441259406]
+
+[node name="Battery" parent="." unique_id=708775602 instance=ExtResource("7_uqg11")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.81530666, 0.06810212, 1.9821358)
+
+[node name="Battery2" parent="." unique_id=2042890088 instance=ExtResource("7_uqg11")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0490632, 0.016269207, 1.9821358)
 
 [node name="Camera" parent="." unique_id=129220480 instance=ExtResource("1_bs6yi")]
 _cameraSpeed = 0.5
@@ -316,14 +323,15 @@ environment = SubResource("Environment_se0eo")
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 31.498058)
 visible = false
 
-[node name="AsteroidField" parent="." unique_id=97329334 instance=ExtResource("7_deu8g")]
+[node name="AsteroidField" parent="." unique_id=97329334 node_paths=PackedStringArray("forwardLines") instance=ExtResource("7_deu8g")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, -2.557, -30.848)
+forwardLines = NodePath("../Speedlines")
 
 [node name="Computer" parent="." unique_id=1549007900 instance=ExtResource("8_ufqju")]
 transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 0, -0.9447787, -2.112)
 
 [node name="Screen" parent="Computer" index="0" unique_id=990515359]
-texture = SubResource("ViewportTexture_cymet")
+texture = SubResource("ViewportTexture_uqg11")
 
 [node name="Speedlines" parent="." unique_id=1459631009 instance=ExtResource("9_4dmr8")]
 transform = Transform3D(0.09397489, 0, 0, 0, 0.20200296, 0, 0, 0, 1.3193672, -0.047362804, 0.4875651, -5.620336)
@@ -375,6 +383,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.74542236, 0.27143478, -0.9
 shape = SubResource("BoxShape3D_1jowa")
 
 [node name="LeftWall" type="StaticBody3D" parent="." unique_id=642126871]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1752784, 0, 0)
 physics_material_override = ExtResource("11_yyk6s")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LeftWall" unique_id=1140544134]
@@ -382,6 +391,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.645764, 0, 0)
 shape = SubResource("BoxShape3D_cymet")
 
 [node name="RightWall" type="StaticBody3D" parent="." unique_id=1088821382]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5553858, 0, 0)
 physics_material_override = ExtResource("11_yyk6s")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RightWall" unique_id=22541704]
@@ -389,6 +399,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.646, 0, 0)
 shape = SubResource("BoxShape3D_cymet")
 
 [node name="FrontWall" type="StaticBody3D" parent="." unique_id=1406666290]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.0445256)
 physics_material_override = ExtResource("11_yyk6s")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FrontWall" unique_id=1783711407]
@@ -396,6 +407,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.975)
 shape = SubResource("BoxShape3D_uqg11")
 
 [node name="BackWall" type="StaticBody3D" parent="." unique_id=1863763359]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5917252)
 physics_material_override = ExtResource("11_yyk6s")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BackWall" unique_id=1772603193]
@@ -403,7 +415,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.990784)
 shape = SubResource("BoxShape3D_uqg11")
 
 [node name="right_valve_thruster" parent="." unique_id=2053884060 instance=ExtResource("20_yyk6s")]
-transform = Transform3D(-6.556708e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.556708e-08, 5.4626074, 0, 0)
+transform = Transform3D(-6.556708e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.556708e-08, 3.81454, -0.5487995, 0)
 
 [node name="BatteryReceptical" parent="right_valve_thruster" index="1" unique_id=1981157617 groups=["RRecep"]]
 
@@ -412,10 +424,10 @@ transform = Transform3D(-6.556708e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.556708e-08
 [node name="valve" parent="right_valve_thruster/DoorPivot" index="1" unique_id=1192847290 groups=["RValve"]]
 
 [node name="Screen" parent="right_valve_thruster" index="4" unique_id=1025664600]
-texture = SubResource("ViewportTexture_uqg11")
+texture = SubResource("ViewportTexture_djixh")
 
 [node name="left_valve_thruster" parent="." unique_id=1693458027 instance=ExtResource("21_2l41g")]
-transform = Transform3D(-6.556708e-08, 0, 1.5, 0, 1.5, 0, -1.5, 0, -6.556708e-08, -5.435914, 0, 0)
+transform = Transform3D(-6.556708e-08, 0, 1.5, 0, 1.5, 0, -1.5, 0, -6.556708e-08, -4.089171, -0.5487995, 0)
 
 [node name="BatteryReceptical" parent="left_valve_thruster" index="1" unique_id=1981157617 groups=["LRecep"]]
 
@@ -424,10 +436,12 @@ transform = Transform3D(-6.556708e-08, 0, 1.5, 0, 1.5, 0, -1.5, 0, -6.556708e-08
 [node name="valve" parent="left_valve_thruster/DoorPivot" index="1" unique_id=1192847290 groups=["LValve"]]
 
 [node name="Screen" parent="left_valve_thruster" index="4" unique_id=1025664600]
-texture = SubResource("ViewportTexture_djixh")
+texture = SubResource("ViewportTexture_malqr")
 
-[node name="front_left_valve_thruster" parent="." unique_id=1034884493 instance=ExtResource("22_cymet")]
-transform = Transform3D(1.299038, 0, 0.75, 0, 1.5, 0, -0.75, 0, 1.299038, -2.1787245, -5.9604645e-08, -4.4573956)
+[node name="front_left_valve_thruster" parent="." unique_id=1034884493 node_paths=PackedStringArray("br", "door") instance=ExtResource("22_cymet")]
+transform = Transform3D(1.299038, 0, 0.75, 0, 1.5, 0, -0.75, 0, 1.299038, -2.1787245, -5.9604645e-08, -3.2342958)
+br = NodePath("BatteryReceptical")
+door = NodePath("DoorPivot")
 
 [node name="BatteryReceptical" parent="front_left_valve_thruster" index="1" unique_id=1981157617 groups=["FLRecep"]]
 
@@ -436,10 +450,12 @@ transform = Transform3D(1.299038, 0, 0.75, 0, 1.5, 0, -0.75, 0, 1.299038, -2.178
 [node name="valve" parent="front_left_valve_thruster/DoorPivot" index="1" unique_id=1192847290 groups=["FLValve"]]
 
 [node name="Screen" parent="front_left_valve_thruster" index="4" unique_id=1025664600]
-texture = SubResource("ViewportTexture_malqr")
+texture = SubResource("ViewportTexture_xdwae")
 
-[node name="front_right_valve_thruster2" parent="." unique_id=1257279248 instance=ExtResource("23_uqg11")]
-transform = Transform3D(1.299038, 0, -0.75, 0, 1.5, 0, 0.75, 0, 1.299038, 2.17, 0, -4.45)
+[node name="front_right_valve_thruster2" parent="." unique_id=1257279248 node_paths=PackedStringArray("br", "door") instance=ExtResource("23_uqg11")]
+transform = Transform3D(1.299038, 0, -0.75, 0, 1.5, 0, 0.75, 0, 1.299038, 2.17, 0, -3.2269)
+br = NodePath("BatteryReceptical")
+door = NodePath("DoorPivot")
 
 [node name="BatteryReceptical" parent="front_right_valve_thruster2" index="1" unique_id=1981157617 groups=["FRRecep"]]
 
@@ -448,7 +464,7 @@ transform = Transform3D(1.299038, 0, -0.75, 0, 1.5, 0, 0.75, 0, 1.299038, 2.17, 
 [node name="valve" parent="front_right_valve_thruster2/DoorPivot" index="1" unique_id=1192847290 groups=["FRValve"]]
 
 [node name="Screen" parent="front_right_valve_thruster2" index="4" unique_id=1025664600]
-texture = SubResource("ViewportTexture_xdwae")
+texture = SubResource("ViewportTexture_uvu7x")
 
 [editable path="Camera/button_object"]
 [editable path="Camera/button_object2"]

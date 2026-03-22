@@ -11,8 +11,10 @@ public enum ThrusterLocation
 public partial class AsteroidField : Node3D
 {
 	[Export]
-	public float shipSpeed = 10f;
+	public float shipSpeed = 2f;
 	public Vector3 shipVelocity = Vector3.Zero;
+
+    [Export] Node3D forwardLines;
 
 	private Area3D goalCollision;
 
@@ -170,7 +172,7 @@ public partial class AsteroidField : Node3D
         }
 
 
-
+        GD.Print($"{frontLeftBatteryPowered} {frontLeftDoorOpen} {frontLeftValveLocked}");
 
         if (frontLeftBatteryPowered && !frontLeftDoorOpen && frontLeftValveLocked)
         {
@@ -195,6 +197,8 @@ public partial class AsteroidField : Node3D
 
 
         float zVel = forwardThrust;
+
+        forwardLines.Visible = zVel > 0;
 		
 
 		float xVel = 0;
@@ -254,7 +258,7 @@ public partial class AsteroidField : Node3D
                 tempDoor = (Door)(GetTree().GetFirstNodeInGroup("LDoor"));
                 leftDoorOpen = tempDoor.IsOpen;
                 tempValve = (valve)(GetTree().GetFirstNodeInGroup("LValve"));
-                leftDoorOpen = !tempValve.IsLocked;
+                leftValveLocked = tempValve.IsLocked;
                 break;
 			case ThrusterLocation.right:
                 tempBattery = (BatteryReceptical)(GetTree().GetFirstNodeInGroup("RRecep"));
@@ -262,7 +266,7 @@ public partial class AsteroidField : Node3D
                 tempDoor = (Door)(GetTree().GetFirstNodeInGroup("RDoor"));
                 rightDoorOpen = tempDoor.IsOpen;
                 tempValve = (valve)(GetTree().GetFirstNodeInGroup("RValve"));
-                rightDoorOpen = !tempValve.IsLocked;
+                rightValveLocked = tempValve.IsLocked;
                 break;
 			case ThrusterLocation.frontLeft:
                 tempBattery = (BatteryReceptical)(GetTree().GetFirstNodeInGroup("FLRecep"));
@@ -270,7 +274,7 @@ public partial class AsteroidField : Node3D
                 tempDoor = (Door)(GetTree().GetFirstNodeInGroup("FLDoor"));
                 frontLeftDoorOpen = tempDoor.IsOpen;
                 tempValve = (valve)(GetTree().GetFirstNodeInGroup("FLValve"));
-                frontLeftDoorOpen = !tempValve.IsLocked;
+                frontLeftValveLocked = tempValve.IsLocked;
                 break;
 			case ThrusterLocation.frontRight:
                 tempBattery = (BatteryReceptical)(GetTree().GetFirstNodeInGroup("FRRecep"));
@@ -278,7 +282,7 @@ public partial class AsteroidField : Node3D
                 tempDoor = (Door)(GetTree().GetFirstNodeInGroup("FRDoor"));
                 frontRightDoorOpen = tempDoor.IsOpen;
                 tempValve = (valve)(GetTree().GetFirstNodeInGroup("FRValve"));
-                frontRightDoorOpen = !tempValve.IsLocked;
+                frontRightValveLocked = tempValve.IsLocked;
                 break;
 		}
 	}
