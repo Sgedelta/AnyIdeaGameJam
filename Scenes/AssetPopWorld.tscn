@@ -16,12 +16,13 @@
 [ext_resource type="PhysicsMaterial" uid="uid://dnrgyxqqmryww" path="res://Assets/Materials/PhysicsMats/Bouncy.tres" id="11_yyk6s"]
 [ext_resource type="Material" uid="uid://c33xljph1i1o8" path="res://Assets/Materials/OvenMat.tres" id="12_jsqd3"]
 [ext_resource type="PackedScene" uid="uid://cnsl2ew75almi" path="res://Assets/3D/shipBase_04.fbx" id="13_jg5fp"]
-[ext_resource type="PackedScene" uid="uid://by5s20ijj8mmg" path="res://Assets/3D/BatteryPort_01.fbx" id="13_l35xd"]
 [ext_resource type="Material" uid="uid://cex2qc2r078vd" path="res://Assets/Materials/Textures/hullMat.tres" id="16_45gs1"]
 [ext_resource type="PackedScene" uid="uid://k17d2ik4nuac" path="res://Assets/3D/cake.fbx" id="18_yyk6s"]
 [ext_resource type="Material" uid="uid://ddwr38fhv1r3" path="res://Assets/Materials/Textures/cakeMAT.tres" id="19_2l41g"]
 [ext_resource type="PackedScene" path="res://Scenes/right_valve_thruster.tscn" id="20_yyk6s"]
 [ext_resource type="PackedScene" path="res://Scenes/left_valve_thruster.tscn" id="21_2l41g"]
+[ext_resource type="PackedScene" path="res://Scenes/front_left_valve_thruster.tscn" id="22_cymet"]
+[ext_resource type="PackedScene" path="res://Scenes/front_right_valve_thruster.tscn" id="23_uqg11"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cymet"]
 albedo_texture = ExtResource("4_4dmr8")
@@ -50,7 +51,7 @@ sky_material = SubResource("PanoramaSkyMaterial_ed2pg")
 background_mode = 2
 sky = SubResource("Sky_rdsav")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_2l41g"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_djixh"]
 viewport_path = NodePath("Screen/SubViewport")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2l41g"]
@@ -64,6 +65,18 @@ size = Vector3(1, 7, 14)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uqg11"]
 size = Vector3(14, 7, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_cymet"]
+viewport_path = NodePath("Screen/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_uqg11"]
+viewport_path = NodePath("Screen/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_malqr"]
+viewport_path = NodePath("Screen/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_xdwae"]
+viewport_path = NodePath("Screen/SubViewport")
 
 [node name="Node3D2" type="Node3D" unique_id=441259406]
 
@@ -310,7 +323,7 @@ transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, -2.557, -30.848)
 transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 0, -0.9447787, -2.112)
 
 [node name="Screen" parent="Computer" index="0" unique_id=990515359]
-texture = SubResource("ViewportTexture_2l41g")
+texture = SubResource("ViewportTexture_djixh")
 
 [node name="Speedlines" parent="." unique_id=1459631009 instance=ExtResource("9_4dmr8")]
 transform = Transform3D(0.09397489, 0, 0, 0, 0.20200296, 0, 0, 0, 1.3193672, -0.047362804, 0.4875651, -5.620336)
@@ -346,24 +359,12 @@ shape = SubResource("BoxShape3D_2l41g")
 
 [node name="Table" type="Node3D" parent="." unique_id=969831789]
 
-[node name="BatteryPort_01" parent="." unique_id=416936600 instance=ExtResource("13_l35xd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.551579, -2.9609907, -9.179165)
-
-[node name="batteryPortdoor" parent="BatteryPort_01/batteryPortGrp" parent_id_path=PackedInt32Array(416936600, 681562088) index="1" unique_id=1897156606]
-transform = Transform3D(-58.056442, 0, 3.8677025e-16, 0, 128.12842, 0, -7.109629e-15, 0, -3.158323, 0.7133231, 0.42891335, 0.23320198)
-
 [node name="cake" parent="." unique_id=1929374770 instance=ExtResource("18_yyk6s")]
 transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 7.050164, -3.0379984, -0.39453316)
 
 [node name="cake" parent="cake" index="0" unique_id=1160236647]
 transform = Transform3D(42.096, 0, 0, 0, 42.096, 0, 0, 0, 42.096, -7.0847254, 1.3374625, 4.674632)
 surface_material_override/0 = ExtResource("19_2l41g")
-
-[node name="right_valve_thruster" parent="." unique_id=2053884060 groups=["rightThruster"] instance=ExtResource("20_yyk6s")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 5.25, 0, 0)
-
-[node name="left_valve_thruster" parent="." unique_id=147495974 groups=["leftThruster"] instance=ExtResource("21_2l41g")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.258, 0, 0)
 
 [node name="FloorCollider" type="StaticBody3D" parent="." unique_id=407658480]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.537998, 0)
@@ -401,6 +402,30 @@ physics_material_override = ExtResource("11_yyk6s")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.990784)
 shape = SubResource("BoxShape3D_uqg11")
 
+[node name="right_valve_thruster" parent="." unique_id=2053884060 instance=ExtResource("20_yyk6s")]
+transform = Transform3D(-6.556708e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.556708e-08, 5.4626074, 0, 0)
+
+[node name="Screen" parent="right_valve_thruster" index="4" unique_id=1025664600]
+texture = SubResource("ViewportTexture_cymet")
+
+[node name="left_valve_thruster" parent="." unique_id=1693458027 instance=ExtResource("21_2l41g")]
+transform = Transform3D(-6.556708e-08, 0, 1.5, 0, 1.5, 0, -1.5, 0, -6.556708e-08, -5.435914, 0, 0)
+
+[node name="Screen" parent="left_valve_thruster" index="4" unique_id=1025664600]
+texture = SubResource("ViewportTexture_uqg11")
+
+[node name="front_left_valve_thruster" parent="." unique_id=1034884493 instance=ExtResource("22_cymet")]
+transform = Transform3D(1.299038, 0, 0.75, 0, 1.5, 0, -0.75, 0, 1.299038, -2.1787245, -5.9604645e-08, -4.4573956)
+
+[node name="Screen" parent="front_left_valve_thruster" index="4" unique_id=1025664600]
+texture = SubResource("ViewportTexture_malqr")
+
+[node name="front_right_valve_thruster2" parent="." unique_id=1257279248 instance=ExtResource("23_uqg11")]
+transform = Transform3D(1.299038, 0, -0.75, 0, 1.5, 0, 0.75, 0, 1.299038, 2.17, 0, -4.45)
+
+[node name="Screen" parent="front_right_valve_thruster2" index="4" unique_id=1025664600]
+texture = SubResource("ViewportTexture_xdwae")
+
 [editable path="Camera/button_object"]
 [editable path="Camera/button_object2"]
 [editable path="Camera/AlienHands"]
@@ -410,5 +435,18 @@ shape = SubResource("BoxShape3D_uqg11")
 [editable path="Computer/keyboard_01"]
 [editable path="oven_02"]
 [editable path="shipBase_04"]
-[editable path="BatteryPort_01"]
 [editable path="cake"]
+[editable path="right_valve_thruster"]
+[editable path="right_valve_thruster/BatteryReceptical"]
+[editable path="right_valve_thruster/DoorPivot/valve"]
+[editable path="left_valve_thruster"]
+[editable path="left_valve_thruster/BatteryReceptical"]
+[editable path="left_valve_thruster/DoorPivot/valve"]
+[editable path="front_left_valve_thruster"]
+[editable path="front_left_valve_thruster/BatteryReceptical"]
+[editable path="front_left_valve_thruster/DoorPivot/valve"]
+[editable path="front_left_valve_thruster/Screen/SubViewport/TypingUIContainer"]
+[editable path="front_right_valve_thruster2"]
+[editable path="front_right_valve_thruster2/BatteryReceptical"]
+[editable path="front_right_valve_thruster2/DoorPivot/valve"]
+[editable path="front_right_valve_thruster2/Screen/SubViewport/TypingUIContainer"]

@@ -2,10 +2,16 @@ using Godot;
 using Godot.Collections;
 using System;
 
+
+public enum ThrusterLocation
+{
+	left, right, frontLeft , frontRight
+}
+
 public partial class AsteroidField : Node3D
 {
 	[Export]
-	public float shipSpeed = 20f;
+	public float shipSpeed = 10f;
 	public Vector3 shipVelocity = Vector3.Zero;
 
 	private Area3D goalCollision;
@@ -24,6 +30,28 @@ public partial class AsteroidField : Node3D
     int thrust2 = 0;
 
     public Array<Area3D> asteroidColliders = new Array<Area3D>();
+
+
+
+	public bool leftBatteryPowered = false;
+	public bool rightBatteryPowered = false;
+	public bool frontLeftBatteryPowered = false;
+	public bool frontRightBatteryPowered = false;
+
+	public bool leftValveLocked = false;
+	public bool rightValveLocked = false;
+	public bool frontLeftValveLocked = false;
+	public bool frontRightValveLocked = false;
+
+	public bool leftDoorOpen = false;
+	public bool rightDoorOpen = false;
+	public bool frontLeftDoorOpen = false;
+	public bool frontRightDoorOpen = false;
+
+
+
+
+
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -54,51 +82,51 @@ public partial class AsteroidField : Node3D
 
     public override void _Input(InputEvent @event)
     {
-		if (@event is InputEventKey)
-		{
-			InputEventKey mover = (InputEventKey)@event;
-			if (mover.Keycode == Key.Left && mover.IsPressed())
-			{
-				leftThrust = true;
-			}
-			else if (mover.Keycode == Key.Left && mover.IsReleased())
-                {
-                    leftThrust = false;
-                }
+		//if (@event is InputEventKey)
+		//{
+		//	InputEventKey mover = (InputEventKey)@event;
+		//	if (mover.Keycode == Key.Left && mover.IsPressed())
+		//	{
+		//		leftThrust = true;
+		//	}
+		//	else if (mover.Keycode == Key.Left && mover.IsReleased())
+  //              {
+  //                  leftThrust = false;
+  //              }
 
-            if (mover.Keycode == Key.Right && mover.IsPressed())
-			{
-				rightThrust = true;
-			}
-			else if (mover.Keycode == Key.Right && mover.IsReleased())
-			{
-				rightThrust = false;
-			}
+  //          if (mover.Keycode == Key.Right && mover.IsPressed())
+		//	{
+		//		rightThrust = true;
+		//	}
+		//	else if (mover.Keycode == Key.Right && mover.IsReleased())
+		//	{
+		//		rightThrust = false;
+		//	}
 
 
 
 			
-            if (mover.Keycode == Key.Space && mover.IsPressed())
-            {
-                thrust1 = 1;
-            }
-            else if (mover.Keycode == Key.Space && mover.IsReleased())
-            {
-				thrust1 = 0;
-            }
+  //          if (mover.Keycode == Key.Space && mover.IsPressed())
+  //          {
+  //              thrust1 = 1;
+  //          }
+  //          else if (mover.Keycode == Key.Space && mover.IsReleased())
+  //          {
+		//		thrust1 = 0;
+  //          }
 
-            if (mover.Keycode == Key.B && mover.IsPressed())
-            {
-                thrust2 = 1;
-            }
-            else if (mover.Keycode == Key.B && mover.IsReleased())
-            {
-                thrust2 = 0;
-            }
+  //          if (mover.Keycode == Key.B && mover.IsPressed())
+  //          {
+  //              thrust2 = 1;
+  //          }
+  //          else if (mover.Keycode == Key.B && mover.IsReleased())
+  //          {
+  //              thrust2 = 0;
+  //          }
 
-			forwardThrust = thrust1 + thrust2;
-			GD.Print(forwardThrust);
-        }
+		//	forwardThrust = thrust1 + thrust2;
+		//	GD.Print(forwardThrust);
+  //      }
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -113,7 +141,60 @@ public partial class AsteroidField : Node3D
             GetTree().ChangeSceneToFile("res://Scenes/UI/LoseUI.tscn");
         }
 
-		float zVel = forwardThrust;
+        UpdateThrustfunctionality(ThrusterLocation.left);
+
+        UpdateThrustfunctionality(ThrusterLocation.right);
+
+        UpdateThrustfunctionality(ThrusterLocation.frontLeft);
+
+        UpdateThrustfunctionality(ThrusterLocation.frontRight);
+
+
+        //left
+        if (leftBatteryPowered && !leftDoorOpen && leftValveLocked)
+        {
+            leftThrust = true;
+        }
+        else
+        {
+            leftThrust = false;
+        }
+
+        if (rightBatteryPowered && !rightDoorOpen && rightValveLocked)
+        {
+            rightThrust = true;
+        }
+        else
+        {
+            rightThrust = false;
+        }
+
+
+
+
+        if (frontLeftBatteryPowered && !frontLeftDoorOpen && frontLeftValveLocked)
+        {
+            thrust1 = 1;
+        }
+        else
+        {
+            thrust1 = 0;
+        }
+
+        if (frontRightBatteryPowered && !frontRightDoorOpen && frontRightValveLocked)
+        {
+            thrust2 = 1;
+        }
+        else
+        {
+            thrust2 = 0;
+        }
+
+        forwardThrust = thrust1 + thrust2;
+        GD.Print(forwardThrust);
+
+
+        float zVel = forwardThrust;
 		
 
 		float xVel = 0;
@@ -140,7 +221,9 @@ public partial class AsteroidField : Node3D
 		//GD.Print(shipVelocity.ToString());
         GlobalPosition += shipVelocity * (float)delta;
 		GlobalPosition = new Vector3(Mathf.Clamp(GlobalPosition.X, -20, 20), 0, GlobalPosition.Z);
-	}
+
+
+    }
 
 	
 	public void HandleGoalCollision( Area3D areaChungus)
@@ -154,4 +237,49 @@ public partial class AsteroidField : Node3D
         alive = false;
         GetTree().ChangeSceneToFile("res://Scenes/UI/LoseUI.tscn");
     }
+
+
+
+	public void UpdateThrustfunctionality(ThrusterLocation thrusterLocation)
+	{
+		BatteryReceptical tempBattery = new BatteryReceptical();
+		Door tempDoor = new Door();
+		valve tempValve = new valve();
+
+        switch (thrusterLocation)
+		{
+			case ThrusterLocation.left:
+				tempBattery = (BatteryReceptical)(GetTree().GetFirstNodeInGroup("LRecep"));
+                leftBatteryPowered = tempBattery.Powered;
+                tempDoor = (Door)(GetTree().GetFirstNodeInGroup("LDoor"));
+                leftDoorOpen = tempDoor.IsOpen;
+                tempValve = (valve)(GetTree().GetFirstNodeInGroup("LValve"));
+                leftDoorOpen = !tempValve.IsLocked;
+                break;
+			case ThrusterLocation.right:
+                tempBattery = (BatteryReceptical)(GetTree().GetFirstNodeInGroup("RRecep"));
+                rightBatteryPowered = tempBattery.Powered;
+                tempDoor = (Door)(GetTree().GetFirstNodeInGroup("RDoor"));
+                rightDoorOpen = tempDoor.IsOpen;
+                tempValve = (valve)(GetTree().GetFirstNodeInGroup("RValve"));
+                rightDoorOpen = !tempValve.IsLocked;
+                break;
+			case ThrusterLocation.frontLeft:
+                tempBattery = (BatteryReceptical)(GetTree().GetFirstNodeInGroup("FLRecep"));
+                frontLeftBatteryPowered = tempBattery.Powered;
+                tempDoor = (Door)(GetTree().GetFirstNodeInGroup("FLDoor"));
+                frontLeftDoorOpen = tempDoor.IsOpen;
+                tempValve = (valve)(GetTree().GetFirstNodeInGroup("FLValve"));
+                frontLeftDoorOpen = !tempValve.IsLocked;
+                break;
+			case ThrusterLocation.frontRight:
+                tempBattery = (BatteryReceptical)(GetTree().GetFirstNodeInGroup("FRRecep"));
+                frontRightBatteryPowered = tempBattery.Powered;
+                tempDoor = (Door)(GetTree().GetFirstNodeInGroup("FRDoor"));
+                frontRightDoorOpen = tempDoor.IsOpen;
+                tempValve = (valve)(GetTree().GetFirstNodeInGroup("FRValve"));
+                frontRightDoorOpen = !tempValve.IsLocked;
+                break;
+		}
+	}
 }
