@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://fipslcloxboc" path="res://Assets/Materials/Textures/alienDaddyRIG_12_roboTentacleMAT_BaseColor.png" id="4_4dmr8"]
 [ext_resource type="PackedScene" uid="uid://vd7iv10tqu55" path="res://Scenes/hand_control.tscn" id="4_l35xd"]
 [ext_resource type="Texture2D" uid="uid://dxb1lup65dj5n" path="res://Assets/Materials/Textures/alienDaddyRIG_12_standardSurface1_BaseColor.png" id="5_45gs1"]
+[ext_resource type="Script" uid="uid://cithr8cqkn5vd" path="res://Scenes/timer.cs" id="6_2l41g"]
 [ext_resource type="Texture2D" uid="uid://dtale27i7hab0" path="res://Assets/Sprites/Space_Skymap.png" id="6_c45ay"]
 [ext_resource type="PackedScene" uid="uid://c2kw46q0bpc3r" path="res://Scenes/ship_greybox.tscn" id="7_05j4n"]
 [ext_resource type="PackedScene" uid="uid://cqy5d4syqsc0d" path="res://Scenes/asteroid_field.tscn" id="7_deu8g"]
@@ -269,6 +270,13 @@ surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
 [node name="pCylinder162" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="60" unique_id=1778532725]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
+
+[node name="Label" type="Label" parent="Camera" unique_id=1376686123]
+offset_right = 466.0
+offset_bottom = 126.0
+theme_override_font_sizes/font_size = 69
+text = "asdasdasdasd"
+script = ExtResource("6_2l41g")
 
 [node name="HandControl" parent="." unique_id=713415373 node_paths=PackedStringArray("mHandTarget", "kHandLTarget", "kHandRTarget", "cHandLTarget", "cHandRTarget") instance=ExtResource("4_l35xd")]
 mHandTarget = NodePath("../Camera/AlienHands/mTarget")

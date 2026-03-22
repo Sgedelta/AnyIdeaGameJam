@@ -105,6 +105,9 @@ public partial class AsteroidField : Node3D
 	public override void _Process(double delta)
 	{
 		if(!alive) return;
+
+		GameManager.Instance.timer -= (float)delta;
+
 		float zVel = forwardThrust;
 		
 
