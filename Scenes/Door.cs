@@ -159,7 +159,7 @@ public partial class Door : StaticBody3D, IHandable
 
         _popOpenTween = CreateTween();
 
-        _popOpenTween.TweenProperty(this, "rotation", new Vector3(0, Mathf.DegToRad(20.0f), 0), _popOpenAnimationSpeed);
+        _popOpenTween.TweenProperty(this, "rotation", new Vector3(0, Mathf.DegToRad(20.0f) * rotDir, 0), _popOpenAnimationSpeed);
 
         // If valve door is locked, unlock it
         if (IsLocked) IsLocked = false;
