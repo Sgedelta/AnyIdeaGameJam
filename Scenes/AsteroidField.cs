@@ -6,6 +6,7 @@ public partial class AsteroidField : Node3D
 {
 	[Export]
 	public float shipSpeed = 3f;
+	public Vector3 shipVelocity = Vector3.Zero;
 
 	private Area3D goalCollision;
 
@@ -16,6 +17,7 @@ public partial class AsteroidField : Node3D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		shipVelocity = new Vector3(0, 0, 3f);
         shipCollider = GetTree().GetFirstNodeInGroup("ship").GetNode<Area3D>("Area3D");
 		//if (shipCollider != null) GD.Print("Shippa!");
         goalCollision = GetNode<Area3D>("Goal");
@@ -37,7 +39,7 @@ public partial class AsteroidField : Node3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		GlobalPosition += new Vector3(0, 0, shipSpeed*(float)delta);
+		GlobalPosition += shipVelocity * (float)delta;
 	}
 
 	
