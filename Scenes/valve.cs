@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Valve : Node
+public partial class valve : Node
 {
 	[Signal] public delegate void RotationCompletedEventHandler();
 	[Signal] public delegate void CounterRotationCompletedEventHandler();
@@ -33,10 +33,10 @@ public partial class Valve : Node
 	}
 
 
-    public override void _Input(InputEvent @event)
-    {
+	public override void _Input(InputEvent @event)
+	{
 
-        if(@event is not InputEventJoypadMotion)
+		if(@event is not InputEventJoypadMotion)
 		{
 			return; //we ONLY care about joypad motion for valves
 		}
@@ -49,10 +49,10 @@ public partial class Valve : Node
 			return;
 		}
 
-        _lastInputAngle = Mathf.RadToDeg(Mathf.Atan2(_inputVec.Y, _inputVec.X));
-        _lastInputVec = _inputVec;
+		_lastInputAngle = Mathf.RadToDeg(Mathf.Atan2(_inputVec.Y, _inputVec.X));
+		_lastInputVec = _inputVec;
 
-        if (!_is_right_stick)
+		if (!_is_right_stick)
 		{
 			if(eventMot.Axis == JoyAxis.LeftX )
 			{
@@ -64,15 +64,15 @@ public partial class Valve : Node
 			}
 		} else
 		{
-            if (eventMot.Axis == JoyAxis.RightX)
-            {
-                _inputVec.X = str;
-            }
-            else if (eventMot.Axis == JoyAxis.RightY)
-            {
-                _inputVec.Y = str;
-            }
-        }
+			if (eventMot.Axis == JoyAxis.RightX)
+			{
+				_inputVec.X = str;
+			}
+			else if (eventMot.Axis == JoyAxis.RightY)
+			{
+				_inputVec.Y = str;
+			}
+		}
 
 		_inputVec = _inputVec.Normalized();
 		float inputAngle = Mathf.RadToDeg(Mathf.Atan2(_inputVec.Y, _inputVec.X));
@@ -89,39 +89,39 @@ public partial class Valve : Node
 				_lastCrossoverLeft = false;
 				_halfRotsCompleted = Math.Min(_halfRotsCompleted + 1, 10);
 			}
-            //going back
-            if ((_rot_cc && inputAngle > 0 && _lastInputAngle < 0) || (!_rot_cc && inputAngle < 0 && _lastInputAngle > 0))
-            {
-                _lastCrossoverLeft = false;
-                _halfRotsCompleted = Math.Max(_halfRotsCompleted - 1, 0);
-            }
+			//going back
+			if ((_rot_cc && inputAngle > 0 && _lastInputAngle < 0) || (!_rot_cc && inputAngle < 0 && _lastInputAngle > 0))
+			{
+				_lastCrossoverLeft = false;
+				_halfRotsCompleted = Math.Max(_halfRotsCompleted - 1, 0);
+			}
 			CheckRotationSignals();
-        } 
+		} 
 		else if (Mathf.Abs(inputAngle) > 90 && Mathf.Abs(_lastInputAngle) > 90 && !_lastCrossoverLeft)
 		{
-            //both left
-            if ((_rot_cc && inputAngle > 0 && _lastInputAngle < 0) || (!_rot_cc && inputAngle < 0 && _lastInputAngle > 0))
-            {
+			//both left
+			if ((_rot_cc && inputAngle > 0 && _lastInputAngle < 0) || (!_rot_cc && inputAngle < 0 && _lastInputAngle > 0))
+			{
 				_lastCrossoverLeft = true;
-                _halfRotsCompleted = Math.Min(_halfRotsCompleted + 1, 10);
-            }
-            //going back
-            if ((!_rot_cc && inputAngle > 0 && _lastInputAngle < 0) || (_rot_cc && inputAngle < 0 && _lastInputAngle > 0))
-            {
-                _lastCrossoverLeft = true;
-                _halfRotsCompleted = Math.Max(_halfRotsCompleted - 1, 0);
-            }
-            CheckRotationSignals();
+				_halfRotsCompleted = Math.Min(_halfRotsCompleted + 1, 10);
+			}
+			//going back
+			if ((!_rot_cc && inputAngle > 0 && _lastInputAngle < 0) || (_rot_cc && inputAngle < 0 && _lastInputAngle > 0))
+			{
+				_lastCrossoverLeft = true;
+				_halfRotsCompleted = Math.Max(_halfRotsCompleted - 1, 0);
+			}
+			CheckRotationSignals();
 
-        }
+		}
 
-    }
+	}
 
 	public void CheckRotationSignals()
 	{
 		if( _halfRotsCompleted == _numHalfRotsNeeded )
 		{
-            EmitSignal(SignalName.RotationCompleted);
+			EmitSignal(SignalName.RotationCompleted);
 		}
 		else if(_halfRotsCompleted == 0)
 		{

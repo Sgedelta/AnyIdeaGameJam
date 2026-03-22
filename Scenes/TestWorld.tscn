@@ -77,7 +77,6 @@ transform = Transform3D(0.12568662, 0, 0, 0, 0.13916422, 0, 0, 0, 1, 0.000658065
 
 [node name="Node3D" parent="." unique_id=844961160 instance=ExtResource("8_4e6cy")]
 transform = Transform3D(0.98639494, 0, 0.16439344, 0, 1, 0, -0.16439344, 0, 0.98639494, -1.6247631, -0.2223754, -2.681415)
-visible = false
 
 [node name="FloorCollider" type="StaticBody3D" parent="." unique_id=407658480]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.537998, 0)

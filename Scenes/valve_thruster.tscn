@@ -2,12 +2,27 @@
 
 [ext_resource type="Script" uid="uid://uhlng0unopcr" path="res://Scenes/Door.cs" id="1_7fe0k"]
 [ext_resource type="PackedScene" uid="uid://c1wai34u14ogt" path="res://Scenes/valve.tscn" id="1_mu8c2"]
+[ext_resource type="Script" uid="uid://daakteg0tjep3" path="res://Scenes/valve_thruster.cs" id="1_qe1q4"]
+[ext_resource type="PackedScene" uid="uid://b560hjpc37u2o" path="res://Scenes/UI/arrows_ui.tscn" id="4_1texu"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_7ve1r"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yift7"]
 
-[node name="Node3D" type="Node3D" unique_id=844961160]
+[sub_resource type="BoxShape3D" id="BoxShape3D_yift7"]
+size = Vector3(2.1902466, 1.55896, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_qe1q4"]
+viewport_path = NodePath("Screen/SubViewport")
+
+[node name="valve_thruster" type="StaticBody3D" unique_id=2053884060]
+script = ExtResource("1_qe1q4")
+_handInputTargets = Dictionary[int, Dictionary]({
+0: {
+0: NodePath("MHandPos"),
+1: NodePath("LHandPos")
+}
+})
 
 [node name="BatteryContainer" type="MeshInstance3D" parent="." unique_id=2094303822]
 transform = Transform3D(2.0878859, 0, 0, 0, 1.4303395, 0, 0, 0, 0.99999905, 0, 0, 0)
@@ -17,13 +32,33 @@ mesh = SubResource("BoxMesh_7ve1r")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.47208726, 0, 0.57501656)
 script = ExtResource("1_7fe0k")
 
-[node name="Valve" parent="DoorPivot" unique_id=1192847290 instance=ExtResource("1_mu8c2")]
+[node name="valve" parent="DoorPivot" unique_id=1192847290 instance=ExtResource("1_mu8c2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.490914, 0, -0.011843562)
 
-[node name="MeshInstance3D" parent="DoorPivot/Valve" index="0" unique_id=1430034741]
+[node name="MeshInstance3D" parent="DoorPivot/valve" index="0" unique_id=1430034741]
 material_override = SubResource("StandardMaterial3D_yift7")
 
-[connection signal="CounterRotationCompleted" from="DoorPivot/Valve" to="DoorPivot" method="_on_valve_counter_rotation_completed"]
-[connection signal="RotationCompleted" from="DoorPivot/Valve" to="DoorPivot" method="_on_valve_rotation_completed"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=927871506]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.013458252, 0.012878418, 0)
+shape = SubResource("BoxShape3D_yift7")
 
-[editable path="DoorPivot/Valve"]
+[node name="Screen" type="Sprite3D" parent="." unique_id=1025664600]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0.8103683)
+texture = SubResource("ViewportTexture_qe1q4")
+
+[node name="SubViewport" type="SubViewport" parent="Screen" unique_id=1616433209]
+size = Vector2i(1480, 2160)
+size_2d_override = Vector2i(1480, 2160)
+
+[node name="ArrowsUI" parent="Screen/SubViewport" unique_id=2067361545 instance=ExtResource("4_1texu")]
+
+[node name="LHandPos" type="Node3D" parent="." unique_id=693874860]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2740778, 0.041449755, 0.12389141)
+
+[node name="RHandPos" type="Node3D" parent="." unique_id=721162625]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1967604, 0.041449755, 0.12389141)
+
+[node name="MHandPos" type="Node3D" parent="." unique_id=1133435335]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0684764, 0.50147015, 0.20179474)
+
+[editable path="DoorPivot/valve"]

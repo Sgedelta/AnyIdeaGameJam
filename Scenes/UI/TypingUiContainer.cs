@@ -100,7 +100,7 @@ public partial class TypingUiContainer : PanelContainer
 			default:
 				if(exactText == GameManager.Instance.CaptchaAnswer)
 				{
-                    _rich_output.AppendText("[code]Yippee! That's right![/code]");
+					_rich_output.AppendText("[code]Yippee! That's right![/code]");
                 }
 				else _rich_output.AppendText("[code]Invalid Input! use \"HELP!\"![/code]");
 				break;
@@ -171,11 +171,11 @@ public partial class TypingUiContainer : PanelContainer
 		_showHideTween = CreateTween();
 		_showHideTween = CreateTween().SetParallel(true);
 
-        
-        _showHideTween.TweenProperty(this, "size", hideScale, showHideSpeed);
-        _showHideTween.TweenProperty(this, "position", hidePos - new Vector2(0, hideScale.Y), showHideSpeed);
-        _showHideTween.TweenProperty(this, "position", hidePos, showHideSpeed * .2).SetDelay(showHideSpeed);
+		
+		_showHideTween.TweenProperty(this, "size", hideScale, showHideSpeed);
+		_showHideTween.TweenProperty(this, "position", hidePos - new Vector2(0, hideScale.Y), showHideSpeed);
+		_showHideTween.TweenProperty(this, "position", hidePos, showHideSpeed * .2).SetDelay(showHideSpeed);
 
 
-    }
+	}
 }
