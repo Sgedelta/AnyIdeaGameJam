@@ -1,0 +1,123 @@
+[gd_scene format=3 uid="uid://tvng83y8umbd"]
+
+[ext_resource type="PackedScene" uid="uid://cs42ug1jkrwpb" path="res://Assets/3D/alienDaddyRIG_12.fbx" id="1_vh66l"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_vh66l"]
+radius = 0.05
+height = 0.1
+
+[node name="AlienHands" type="Node3D" unique_id=1243474369]
+
+[node name="alienDaddyRIG_12" parent="." unique_id=1246719506 instance=ExtResource("1_vh66l")]
+
+[node name="mHandIK" type="CCDIK3D" parent="alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1246719506, 1462405048) index="61" unique_id=694885984]
+setting_count = 1
+settings/0/target_node = NodePath("../../../../mTarget")
+settings/0/root_bone_name = "Mouse_armBase_jnt"
+settings/0/root_bone = 43
+settings/0/end_bone_name = "Mouse_armWrist_jnt"
+settings/0/end_bone = 45
+settings/0/extend_end_bone = false
+settings/0/joint_count = 3
+settings/0/joints/0/rotation_axis = 3
+settings/0/joints/0/limitation = null
+settings/0/joints/1/rotation_axis = 3
+settings/0/joints/1/limitation = null
+settings/0/joints/2/rotation_axis = 3
+settings/0/joints/2/limitation = null
+
+[node name="kLHandIK" type="CCDIK3D" parent="alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1246719506, 1462405048) index="62" unique_id=1105609387]
+setting_count = 1
+settings/0/target_node = NodePath("../../../../kLTarget")
+settings/0/root_bone_name = "L_roboHandBase_jnt"
+settings/0/root_bone = 1
+settings/0/end_bone_name = "L_roboHandwrist_jnt"
+settings/0/end_bone = 3
+settings/0/extend_end_bone = false
+settings/0/joint_count = 3
+settings/0/joints/0/rotation_axis = 3
+settings/0/joints/0/limitation = null
+settings/0/joints/1/rotation_axis = 3
+settings/0/joints/1/limitation = null
+settings/0/joints/2/rotation_axis = 3
+settings/0/joints/2/limitation = null
+
+[node name="kRHandIK" type="CCDIK3D" parent="alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1246719506, 1462405048) index="63" unique_id=124944219]
+setting_count = 1
+settings/0/target_node = NodePath("../../../../kRTarget")
+settings/0/root_bone_name = "R_roboHandBase_jnt"
+settings/0/root_bone = 19
+settings/0/end_bone_name = "R_roboHandwrist_jnt"
+settings/0/end_bone = 21
+settings/0/extend_end_bone = false
+settings/0/joint_count = 3
+settings/0/joints/0/rotation_axis = 3
+settings/0/joints/0/limitation = null
+settings/0/joints/1/rotation_axis = 3
+settings/0/joints/1/limitation = null
+settings/0/joints/2/rotation_axis = 3
+settings/0/joints/2/limitation = null
+
+[node name="cLHandIK" type="CCDIK3D" parent="alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1246719506, 1462405048) index="64" unique_id=1097445219]
+setting_count = 1
+settings/0/target_node = NodePath("../../../../cLTarget")
+settings/0/root_bone_name = "L_TentacleBase_jnt"
+settings/0/root_bone = 37
+settings/0/end_bone_name = "L_TentacleTip_jnt"
+settings/0/end_bone = 39
+settings/0/extend_end_bone = false
+settings/0/joint_count = 3
+settings/0/joints/0/rotation_axis = 3
+settings/0/joints/0/limitation = null
+settings/0/joints/1/rotation_axis = 3
+settings/0/joints/1/limitation = null
+settings/0/joints/2/rotation_axis = 3
+settings/0/joints/2/limitation = null
+
+[node name="cRHandIK" type="CCDIK3D" parent="alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1246719506, 1462405048) index="65" unique_id=2107449860]
+setting_count = 1
+settings/0/target_node = NodePath("../../../../cRTarget")
+settings/0/root_bone_name = "R_TentacleBase_jnt"
+settings/0/root_bone = 40
+settings/0/end_bone_name = "R_TentacleTip_jnt"
+settings/0/end_bone = 42
+settings/0/extend_end_bone = false
+settings/0/joint_count = 3
+settings/0/joints/0/rotation_axis = 3
+settings/0/joints/0/limitation = null
+settings/0/joints/1/rotation_axis = 3
+settings/0/joints/1/limitation = null
+settings/0/joints/2/rotation_axis = 3
+settings/0/joints/2/limitation = null
+
+[node name="mTarget" type="Node3D" parent="." unique_id=2133893599]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.560689, -0.515174)
+
+[node name="Node3D" type="MeshInstance3D" parent="mTarget" unique_id=1801971786]
+mesh = SubResource("SphereMesh_vh66l")
+
+[node name="kLTarget" type="Node3D" parent="." unique_id=959537194]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4518684, 0.72508526, -0.37521374)
+
+[node name="Node3D" type="MeshInstance3D" parent="kLTarget" unique_id=1256291331]
+mesh = SubResource("SphereMesh_vh66l")
+
+[node name="kRTarget" type="Node3D" parent="." unique_id=89587551]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.39806083, 0.77274436, -0.3756957)
+
+[node name="Node3D" type="MeshInstance3D" parent="kRTarget" unique_id=1369074731]
+mesh = SubResource("SphereMesh_vh66l")
+
+[node name="cLTarget" type="Node3D" parent="." unique_id=1981344023]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25538394, 0.42657095, -0.22525644)
+
+[node name="Node3D" type="MeshInstance3D" parent="cLTarget" unique_id=1082305198]
+mesh = SubResource("SphereMesh_vh66l")
+
+[node name="cRTarget" type="Node3D" parent="." unique_id=542594666]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.30855808, 0.49043727, -0.11186969)
+
+[node name="Node3D" type="MeshInstance3D" parent="cRTarget" unique_id=1383205625]
+mesh = SubResource("SphereMesh_vh66l")
+
+[editable path="alienDaddyRIG_12"]

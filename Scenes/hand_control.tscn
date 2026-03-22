@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://vd7iv10tqu55"]
+
+[ext_resource type="Script" uid="uid://bpdyq8dwu6nkd" path="res://Scenes/HandControl.cs" id="1_edxqt"]
+[ext_resource type="Texture2D" uid="uid://ck85h8n0ugj5k" path="res://icon.svg" id="2_y3vfw"]
+
+[node name="HandControl" type="Node2D" unique_id=713415373 node_paths=PackedStringArray("mHand", "kHandL", "kHandR", "cHandL", "cHandR")]
+script = ExtResource("1_edxqt")
+mHand = NodePath("MouseHand")
+kHandL = NodePath("KeyboardLeftHand")
+kHandR = NodePath("KeyboardRightHand")
+kHandSpeed = 750.0
+cHandL = NodePath("ControllerLeftHand")
+cHandR = NodePath("ControllerRightHand")
+cHandSpeed = 750.0
+
+[node name="MouseHand" type="Node2D" parent="." unique_id=2130609846]
+position = Vector2(1983, 1008)
+
+[node name="Sprite2D" type="Sprite2D" parent="MouseHand" unique_id=958592611]
+texture = ExtResource("2_y3vfw")
+
+[node name="ControllerLeftHand" type="Node2D" parent="." unique_id=1803702541]
+position = Vector2(599, 1738)
+
+[node name="Sprite2D" type="Sprite2D" parent="ControllerLeftHand" unique_id=1134813349]
+texture = ExtResource("2_y3vfw")
+
+[node name="ControllerRightHand" type="Node2D" parent="." unique_id=2134222724]
+position = Vector2(3105, 1724)
+
+[node name="Sprite2D" type="Sprite2D" parent="ControllerRightHand" unique_id=573632827]
+texture = ExtResource("2_y3vfw")
+
+[node name="KeyboardLeftHand" type="Node2D" parent="." unique_id=573591256]
+position = Vector2(632, 382)
+
+[node name="Sprite2D" type="Sprite2D" parent="KeyboardLeftHand" unique_id=2129676895]
+texture = ExtResource("2_y3vfw")
+
+[node name="KeyboardRightHand" type="Node2D" parent="." unique_id=832264964]
+position = Vector2(3150, 404)
+
+[node name="Sprite2D" type="Sprite2D" parent="KeyboardRightHand" unique_id=1169493329]
+texture = ExtResource("2_y3vfw")

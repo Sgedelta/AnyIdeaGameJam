@@ -23,6 +23,6 @@ settings/0/joints/2/rotation_axis = 3
 settings/0/joints/2/limitation = null
 
 [node name="Target" type="Node3D" parent="." unique_id=1039499968]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08528122, 0.13987279, 0.11445393)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1034618, -0.013380811, 0.14198881)
 
 [editable path="testArm_01"]

@@ -170,5 +170,7 @@ public partial class TypingUiContainer : PanelContainer
         _showHideTween.TweenProperty(this, "size", hideScale, showHideSpeed);
         _showHideTween.TweenProperty(this, "position", hidePos - new Vector2(0, hideScale.Y), showHideSpeed);
         _showHideTween.TweenProperty(this, "position", hidePos, showHideSpeed * .2).SetDelay(showHideSpeed);
+
+
     }
 }
