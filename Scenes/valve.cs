@@ -21,6 +21,9 @@ public partial class Valve : Node
 
 	[Export] public MeshInstance3D _valveDisplay;
 
+	private Tween _popOpenTween;
+	private float _popOpenAnimationSpeed = 0.3f;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -122,6 +125,10 @@ public partial class Valve : Node
 		if( _halfRotsCompleted == _numHalfRotsNeeded )
 		{
             EmitSignal(SignalName.RotationCompleted);
+
+			_popOpenTween = CreateTween();
+
+			_popOpenTween.TweenProperty(GetNode("DoorPivot"), "rotation", new Vector3(0, Mathf.DegToRad(8.8f), 0), _popOpenAnimationSpeed);
 		}
 		else if(_halfRotsCompleted == 0)
 		{
