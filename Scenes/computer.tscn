@@ -3,6 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://dpir7truatl8q" path="res://Scenes/UI/typing_ui_container.tscn" id="1_4xga7"]
 [ext_resource type="Script" uid="uid://coh0mdw437jeq" path="res://Scenes/Computer.cs" id="1_j2xe6"]
 [ext_resource type="PackedScene" uid="uid://bikok7oy6vs81" path="res://Assets/3D/keyboard_01.fbx" id="3_m1ujp"]
+[ext_resource type="Material" uid="uid://7u6d3voks2uo" path="res://Assets/Materials/Textures/forRoboMAT.tres" id="4_m7p0i"]
+[ext_resource type="Material" uid="uid://cex2qc2r078vd" path="res://Assets/Materials/Textures/hullMat.tres" id="5_8u73g"]
+[ext_resource type="Material" uid="uid://cxh02cxhp27c6" path="res://Assets/Materials/Textures/forMouseMAT.tres" id="6_iofu4"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_j2xe6"]
 viewport_path = NodePath("Screen/SubViewport")
@@ -54,4 +57,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.009393424, 0.4388637)
 [node name="keyboard_01" parent="." unique_id=72936683 instance=ExtResource("3_m1ujp")]
 transform = Transform3D(0.90000004, 0, 0, 0, 0.7237624, -0.19664189, 0, 0.19664189, 0.7237624, 0, -0.14482895, -0.021974117)
 
+[node name="Keyboard" parent="keyboard_01" index="0" unique_id=349158924]
+material_override = ExtResource("4_m7p0i")
+
+[node name="buttonBase" parent="keyboard_01" index="1" unique_id=1226209034]
+material_override = ExtResource("5_8u73g")
+
+[node name="keyboardButton" parent="keyboard_01" index="2" unique_id=2090388708]
+material_override = ExtResource("6_iofu4")
+
 [editable path="Screen/SubViewport/TypingUIContainer"]
+[editable path="keyboard_01"]
