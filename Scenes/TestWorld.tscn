@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://ct8r5tilx1632" path="res://Scenes/computer.tscn" id="5_rdsav"]
 [ext_resource type="PackedScene" uid="uid://ccetrajvpu778" path="res://Scenes/button_object.tscn" id="7_7oy3y"]
 [ext_resource type="PhysicsMaterial" uid="uid://dnrgyxqqmryww" path="res://Assets/Materials/PhysicsMats/Bouncy.tres" id="11_0rqgs"]
-[ext_resource type="PackedScene" path="res://Scenes/right_valve_thruster.tscn" id="11_icgjy"]
+[ext_resource type="PackedScene" uid="uid://ci6e4jyohf33s" path="res://Scenes/right_valve_thruster.tscn" id="11_icgjy"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ed2pg"]
 panorama = ExtResource("3_4snwc")
@@ -23,7 +23,7 @@ sky_material = SubResource("PanoramaSkyMaterial_ed2pg")
 background_mode = 2
 sky = SubResource("Sky_rdsav")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_l0hd3"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_icgjy"]
 viewport_path = NodePath("Screen/SubViewport")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1jowa"]
@@ -32,6 +32,7 @@ size = Vector3(17.3656, 1, 20.907837)
 [node name="Node3D2" type="Node3D" unique_id=441259406]
 
 [node name="Camera" parent="." unique_id=129220480 instance=ExtResource("1_k2eo1")]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, 0)
 _cameraSpeed = 0.5
 
 [node name="button_object" parent="Camera" unique_id=544792818 groups=["cameraButtons"] instance=ExtResource("7_7oy3y")]
@@ -88,7 +89,7 @@ transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 0.43
 visible = false
 
 [node name="Screen" parent="Computer" index="1" unique_id=990515359]
-texture = SubResource("ViewportTexture_l0hd3")
+texture = SubResource("ViewportTexture_icgjy")
 
 [node name="Speedlines" parent="." unique_id=1459631009 instance=ExtResource("5_g0pj6")]
 transform = Transform3D(0.12568662, 0, 0, 0, 0.13916422, 0, 0, 0, 1, 0.0006580651, 1.2128685, -5.08145)
