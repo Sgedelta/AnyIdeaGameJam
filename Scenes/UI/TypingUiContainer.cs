@@ -84,15 +84,15 @@ public partial class TypingUiContainer : PanelContainer
 
 			case "port_pass":
 				GameManager.Instance.DirKeypadAnswer = GameManager.Instance.CreatePassword("sequence", 6);
-                //ToDo GENERATE PASS AND PASS TO GM
-                _rich_output.AppendText($"[code]Port Engine Password is: {GameManager.Instance.DirKeypadAnswer}[/code]");
+				//ToDo GENERATE PASS AND PASS TO GM
+				_rich_output.AppendText($"[code]Port Engine Password is: {GameManager.Instance.DirKeypadAnswer}[/code]");
 				break;
 
-            case "starboard_pass":
-                GameManager.Instance.NumKeypadAnswer = GameManager.Instance.CreatePassword("pin", 6);
-                //ToDo GENERATE PASS AND PASS TO GM
-                _rich_output.AppendText($"[code]Starboard Engine Password is: {GameManager.Instance.NumKeypadAnswer}[/code]");
-                break;
+			case "starboard_pass":
+				GameManager.Instance.NumKeypadAnswer = GameManager.Instance.CreatePassword("pin", 6);
+				//ToDo GENERATE PASS AND PASS TO GM
+				_rich_output.AppendText($"[code]Starboard Engine Password is: {GameManager.Instance.NumKeypadAnswer}[/code]");
+				break;
 
 			case "HELP!":
 				_rich_output.AppendText("[code]Valid Inputs:[br]HELP! - Get Help![br]port_pass - see port engine password[br]starboard_pass - see starboard engine password[br]engine_on - begin engine engage sequence[code]");
@@ -101,7 +101,7 @@ public partial class TypingUiContainer : PanelContainer
 				if(exactText == GameManager.Instance.CaptchaAnswer)
 				{
 					_rich_output.AppendText("[code]Yippee! That's right![/code]");
-                }
+				}
 				else _rich_output.AppendText("[code]Invalid Input! use \"HELP!\"![/code]");
 				break;
 

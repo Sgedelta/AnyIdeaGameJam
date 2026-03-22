@@ -9,6 +9,7 @@ public partial class valve : Node
 	[Export] private int _numHalfRotsNeeded = 10;
 	[Export] private bool _rot_cc = false; //if this rotates counter clockwise, instead of clockwise
 	[Export] private bool _is_right_stick = false; //if this uses the right stick, instead of the left stick
+	public bool isLocked = true;
 
 	private int _halfRotsCompleted = 0;
 
@@ -35,7 +36,8 @@ public partial class valve : Node
 
 	public override void _Input(InputEvent @event)
 	{
-
+		if(isLocked)
+			return;
 		if(@event is not InputEventJoypadMotion)
 		{
 			return; //we ONLY care about joypad motion for valves

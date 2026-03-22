@@ -1,6 +1,7 @@
 extends Control
 
-const PASSWORD = "↑↑↑↑"
+var PASSWORD = "↑↑↑↑"
+signal password_correct
 
 @onready var label = $VBoxContainer/MarginContainer/Label
 @onready var grid = $VBoxContainer/GridContainer
@@ -11,6 +12,10 @@ var showing := false
 @export var show_pos := Vector2(0,0)
 @export var hide_pos := Vector2(0, 400)
 
+func set_password(new_pass: String):
+	PASSWORD = new_pass
+	reset()
+	
 func _ready():
 	for button in grid.get_children():
 		if button is Button:
@@ -26,6 +31,10 @@ func _on_button_pressed(value: String):
 func _check_input():
 	if input_text == PASSWORD:
 		print("YAY")
+		input_text = "CORRECT"
+		label.text = input_text
+		await get_tree().create_timer(0.2).timeout
+		password_correct.emit()
 		reset()
 		
 	if !PASSWORD.begins_with(input_text):

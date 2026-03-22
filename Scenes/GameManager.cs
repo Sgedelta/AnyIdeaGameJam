@@ -67,13 +67,15 @@ public partial class GameManager : Node
 				password = new string(stringChars);
 				break;
 			case "sequence":
-				string directions = "UDLR";
+				string directions = "↑←↓→";
 				char[] directionChars = new char[passwordLength];
 				for (int i = 0; i < directionChars.Length; i++)
 				{
 					directionChars[i] = directions[random.Next(directions.Length)];
 				}
 				password = new string(directionChars);
+				var arrowsUI = GetTree().Root.FindChild("ArrowsUI", true, false);
+				arrowsUI.Call("set_password", password);
 				break;
 			case "pin":
 				string nums = "1234567890";

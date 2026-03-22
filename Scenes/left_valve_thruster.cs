@@ -16,6 +16,16 @@ public partial class left_valve_thruster: StaticBody3D, IHandable
 	{
 		_arrowsUI = GetNode<Control>("Screen/SubViewport/ArrowsUI");
 		_subviewport = GetNode<SubViewport>("Screen/SubViewport");
+		_arrowsUI.Connect("password_correct", Callable.From(OnPasswordSuccess));
+	}
+	
+	private void OnPasswordSuccess()
+	{
+		GD.Print("password correct, unlock valve");
+		var valveNode = GetNode<valve>("DoorPivot/valve");
+		valveNode.isLocked = false;
+		_arrowsUI.Call("hide_ui");
+		SetActive(HandType.Mouse, false);
 	}
 
 	public override void _Input(InputEvent @event)
