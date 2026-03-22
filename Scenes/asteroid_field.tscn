@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://cqy5d4syqsc0d"]
+
+[ext_resource type="Script" uid="uid://d238o2ifkvgcu" path="res://Scenes/AsteroidField.cs" id="1_oqtkt"]
+[ext_resource type="PackedScene" uid="uid://bx2ubee3wuqom" path="res://Scenes/temp_asteroid.tscn" id="2_7epyy"]
+[ext_resource type="PackedScene" uid="uid://cs7hksuccemil" path="res://Scenes/goal.tscn" id="3_liqqo"]
+
+[node name="AsteroidField" type="Node3D" unique_id=97329334]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
+script = ExtResource("1_oqtkt")
+
+[node name="TempAsteroid" parent="." unique_id=407412021 instance=ExtResource("2_7epyy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.76534, 3.7453482, -36.63882)
+
+[node name="TempAsteroid2" parent="." unique_id=1288104661 instance=ExtResource("2_7epyy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.700985, 3.7453456, -69.24952)
+
+[node name="TempAsteroid3" parent="." unique_id=1556395894 instance=ExtResource("2_7epyy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.642242, 3.7453456, -128.69563)
+
+[node name="TempAsteroid4" parent="." unique_id=123304644 instance=ExtResource("2_7epyy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.76534, 3.7453487, -132.08728)
+
+[node name="TempAsteroid5" parent="." unique_id=1817235609 instance=ExtResource("2_7epyy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.700985, 3.7453456, -168.8037)
+
+[node name="TempAsteroid6" parent="." unique_id=655998055 instance=ExtResource("2_7epyy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.489727, 3.7453456, -196.8421)
+
+[node name="Goal" parent="." unique_id=1773536465 instance=ExtResource("3_liqqo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -250.70648)
