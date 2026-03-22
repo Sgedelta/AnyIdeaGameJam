@@ -10,3 +10,9 @@ _cameraLocs = Dictionary[String, Vector3]({
 "left": Vector3(0, 90, 0),
 "right": Vector3(0, -90, 0)
 })
+
+[node name="BatteryHoldLoc" type="Node3D" parent="." unique_id=926957155]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, -1.1521152, -1.4620109)
+
+[node name="BatteryPushLoc" type="Node3D" parent="." unique_id=513645552]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, -1.1521152, -2.6917765)

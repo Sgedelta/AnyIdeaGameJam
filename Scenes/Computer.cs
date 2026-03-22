@@ -10,13 +10,10 @@ public partial class Computer : StaticBody3D, IHandable
 
     public bool IsActive { get; set; }
 
-	[Export] private Dictionary<HandType, Node3D> _handTargets = new Dictionary<HandType, Node3D>();
+    [Export] private Dictionary<HandType, Dictionary<HandType, NodePath>> _handInputTargets = new Dictionary<HandType, Dictionary<HandType, NodePath>>();
 
-	[Export] private Array<HandType> _handInputs = new Array<HandType>();
+    public Dictionary<HandType, Dictionary<HandType, NodePath>> HandInputTargets { get { return _handInputTargets; } }
 
-    public Dictionary<HandType, Node3D> HandTargets { get { return _handTargets; } }
-
-	public Array<HandType> HandInputs { get { return _handInputs; } }
 
 
     // Called when the node enters the scene tree for the first time.
@@ -39,11 +36,7 @@ public partial class Computer : StaticBody3D, IHandable
 			return;
 		}
 
-        if(@event.IsAction("mouse_left") && @event.IsActionPressed("mouse_left"))
-		{
-			CheckFocus((@event as InputEventMouseButton));
-		}
-		else if(@event is not (InputEventKey or InputEventMouseMotion) && (@event is InputEventJoypadMotion && Math.Abs((@event as InputEventJoypadMotion).AxisValue) > inputDeadzone))
+        if(@event is not (InputEventKey or InputEventMouseMotion) && (@event is InputEventJoypadMotion && Math.Abs((@event as InputEventJoypadMotion).AxisValue) > inputDeadzone))
 		{
 			GD.Print(@event);
 			if(@event is InputEventJoypadMotion)
@@ -57,60 +50,69 @@ public partial class Computer : StaticBody3D, IHandable
 		
     }
 
-	public void SetActive(bool state)
+	public void SetActive(HandType inputHand, bool state)
 	{
 		IsActive = state;
 
-		foreach(HandType t in _handTargets.Keys)
-		{
-			switch(t)
+		//computer only
+		_typingUI.FocusTyping(state);
+
+        if (_handInputTargets.ContainsKey(inputHand))
+        {
+			//for every input hand that could go on this
+			foreach(HandType controlledHand in _handInputTargets[inputHand].Keys)
 			{
-				case HandType.Mouse:
-					GameManager.Instance.HCont.mHandOverride = _handTargets[t];
-					GameManager.Instance.HCont.mouseControl = !state;
-					break;
-
-                case HandType.KeyL:
-                    GameManager.Instance.HCont.kLHandOverride = _handTargets[t];
-                    GameManager.Instance.HCont.keyboardControlL = !state;
-                    if(state)
-					{
-						GameManager.Instance.HCont.kLHandVel = Vector2.Zero;
-
-                    }
-                    break;
-
-                case HandType.KeyR:
-                    GameManager.Instance.HCont.kRHandOverride = _handTargets[t];
-                    GameManager.Instance.HCont.keyboardControlR = !state;
-                    if (state)
-                    {
-                        GameManager.Instance.HCont.kRHandVel = Vector2.Zero;
-
-                    }
-                    break;
-
-                case HandType.ContL:
-                    GameManager.Instance.HCont.cLHandOverride = _handTargets[t];
-                    GameManager.Instance.HCont.controllerControlL = !state;
-                    if (state)
-                    {
-                        GameManager.Instance.HCont.cLHandVel = Vector2.Zero;
-
-                    }
-                    break;
-
-                case HandType.ContR:
-                    GameManager.Instance.HCont.cRHandOverride = _handTargets[t];
-                    GameManager.Instance.HCont.controllerControlR = !state;
-                    if (state)
-                    {
-                        GameManager.Instance.HCont.cRHandVel = Vector2.Zero;
-
-                    }
-                    break;
+                //get all of the possible hands its controlling and set them correctly
+                switch(controlledHand)
+                {
+                	case HandType.Mouse:
+                        GameManager.Instance.HCont.mHandOverride = GetNode<Node3D>(_handInputTargets[inputHand][controlledHand]);
+                		GameManager.Instance.HCont.mouseControl = !state;
+                		break;
+                
+                    case HandType.KeyL:
+                        GameManager.Instance.HCont.kLHandOverride = GetNode<Node3D>(_handInputTargets[inputHand][controlledHand]);
+                        GameManager.Instance.HCont.keyboardControlL = !state;
+                        if(state)
+                		{
+                			GameManager.Instance.HCont.kLHandVel = Vector2.Zero;
+                
+                        }
+                        break;
+                
+                    case HandType.KeyR:
+                        GameManager.Instance.HCont.kRHandOverride = GetNode<Node3D>(_handInputTargets[inputHand][controlledHand]);
+                        GameManager.Instance.HCont.keyboardControlR = !state;
+                        if (state)
+                        {
+                            GameManager.Instance.HCont.kRHandVel = Vector2.Zero;
+                
+                        }
+                        break;
+                
+                    case HandType.ContL:
+                        GameManager.Instance.HCont.cLHandOverride = GetNode<Node3D>(_handInputTargets[inputHand][controlledHand]);
+                        GameManager.Instance.HCont.controllerControlL = !state;
+                        if (state)
+                        {
+                            GameManager.Instance.HCont.cLHandVel = Vector2.Zero;
+                
+                        }
+                        break;
+                
+                    case HandType.ContR:
+                        GameManager.Instance.HCont.cRHandOverride = GetNode<Node3D>(_handInputTargets[inputHand][controlledHand]);
+                        GameManager.Instance.HCont.controllerControlR = !state;
+                        if (state)
+                        {
+                            GameManager.Instance.HCont.cRHandVel = Vector2.Zero;
+                
+                        }
+                        break;
+                }
             }
-		}
+
+        }
 	}
 
 	public void CheckFocus(InputEventMouseButton e)

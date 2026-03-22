@@ -15,11 +15,9 @@ public interface IHandable
 {
     bool IsActive { get; set; }
 
-    Godot.Collections.Dictionary<HandType, Node3D> HandTargets { get; } 
+    Godot.Collections.Dictionary<HandType, Godot.Collections.Dictionary<HandType, NodePath>> HandInputTargets { get; } 
 
-    Godot.Collections.Array<HandType> HandInputs { get; }
-
-    public void SetActive(bool state);
+    public void SetActive(HandType inputHand, bool state);
 
 
 

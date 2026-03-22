@@ -15,13 +15,20 @@ public partial class HandControl : Node2D
     [Export] private Node2D cHandR;
     [Export] float cHandSpeed = 300;
     [Export] private Node3D mHandTarget;
-    [Export] private float mHandLength = 1.5f;
     [Export] private Node3D kHandLTarget;
     [Export] private Node3D kHandRTarget;
-    [Export] private float kHandLength = 1.5f;
     [Export] private Node3D cHandLTarget;
     [Export] private Node3D cHandRTarget;
-    [Export] private float cHandLength = 1.5f;
+
+    [ExportGroup("Hand Extend Length")]
+    [Export] public Vector2 HandExtents = new Vector2(1, 5);
+
+    public float mHandLength = 1f;
+    public float kLHandLength = 1f;
+    public float cLHandLength = 1f;
+    public float kRHandLength = 1f;
+    public float cRHandLength = 1f;
+
 
     public Vector2 kLHandVel = Vector2.Zero;
     public Vector2 kRHandVel = Vector2.Zero;
@@ -97,6 +104,11 @@ public partial class HandControl : Node2D
                 {
                     MouseCastCheck(me.Pressed);
                 }
+                else if(me.ButtonIndex == MouseButton.Right)
+                {
+                    SetHandExtent(HandType.Mouse, me.Pressed ? 1 : 0);
+                }
+
 
 
                 break;
@@ -113,10 +125,17 @@ public partial class HandControl : Node2D
             case InputEventKey:
                 InputEventKey ke = @event as InputEventKey;
 
-
                 if (ke.IsEcho())
                 {
                     return;
+                }
+
+                if(ke.Keycode == Key.Ctrl)
+                {
+                    SetHandExtent(
+                        ke.Location == KeyLocation.Left ? HandType.KeyL : HandType.KeyR,
+                        ke.Pressed ? 1 : 0
+                        );
                 }
 
                 //TODO: probably put grab check here
@@ -210,8 +229,17 @@ public partial class HandControl : Node2D
             case InputEventJoypadMotion:
                 InputEventJoypadMotion je = @event as InputEventJoypadMotion;
 
-                if ((je.Axis == JoyAxis.LeftX || je.Axis == JoyAxis.LeftY) && !keyboardControlL ||
-                    (je.Axis == JoyAxis.RightX || je.Axis == JoyAxis.RightY) && !keyboardControlR)
+                if(je.Axis == JoyAxis.TriggerLeft)
+                {
+                    SetHandExtent(HandType.ContL, je.AxisValue);
+                } 
+                else if(je.Axis == JoyAxis.TriggerRight)
+                {
+                    SetHandExtent(HandType.ContR, je.AxisValue);
+                }
+
+                if ((je.Axis == JoyAxis.LeftX || je.Axis == JoyAxis.LeftY) && !controllerControlL ||
+                    (je.Axis == JoyAxis.RightX || je.Axis == JoyAxis.RightY) && !controllerControlR)
                 {
                     return;
                 }
@@ -263,19 +291,19 @@ public partial class HandControl : Node2D
         var mHandQuery = PhysicsRayQueryParameters3D.Create(mHandOrigin, mHandEnd);
 
         var kLHandOrigin = cam.ProjectRayOrigin(kHandL.Position);
-        var kLHandEnd = kLHandOrigin + cam.ProjectRayNormal(kHandL.Position) * kHandLength;
+        var kLHandEnd = kLHandOrigin + cam.ProjectRayNormal(kHandL.Position) * kLHandLength;
         var kLHandQuery = PhysicsRayQueryParameters3D.Create(kLHandOrigin, kLHandEnd);
 
         var kRHandOrigin = cam.ProjectRayOrigin(kHandR.Position);
-        var kRHandEnd = kRHandOrigin + cam.ProjectRayNormal(kHandR.Position) * kHandLength;
+        var kRHandEnd = kRHandOrigin + cam.ProjectRayNormal(kHandR.Position) * kRHandLength;
         var kRHandQuery = PhysicsRayQueryParameters3D.Create(kRHandOrigin, kRHandEnd);
 
         var cLHandOrigin = cam.ProjectRayOrigin(cHandL.Position);
-        var cLHandEnd = cLHandOrigin + cam.ProjectRayNormal(cHandL.Position) * cHandLength;
+        var cLHandEnd = cLHandOrigin + cam.ProjectRayNormal(cHandL.Position) * cLHandLength;
         var cLHandQuery = PhysicsRayQueryParameters3D.Create(cLHandOrigin, cLHandEnd);
 
         var cRHandOrigin = cam.ProjectRayOrigin(cHandR.Position);
-        var cRHandEnd = cRHandOrigin + cam.ProjectRayNormal(cHandR.Position) * cHandLength;
+        var cRHandEnd = cRHandOrigin + cam.ProjectRayNormal(cHandR.Position) * cRHandLength;
         var cRHandQuery = PhysicsRayQueryParameters3D.Create(cRHandOrigin, cRHandEnd);
 
         var result = spState.IntersectRay(mHandQuery);
@@ -304,9 +332,10 @@ public partial class HandControl : Node2D
     //TODO: make other cast checks like this guy
     public void MouseCastCheck(bool state)
     {
-        if(!state && mHandable != null)
+        if(!state && mHandable != null && mHandable.IsActive)
         {
-            mHandable.SetActive(false);
+            mHandable.SetActive(HandType.Mouse, false);
+            return;
         }
 
 
@@ -333,9 +362,9 @@ public partial class HandControl : Node2D
         }
         mHandable = (IHandable)other;
 
-        if(mHandable.HandInputs.Contains(HandType.Mouse))
+        if(mHandable.HandInputTargets.Keys.Contains(HandType.Mouse))
         {
-            mHandable.SetActive(state);
+            mHandable.SetActive(HandType.Mouse, state);
         }
 
     }
@@ -347,7 +376,7 @@ public partial class HandControl : Node2D
         PhysicsDirectSpaceState3D spState = cam.GetWorld3D().DirectSpaceState;
 
         var kLHandOrigin = cam.ProjectRayOrigin(kHandL.Position);
-        var kLHandEnd = kLHandOrigin + cam.ProjectRayNormal(kHandL.Position) * kHandLength;
+        var kLHandEnd = kLHandOrigin + cam.ProjectRayNormal(kHandL.Position) * kLHandLength;
         var kLHandQuery = PhysicsRayQueryParameters3D.Create(kLHandOrigin, kLHandEnd);
 
         var result = spState.IntersectRay(kLHandQuery);
@@ -372,7 +401,7 @@ public partial class HandControl : Node2D
         PhysicsDirectSpaceState3D spState = cam.GetWorld3D().DirectSpaceState;
 
         var kRHandOrigin = cam.ProjectRayOrigin(kHandR.Position);
-        var kRHandEnd = kRHandOrigin + cam.ProjectRayNormal(kHandR.Position) * kHandLength;
+        var kRHandEnd = kRHandOrigin + cam.ProjectRayNormal(kHandR.Position) * kRHandLength;
         var kRHandQuery = PhysicsRayQueryParameters3D.Create(kRHandOrigin, kRHandEnd);
 
         var result = spState.IntersectRay(kRHandQuery);
@@ -397,7 +426,7 @@ public partial class HandControl : Node2D
         PhysicsDirectSpaceState3D spState = cam.GetWorld3D().DirectSpaceState;
 
         var cLHandOrigin = cam.ProjectRayOrigin(cHandL.Position);
-        var cLHandEnd = cLHandOrigin + cam.ProjectRayNormal(cHandL.Position) * cHandLength;
+        var cLHandEnd = cLHandOrigin + cam.ProjectRayNormal(cHandL.Position) * cLHandLength;
         var cLHandQuery = PhysicsRayQueryParameters3D.Create(cLHandOrigin, cLHandEnd);
 
         var result = spState.IntersectRay(cLHandQuery);
@@ -422,7 +451,7 @@ public partial class HandControl : Node2D
         PhysicsDirectSpaceState3D spState = cam.GetWorld3D().DirectSpaceState;
 
         var cRHandOrigin = cam.ProjectRayOrigin(cHandR.Position);
-        var cRHandEnd = cRHandOrigin + cam.ProjectRayNormal(cHandR.Position) * cHandLength;
+        var cRHandEnd = cRHandOrigin + cam.ProjectRayNormal(cHandR.Position) * cRHandLength;
         var cRHandQuery = PhysicsRayQueryParameters3D.Create(cRHandOrigin, cRHandEnd);
 
         var result = spState.IntersectRay(cRHandQuery);
@@ -438,6 +467,37 @@ public partial class HandControl : Node2D
         if (other is not IHandable)
         {
             return;
+        }
+    }
+
+
+    public void SetHandExtent(HandType type, float str)
+    {
+        float val = Mathf.Lerp(HandExtents.X, HandExtents.Y, str);
+
+        switch (type)
+        {
+            case HandType.Mouse:
+                mHandLength = val;
+                break;
+
+            case HandType.KeyL:
+                kLHandLength = val;
+                break;
+
+            case HandType.KeyR:
+                kRHandLength = val;
+                break;
+
+
+            case HandType.ContL:
+                cLHandLength = val;
+                break;
+
+
+            case HandType.ContR:
+                cRHandLength = val;
+                break;
         }
     }
 

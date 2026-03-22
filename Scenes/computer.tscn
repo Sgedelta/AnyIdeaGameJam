@@ -9,13 +9,15 @@ viewport_path = NodePath("Screen/SubViewport")
 [sub_resource type="BoxShape3D" id="BoxShape3D_m1ujp"]
 size = Vector3(1.2714844, 0.43414307, 0.6923828)
 
-[node name="Computer" type="StaticBody3D" unique_id=768165443 node_paths=PackedStringArray("_handTargets")]
+[node name="Computer" type="StaticBody3D" unique_id=768165443]
 script = ExtResource("1_j2xe6")
-_handTargets = {
+_handInputTargets = Dictionary[int, Dictionary]({
+0: {
+0: NodePath("MHandPos"),
 1: NodePath("LHandPos"),
 2: NodePath("RHandPos")
 }
-_handInputs = Array[int]([0])
+})
 
 [node name="Greybox" type="CSGCombiner3D" parent="." unique_id=1206402837]
 
@@ -59,5 +61,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.41817906, 0.041449755, 0.1
 
 [node name="RHandPos" type="Node3D" parent="." unique_id=582018701]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.39717695, 0.041449755, 0.12389141)
+
+[node name="MHandPos" type="Node3D" parent="." unique_id=1404228290]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.11435211, 0.20179474)
 
 [editable path="Screen/SubViewport/TypingUIContainer"]

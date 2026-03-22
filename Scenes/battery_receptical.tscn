@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bomyf5vdv05ro"]
+
+[ext_resource type="Script" uid="uid://cdhqq8u7pmdv2" path="res://Scenes/BatteryReceptical.cs" id="1_d0g2r"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d0g2r"]
+
+[node name="BatteryReceptical" type="Area3D" unique_id=1981157617 node_paths=PackedStringArray("BatterySnapLoc")]
+script = ExtResource("1_d0g2r")
+BatterySnapLoc = NodePath("BatterySnap")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=509130770]
+shape = SubResource("BoxShape3D_d0g2r")
+
+[node name="BatterySnap" type="Node3D" parent="." unique_id=412146979]
+
+[connection signal="body_entered" from="." to="." method="CheckObjIn"]
+[connection signal="body_exited" from="." to="." method="CheckObjOut"]

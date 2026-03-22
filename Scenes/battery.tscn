@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://dgxffd7rjiw5x"]
+
+[ext_resource type="Script" uid="uid://oo0l5y4pedpi" path="res://Scenes/Battery.cs" id="1_mjabg"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mxnnr"]
+radius = 0.6
+height = 3.0
+
+[node name="Battery" type="RigidBody3D" unique_id=708775602]
+script = ExtResource("1_mjabg")
+_handInputTargets = Dictionary[int, Dictionary]({
+0: {
+0: NodePath("LeftHandSpot")
+},
+1: {
+1: NodePath("LeftHandSpot")
+},
+2: {
+2: NodePath("RightHandSpot")
+},
+3: {
+3: NodePath("LeftHandSpot")
+},
+4: {
+4: NodePath("RightHandSpot")
+}
+})
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=680385263]
+
+[node name="CSG" type="CSGCylinder3D" parent="CSGCombiner3D" unique_id=1849920777]
+
+[node name="CSG2" type="CSGCylinder3D" parent="CSGCombiner3D" unique_id=1333048978]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0016315, 0)
+radius = 0.2705078
+height = 0.2734375
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2049426018]
+shape = SubResource("CapsuleShape3D_mxnnr")
+
+[node name="LeftHandSpot" type="Node3D" parent="." unique_id=1885501117]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.087389, 0)
+
+[node name="RightHandSpot" type="Node3D" parent="." unique_id=723050264]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.0931914, 0)
