@@ -23,8 +23,8 @@ public partial class Computer : StaticBody3D, IHandable
     public override void _Ready()
 	{
 		_typingUI = GetNode<TypingUiContainer>("Screen/SubViewport/TypingUIContainer");
-        _subViewport = GetNode<SubViewport>("Screen/SubViewport");
-    }
+		_subViewport = GetNode<SubViewport>("Screen/SubViewport");
+	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
