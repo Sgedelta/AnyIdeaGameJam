@@ -335,7 +335,7 @@ material_override = ExtResource("16_45gs1")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.551579, -2.9609907, -9.179165)
 
 [node name="batteryPortdoor" parent="BatteryPort_01/batteryPortGrp" parent_id_path=PackedInt32Array(416936600, 746759608) index="1" unique_id=1235669421]
-transform = Transform3D(-58.056442, 0, 3.8677025e-16, 0, 128.12842, 0, -7.109629e-15, 0, -3.158323, 0.7133231, 0.42891335, 0.23320198)
+transform = Transform3D(-58.056442, 0, 3.8677025e-16, 0, 128.12842, 0, -7.109629e-15, 0, -3.158323, -0.009724617, 0.42891335, 0.23320198)
 
 [node name="cake" parent="." unique_id=1929374770 instance=ExtResource("18_yyk6s")]
 transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 7.050164, -3.0379984, -0.39453316)

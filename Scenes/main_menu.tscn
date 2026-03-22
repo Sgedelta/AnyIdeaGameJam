@@ -1,15 +1,18 @@
-[gd_scene format=3 uid="uid://dtknj5ucdpxhb"]
+[gd_scene format=3 uid="uid://blg1dumkp5h7c"]
 
-[ext_resource type="Theme" uid="uid://bg0vwtgh7p4a4" path="res://Assets/mainMenuUI.tres" id="1_28flt"]
+[ext_resource type="Theme" path="res://Assets/mainMenuUI.tres" id="1_28flt"]
 [ext_resource type="Script" uid="uid://bfq4tf0dhynj6" path="res://Scenes/MainMenu.cs" id="1_48xlc"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_erv1k"]
 
-[node name="MainMenu" type="Control" unique_id=1650187238]
+[node name="MainMenu" type="Control" unique_id=1650187238 node_paths=PackedStringArray("startButton", "howToButton", "quitButton")]
 layout_mode = 3
 anchors_preset = 0
 scale = Vector2(1.0160203, 1.006678)
 script = ExtResource("1_48xlc")
+startButton = NodePath("Start")
+howToButton = NodePath("HowToPlay")
+quitButton = NodePath("Quit")
 
 [node name="Start" type="Button" parent="." unique_id=1186513055]
 layout_mode = 0
