@@ -34,7 +34,8 @@ script = ExtResource("1_7fe0k")
 
 [node name="valve" parent="DoorPivot" unique_id=1192847290 node_paths=PackedStringArray("_valveDisplay") instance=ExtResource("1_mu8c2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.490914, 0, -0.011843562)
-_numHalfRotsNeeded = 2
+_rot_cc = true
+_is_right_stick = true
 _valveDisplay = NodePath("MeshInstance3D")
 
 [node name="MeshInstance3D" parent="DoorPivot/valve" index="0" unique_id=1430034741]

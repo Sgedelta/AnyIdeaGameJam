@@ -1,9 +1,9 @@
-[gd_scene format=3 uid="uid://cm3u2o8wsikq0"]
+[gd_scene format=3 uid="uid://dtfsxrqpdtafh"]
 
 [ext_resource type="Script" uid="uid://d18n4173udo5l" path="res://Scenes/left_valve_thruster.cs" id="1_b4m1k"]
 [ext_resource type="Script" uid="uid://uhlng0unopcr" path="res://Scenes/Door.cs" id="2_1cjq7"]
 [ext_resource type="PackedScene" uid="uid://c1wai34u14ogt" path="res://Scenes/valve.tscn" id="3_roiyr"]
-[ext_resource type="PackedScene" uid="uid://b560hjpc37u2o" path="res://Scenes/UI/arrows_ui.tscn" id="4_s7h01"]
+[ext_resource type="PackedScene" uid="uid://c66xt55l1n6yh" path="res://Scenes/UI/numpad_ui.tscn" id="4_b4m1k"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_7ve1r"]
 
@@ -17,6 +17,12 @@ viewport_path = NodePath("Screen/SubViewport")
 
 [node name="left_valve_thruster" type="StaticBody3D" unique_id=2053884060]
 script = ExtResource("1_b4m1k")
+_handInputTargets = Dictionary[int, Dictionary]({
+0: {
+0: NodePath("MHandPos"),
+1: NodePath("LHandPos")
+}
+})
 
 [node name="BatteryContainer" type="MeshInstance3D" parent="." unique_id=2094303822]
 transform = Transform3D(2.0878859, 0, 0, 0, 1.4303395, 0, 0, 0, 0.99999905, 0, 0, 0)
@@ -46,7 +52,7 @@ transparent_bg = true
 size = Vector2i(1480, 2160)
 size_2d_override = Vector2i(1480, 2160)
 
-[node name="ArrowsUI" parent="Screen/SubViewport" unique_id=2067361545 instance=ExtResource("4_s7h01")]
+[node name="NumpadUI" parent="Screen/SubViewport" unique_id=1091299902 instance=ExtResource("4_b4m1k")]
 custom_minimum_size = Vector2(1480, 2160)
 anchors_preset = 0
 anchor_right = 0.0
@@ -66,5 +72,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1967604, 0.041449755, 0.123
 
 [node name="MHandPos" type="Node3D" parent="." unique_id=1133435335]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0684764, 0.50147015, 0.20179474)
+
+[connection signal="CounterRotationCompleted" from="DoorPivot/valve" to="DoorPivot" method="_on_valve_counter_rotation_completed"]
+[connection signal="RotationCompleted" from="DoorPivot/valve" to="DoorPivot" method="_on_valve_rotation_completed"]
 
 [editable path="DoorPivot/valve"]
