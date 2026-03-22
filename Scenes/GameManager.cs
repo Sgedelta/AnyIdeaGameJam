@@ -87,6 +87,8 @@ public partial class GameManager : Node
 					numChars[i] = nums[random.Next(nums.Length)];
 				}
 				password = new string(numChars);
+				var numpadUI = GetTree().Root.FindChild("NumpadUI", true, false);
+				numpadUI.Call("set_password", password);
 				break;
 			default:
 				break;

@@ -82,16 +82,16 @@ public partial class TypingUiContainer : PanelContainer
 				_rich_output.AppendText($"[code]Please prove you are not human.[br][/code][font=res://Assets/Fonts/crooked/Crooked.ttf][s]{GameManager.Instance.CaptchaAnswer}[/s][/font]");
 				break;
 
-			case "port_pass":
+			case "starboard_pass":
 				GameManager.Instance.DirKeypadAnswer = GameManager.Instance.CreatePassword("sequence", 6);
 				//ToDo GENERATE PASS AND PASS TO GM
-				_rich_output.AppendText($"[code]Port Engine Password is: {GameManager.Instance.DirKeypadAnswer}[/code]");
+				_rich_output.AppendText($"[code]Starboard Engine Password is: {GameManager.Instance.DirKeypadAnswer}[/code]");
 				break;
 
-			case "starboard_pass":
+			case "port_pass":
 				GameManager.Instance.NumKeypadAnswer = GameManager.Instance.CreatePassword("pin", 6);
 				//ToDo GENERATE PASS AND PASS TO GM
-				_rich_output.AppendText($"[code]Starboard Engine Password is: {GameManager.Instance.NumKeypadAnswer}[/code]");
+				_rich_output.AppendText($"[code]Port Engine Password is: {GameManager.Instance.NumKeypadAnswer}[/code]");
 				break;
 
 			case "HELP!":

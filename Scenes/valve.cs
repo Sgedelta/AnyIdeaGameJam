@@ -1,7 +1,8 @@
 using Godot;
+using Godot.Collections;
 using System;
 
-public partial class valve : Node
+public partial class valve : Node, IHandable
 {
 	[Signal] public delegate void RotationCompletedEventHandler();
 	[Signal] public delegate void CounterRotationCompletedEventHandler();
@@ -18,7 +19,14 @@ public partial class valve : Node
 	private float _lastInputAngle = 0;
 	private bool _lastCrossoverLeft = false;
 
-	private float _deadzone = .3f;
+    public bool IsActive { get; set; }
+
+    [Export] private Dictionary<HandType, Dictionary<HandType, NodePath>> _handInputTargets = new Dictionary<HandType, Dictionary<HandType, NodePath>>();
+
+    public Dictionary<HandType, Dictionary<HandType, NodePath>> HandInputTargets { get { return _handInputTargets; } }
+
+
+    private float _deadzone = .3f;
 
 	[Export] public MeshInstance3D _valveDisplay;
 
@@ -33,11 +41,76 @@ public partial class valve : Node
 	{
 	}
 
+    public void SetActive(HandType inputHand, bool state)
+    {
+        IsActive = state;
 
-	public override void _Input(InputEvent @event)
+        if (_handInputTargets.ContainsKey(inputHand))
+        {
+            //for every input hand that could go on this
+            foreach (HandType controlledHand in _handInputTargets[inputHand].Keys)
+            {
+                //get all of the possible hands its controlling and set them correctly
+                switch (controlledHand)
+                {
+                    case HandType.Mouse:
+                        GameManager.Instance.HCont.mHandOverride = GetNode<Node3D>(_handInputTargets[inputHand][controlledHand]);
+                        GameManager.Instance.HCont.mouseControl = !state;
+                        break;
+
+                    case HandType.KeyL:
+                        GameManager.Instance.HCont.kLHandOverride = GetNode<Node3D>(_handInputTargets[inputHand][controlledHand]);
+                        GameManager.Instance.HCont.keyboardControlL = !state;
+                        if (state)
+                        {
+                            GameManager.Instance.HCont.kLHandVel = Vector2.Zero;
+
+                        }
+                        break;
+
+                    case HandType.KeyR:
+                        GameManager.Instance.HCont.kRHandOverride = GetNode<Node3D>(_handInputTargets[inputHand][controlledHand]);
+                        GameManager.Instance.HCont.keyboardControlR = !state;
+                        if (state)
+                        {
+                            GameManager.Instance.HCont.kRHandVel = Vector2.Zero;
+
+                        }
+                        break;
+
+                    case HandType.ContL:
+                        GameManager.Instance.HCont.cLHandOverride = GetNode<Node3D>(_handInputTargets[inputHand][controlledHand]);
+                        GameManager.Instance.HCont.controllerControlL = !state;
+                        if (state)
+                        {
+                            GameManager.Instance.HCont.cLHandVel = Vector2.Zero;
+
+                        }
+                        break;
+
+                    case HandType.ContR:
+                        GameManager.Instance.HCont.cRHandOverride = GetNode<Node3D>(_handInputTargets[inputHand][controlledHand]);
+                        GameManager.Instance.HCont.controllerControlR = !state;
+                        if (state)
+                        {
+                            GameManager.Instance.HCont.cRHandVel = Vector2.Zero;
+
+                        }
+                        break;
+                }
+            }
+
+        }
+    }
+
+
+    public override void _Input(InputEvent @event)
 	{
-		if(isLocked)
-			return;
+		if(!IsActive || isLocked)
+		{
+            return;
+        }
+			
 		if(@event is not InputEventJoypadMotion)
 		{
 			return; //we ONLY care about joypad motion for valves

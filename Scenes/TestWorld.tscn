@@ -10,8 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://bomyf5vdv05ro" path="res://Scenes/battery_receptical.tscn" id="5_icgjy"]
 [ext_resource type="PackedScene" uid="uid://ct8r5tilx1632" path="res://Scenes/computer.tscn" id="5_rdsav"]
 [ext_resource type="PackedScene" uid="uid://ccetrajvpu778" path="res://Scenes/button_object.tscn" id="7_7oy3y"]
+[ext_resource type="PackedScene" path="res://Scenes/left_valve_thruster.tscn" id="10_d5oxj"]
 [ext_resource type="PhysicsMaterial" uid="uid://dnrgyxqqmryww" path="res://Assets/Materials/PhysicsMats/Bouncy.tres" id="11_0rqgs"]
-[ext_resource type="PackedScene" uid="uid://ci6e4jyohf33s" path="res://Scenes/right_valve_thruster.tscn" id="11_icgjy"]
+[ext_resource type="PackedScene" path="res://Scenes/right_valve_thruster.tscn" id="11_icgjy"]
+[ext_resource type="PackedScene" path="res://Scenes/asteroid_field.tscn" id="12_icgjy"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ed2pg"]
 panorama = ExtResource("3_4snwc")
@@ -23,7 +25,7 @@ sky_material = SubResource("PanoramaSkyMaterial_ed2pg")
 background_mode = 2
 sky = SubResource("Sky_rdsav")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_icgjy"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_d5oxj"]
 viewport_path = NodePath("Screen/SubViewport")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1jowa"]
@@ -32,7 +34,6 @@ size = Vector3(17.3656, 1, 20.907837)
 [node name="Node3D2" type="Node3D" unique_id=441259406]
 
 [node name="Camera" parent="." unique_id=129220480 instance=ExtResource("1_k2eo1")]
-transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, 0)
 _cameraSpeed = 0.5
 
 [node name="button_object" parent="Camera" unique_id=544792818 groups=["cameraButtons"] instance=ExtResource("7_7oy3y")]
@@ -84,18 +85,20 @@ environment = SubResource("Environment_se0eo")
 [node name="ShipGreyboxCombiner" parent="." unique_id=991475515 instance=ExtResource("4_ed2pg")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
+[node name="left_valve_thruster" parent="." unique_id=1451378174 instance=ExtResource("10_d5oxj")]
+transform = Transform3D(0.10860658, 0, 0.99408484, 0, 1, 0, -0.99408484, 0, 0.10860658, -3.3639216, 0, 0)
+
+[node name="right_valve_thruster" parent="." unique_id=2053884060 instance=ExtResource("11_icgjy")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3.8863144, 0, 0)
+
 [node name="Computer" parent="." unique_id=1549007900 instance=ExtResource("5_rdsav")]
-transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 0.4382323, -1, -2.1120648)
-visible = false
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 0.4382323, -1, -2.5528655)
 
 [node name="Screen" parent="Computer" index="1" unique_id=990515359]
-texture = SubResource("ViewportTexture_icgjy")
+texture = SubResource("ViewportTexture_d5oxj")
 
 [node name="Speedlines" parent="." unique_id=1459631009 instance=ExtResource("5_g0pj6")]
 transform = Transform3D(0.12568662, 0, 0, 0, 0.13916422, 0, 0, 0, 1, 0.0006580651, 1.2128685, -5.08145)
-
-[node name="right_valve_thruster" parent="." unique_id=2053884060 instance=ExtResource("11_icgjy")]
-transform = Transform3D(-0.053294595, 0, -0.99857885, 0, 1, 0, 0.99857885, 0, -0.053294595, 3.372641, 0, 0)
 
 [node name="FloorCollider" type="StaticBody3D" parent="." unique_id=407658480]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.537998, 0)
@@ -105,10 +108,13 @@ physics_material_override = ExtResource("11_0rqgs")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.74542236, 0, -0.9850464)
 shape = SubResource("BoxShape3D_1jowa")
 
+[node name="AsteroidField" parent="." unique_id=97329334 instance=ExtResource("12_icgjy")]
+
 [editable path="Camera/button_object"]
 [editable path="Camera/button_object2"]
 [editable path="Camera/AlienHands"]
 [editable path="Camera/AlienHands/alienDaddyRIG_12"]
 [editable path="Battery"]
+[editable path="ShipGreyboxCombiner"]
 [editable path="Computer"]
 [editable path="Computer/Screen/SubViewport/TypingUIContainer"]

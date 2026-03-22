@@ -52,7 +52,6 @@ public partial class Computer : StaticBody3D, IHandable
 
 	public void SetActive(HandType inputHand, bool state)
 	{
-        GD.Print(inputHand + " " + state);
 		IsActive = state;
 
 		//computer only

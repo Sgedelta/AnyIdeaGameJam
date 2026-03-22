@@ -1,0 +1,17 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://c33xljph1i1o8"]
+
+[ext_resource type="Texture2D" uid="uid://ddfdnl527re1l" path="res://Assets/Materials/Textures/Oven/oven_ovenMat_BaseColor.png" id="1_l3rm2"]
+[ext_resource type="Texture2D" uid="uid://cvnfw5bvru8x7" path="res://Assets/Materials/Textures/Oven/oven_ovenMat_Emissive.png" id="2_m2yeu"]
+[ext_resource type="Texture2D" uid="uid://iginc2sdmgd4" path="res://Assets/Materials/Textures/Oven/oven_ovenMat_Metallic.png" id="3_dwh2i"]
+[ext_resource type="Texture2D" uid="uid://blexof1dkrlh4" path="res://Assets/Materials/Textures/Oven/oven_ovenMat_Normal.png" id="4_87tvm"]
+[ext_resource type="Texture2D" uid="uid://bk8pue4f87p2d" path="res://Assets/Materials/Textures/Oven/oven_ovenMat_Roughness.png" id="5_ytq8l"]
+
+[resource]
+albedo_texture = ExtResource("1_l3rm2")
+metallic = 1.0
+metallic_texture = ExtResource("3_dwh2i")
+roughness_texture = ExtResource("5_ytq8l")
+emission_enabled = true
+emission_texture = ExtResource("2_m2yeu")
+normal_enabled = true
+normal_texture = ExtResource("4_87tvm")

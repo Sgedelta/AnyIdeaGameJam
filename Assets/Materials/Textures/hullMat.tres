@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cex2qc2r078vd"]
+
+[resource]
+resource_name = "hullMat"
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.66217554, 0.66217554, 0.66217554, 1)
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.0
