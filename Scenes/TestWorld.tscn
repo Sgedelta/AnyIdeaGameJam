@@ -92,7 +92,7 @@ transform = Transform3D(0.20208669, 0, -0.97936773, 0, 1, 0, 0.97936773, 0, 0.20
 transform = Transform3D(0.10860658, 0, 0.99408484, 0, 1, 0, -0.99408484, 0, 0.10860658, -3.3639216, 0, 0)
 
 [node name="Computer" parent="." unique_id=1549007900 instance=ExtResource("5_rdsav")]
-transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 0.4382323, -1, -2.1120648)
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 0.4382323, -1, -2.5528655)
 
 [node name="Screen" parent="Computer" index="1" unique_id=990515359]
 texture = SubResource("ViewportTexture_d5oxj")
