@@ -5,6 +5,8 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_7ve1r"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yift7"]
+
 [node name="Node3D" type="Node3D" unique_id=844961160]
 
 [node name="BatteryContainer" type="MeshInstance3D" parent="." unique_id=2094303822]
@@ -18,5 +20,10 @@ script = ExtResource("1_7fe0k")
 [node name="Valve" parent="DoorPivot" unique_id=1192847290 instance=ExtResource("1_mu8c2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.490914, 0, -0.011843562)
 
+[node name="MeshInstance3D" parent="DoorPivot/Valve" index="0" unique_id=1430034741]
+material_override = SubResource("StandardMaterial3D_yift7")
+
 [connection signal="CounterRotationCompleted" from="DoorPivot/Valve" to="DoorPivot" method="_on_valve_counter_rotation_completed"]
 [connection signal="RotationCompleted" from="DoorPivot/Valve" to="DoorPivot" method="_on_valve_rotation_completed"]
+
+[editable path="DoorPivot/Valve"]

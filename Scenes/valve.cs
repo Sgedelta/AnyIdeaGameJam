@@ -77,7 +77,7 @@ public partial class Valve : Node
 		_inputVec = _inputVec.Normalized();
 		float inputAngle = Mathf.RadToDeg(Mathf.Atan2(_inputVec.Y, _inputVec.X));
 
-		_valveDisplay.RotationDegrees = new Vector3(_valveDisplay.RotationDegrees.X, inputAngle, _valveDisplay.RotationDegrees.Z);
+		_valveDisplay.RotationDegrees = new Vector3(_valveDisplay.RotationDegrees.X, -inputAngle, _valveDisplay.RotationDegrees.Z);
 
 
 		//Check input valid
