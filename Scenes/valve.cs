@@ -196,7 +196,7 @@ public partial class valve : Node, IHandable
 	{
 		if( _halfRotsCompleted == _numHalfRotsNeeded )
 		{
-			EmitSignal(SignalName.RotationCompleted);
+            EmitSignal(SignalName.RotationCompleted);
 		}
 		else if(_halfRotsCompleted == 0)
 		{

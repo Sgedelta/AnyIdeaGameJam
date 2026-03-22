@@ -12,8 +12,11 @@ public partial class Door : Node
 	private Tween _rotateTween;
 	private float _rotateAnimationSpeed = 0.5f;
 
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
+    private Tween _popOpenTween;
+    private float _popOpenAnimationSpeed = 0.3f;
+
+    // Called when the node enters the scene tree for the first time.
+    public override void _Ready()
 	{
 	}
 
@@ -64,8 +67,12 @@ public partial class Door : Node
 		// If valve door is already open, do nothing
 		if (_isOpen) return;
 
-		// If valve door is locked, unlock it
-		if (IsLocked) IsLocked = false;
+        _popOpenTween = CreateTween();
+
+        _popOpenTween.TweenProperty(this, "rotation", new Vector3(0, Mathf.DegToRad(20.0f), 0), _popOpenAnimationSpeed);
+
+        // If valve door is locked, unlock it
+        if (IsLocked) IsLocked = false;
 	}
 
 	public void _on_valve_counter_rotation_completed()
