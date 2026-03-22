@@ -17,7 +17,7 @@ public partial class GameManager : Node
 
 	public AlienHands Hands;
 
-	public float timer = 300f;
+	public float timer = 600f;
 
 
 	// Called when the node enters the scene tree for the first time.
