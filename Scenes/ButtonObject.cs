@@ -75,7 +75,6 @@ public partial class ButtonObject : StaticBody3D
             {
                 directionIndex = 0;
             }
-            GD.Print(directionIndex);
             camera.TweenCameraToLoc(directions[directionIndex]);
         }
     }
