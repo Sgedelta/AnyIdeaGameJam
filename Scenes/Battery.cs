@@ -8,12 +8,12 @@ public partial class Battery : RigidBody3D, IHandable
 	public bool Inserted = false;
 	public bool Dropped = false;
 
-	public BatteryReceptical InsertLoc;
+	[Export] public BatteryReceptical InsertLoc;
 
 	public int HandCount = 0;
 
-    public float TimeToDrop = 10;
-    public float TimeLeft = 10;
+    public float TimeToDrop = 5;
+    public float TimeLeft = 5;
 
     private float _dropImpulseStrength = 5;
     private float _holdDist = 3f;
@@ -33,6 +33,10 @@ public partial class Battery : RigidBody3D, IHandable
 	{
 		rng = new RandomNumberGenerator();
 		_heldHands = new Array<HandType>();
+        if(InsertLoc != null)
+        {
+            Callable.From(() => { InsertLoc.InsertOrExtract(this, true); }).CallDeferred();
+        }
 	}
 
 	public override void _Process(double delta)
@@ -262,7 +266,7 @@ public partial class Battery : RigidBody3D, IHandable
 
 		if(HandCount == 1 && added)
 		{
-			TimeLeft = 1;
+			TimeLeft = TimeToDrop / 2;
 			Dropped = false;
 		}
 	}
