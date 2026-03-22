@@ -6,7 +6,7 @@
 height = 0.40229034
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_avupe"]
-albedo_color = Color(1, 0, 0, 1)
+albedo_color = Color(0, 1, 0, 1)
 
 [node name="button_object" type="StaticBody3D" unique_id=544792818]
 script = ExtResource("1_p6ydu")
