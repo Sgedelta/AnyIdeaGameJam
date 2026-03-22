@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://vd7iv10tqu55"]
 
 [ext_resource type="Script" uid="uid://bpdyq8dwu6nkd" path="res://Scenes/HandControl.cs" id="1_edxqt"]
-[ext_resource type="Texture2D" uid="uid://cn10v1lb055an" path="res://Assets/Sprites/Reticle.png" id="2_y3vfw"]
+[ext_resource type="Texture2D" uid="uid://nrrxsqiuokty" path="res://Assets/Sprites/Reticle_v02.png" id="2_y3vfw"]
 
 [node name="HandControl" type="Node2D" unique_id=713415373 node_paths=PackedStringArray("mHand", "kHandL", "kHandR", "cHandL", "cHandR")]
 script = ExtResource("1_edxqt")

@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://dgxffd7rjiw5x"]
 
 [ext_resource type="Script" uid="uid://oo0l5y4pedpi" path="res://Scenes/Battery.cs" id="1_mjabg"]
+[ext_resource type="PackedScene" uid="uid://duahiesa6u1ue" path="res://Assets/3D/Battery_01.fbx" id="2_23u8t"]
+[ext_resource type="Material" uid="uid://h3qyq2tlpos7" path="res://Assets/Materials/Battery.tres" id="3_l2pcn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iubcq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mxnnr"]
 radius = 0.6
@@ -26,14 +30,12 @@ _handInputTargets = Dictionary[int, Dictionary]({
 }
 })
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=680385263]
+[node name="Battery_01" parent="." unique_id=918110898 instance=ExtResource("2_23u8t")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, -1.3558993, 0)
 
-[node name="CSG" type="CSGCylinder3D" parent="CSGCombiner3D" unique_id=1849920777]
-
-[node name="CSG2" type="CSGCylinder3D" parent="CSGCombiner3D" unique_id=1333048978]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0016315, 0)
-radius = 0.2705078
-height = 0.2734375
+[node name="Battery" parent="Battery_01" index="0" unique_id=1729156485]
+material_override = ExtResource("3_l2pcn")
+surface_material_override/0 = SubResource("StandardMaterial3D_iubcq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2049426018]
 shape = SubResource("CapsuleShape3D_mxnnr")
@@ -43,3 +45,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3608115, 0)
 
 [node name="RightHandSpot" type="Node3D" parent="." unique_id=723050264]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1446512, 0)
+
+[editable path="Battery_01"]

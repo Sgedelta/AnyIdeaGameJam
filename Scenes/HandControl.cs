@@ -24,7 +24,7 @@ public partial class HandControl : Node2D
 	[Export] private Node3D cHandRTarget;
 
 	[ExportGroup("Hand Extend Length")]
-	[Export] public Vector2 HandExtents = new Vector2(1, 5);
+	[Export] public Vector2 HandExtents = new Vector2(1, 8);
 
 	public float mHandLength = 1f;
 	public float kLHandLength = 1f;
