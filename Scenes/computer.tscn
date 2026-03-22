@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dpir7truatl8q" path="res://Scenes/UI/typing_ui_container.tscn" id="1_4xga7"]
 [ext_resource type="Script" uid="uid://coh0mdw437jeq" path="res://Scenes/Computer.cs" id="1_j2xe6"]
+[ext_resource type="PackedScene" uid="uid://bikok7oy6vs81" path="res://Assets/3D/keyboard_01.fbx" id="3_m1ujp"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_j2xe6"]
 viewport_path = NodePath("Screen/SubViewport")
@@ -19,23 +20,8 @@ _handInputTargets = Dictionary[int, Dictionary]({
 }
 })
 
-[node name="Greybox" type="CSGCombiner3D" parent="." unique_id=1206402837]
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Greybox" unique_id=2075350356]
-transform = Transform3D(1, 0, 0, 0, 0.96517646, -0.26159966, 0, 0.26159966, 0.96517646, 0, 0, 0)
-size = Vector3(1.2, 0.1, 0.4)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="Greybox" unique_id=2030006516]
-transform = Transform3D(1, 0, 0, 0, 0.96517646, -0.26159966, 0, 0.26159966, 0.96517646, 0, 0.052550375, 0.008056835)
-operation = 2
-size = Vector3(1.078, 0.038, 0.3)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="Greybox" unique_id=1245783528]
-transform = Transform3D(1, 0, 0, 0, 0.96517646, -0.26159966, 0, 0.26159966, 0.96517646, 0, 0.030168816, 0.008056835)
-size = Vector3(0.95, 0.038, 0.25)
-
 [node name="Screen" type="Sprite3D" parent="." unique_id=990515359]
-transform = Transform3D(0.167, 0, 0, 0, 0.167, 0, 0, 0, 0.167, 0, 0.8050517, -0.29210833)
+transform = Transform3D(0.16699971, 0.00030353531, 7.6291464e-05, -0.00030357757, 0.1669997, 9.273734e-05, -7.6123055e-05, -9.287563e-05, 0.16699995, 0, 0.8050517, -0.29210833)
 texture = SubResource("ViewportTexture_j2xe6")
 
 [node name="SubViewport" type="SubViewport" parent="Screen" unique_id=1554812538]
@@ -63,6 +49,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.41817906, 0.041449755, 0.1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.39717695, 0.041449755, 0.12389141)
 
 [node name="MHandPos" type="Node3D" parent="." unique_id=1404228290]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.11435211, 0.20179474)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.009393424, 0.4388637)
+
+[node name="keyboard_01" parent="." unique_id=72936683 instance=ExtResource("3_m1ujp")]
+transform = Transform3D(0.90000004, 0, 0, 0, 0.7237624, -0.19664189, 0, 0.19664189, 0.7237624, 0, -0.14482895, -0.021974117)
 
 [editable path="Screen/SubViewport/TypingUIContainer"]

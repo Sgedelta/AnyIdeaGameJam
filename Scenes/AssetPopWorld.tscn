@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://sur8msepndeq"]
+
+[ext_resource type="PackedScene" uid="uid://s405dih1rl6d" path="res://Scenes/camera_control.tscn" id="1_bs6yi"]
+[ext_resource type="PackedScene" uid="uid://ccetrajvpu778" path="res://Scenes/button_object.tscn" id="2_deu8g"]
+[ext_resource type="PackedScene" uid="uid://tvng83y8umbd" path="res://Scenes/alien_hands.tscn" id="3_jg5fp"]
+[ext_resource type="PackedScene" uid="uid://vd7iv10tqu55" path="res://Scenes/hand_control.tscn" id="4_l35xd"]
+[ext_resource type="PackedScene" uid="uid://dgxffd7rjiw5x" path="res://Scenes/battery.tscn" id="5_jsqd3"]
+[ext_resource type="Texture2D" uid="uid://dtale27i7hab0" path="res://Assets/Sprites/Space_Skymap.png" id="6_c45ay"]
+[ext_resource type="PackedScene" uid="uid://c2kw46q0bpc3r" path="res://Scenes/ship_greybox.tscn" id="7_05j4n"]
+[ext_resource type="PackedScene" uid="uid://ct8r5tilx1632" path="res://Scenes/computer.tscn" id="8_ufqju"]
+[ext_resource type="PackedScene" uid="uid://sr6350pw18lo" path="res://Scenes/speedlines.tscn" id="9_4dmr8"]
+[ext_resource type="PackedScene" uid="uid://ci6e4jyohf33s" path="res://Scenes/valve_thruster.tscn" id="10_45gs1"]
+[ext_resource type="PhysicsMaterial" uid="uid://dnrgyxqqmryww" path="res://Assets/Materials/PhysicsMats/Bouncy.tres" id="11_yyk6s"]
+[ext_resource type="PackedScene" uid="uid://bg6cnh2qs62av" path="res://Assets/3D/shipBase_03.fbx" id="12_deu8g"]
+[ext_resource type="PackedScene" uid="uid://cnsl2ew75almi" path="res://Assets/3D/shipBase_04.fbx" id="13_jg5fp"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ed2pg"]
+panorama = ExtResource("6_c45ay")
+
+[sub_resource type="Sky" id="Sky_rdsav"]
+sky_material = SubResource("PanoramaSkyMaterial_ed2pg")
+
+[sub_resource type="Environment" id="Environment_se0eo"]
+background_mode = 2
+sky = SubResource("Sky_rdsav")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_jg5fp"]
+viewport_path = NodePath("Screen/SubViewport")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1jowa"]
+size = Vector3(17.3656, 1, 20.907837)
+
+[node name="Node3D2" type="Node3D" unique_id=441259406]
+
+[node name="Camera" parent="." unique_id=129220480 instance=ExtResource("1_bs6yi")]
+_cameraSpeed = 0.5
+
+[node name="button_object" parent="Camera" unique_id=544792818 groups=["cameraButtons"] instance=ExtResource("2_deu8g")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 2, -1.25, -2)
+_handInputTargets = Dictionary[int, Dictionary]({
+0: {},
+1: {},
+2: {},
+3: {},
+4: {}
+})
+
+[node name="button_object2" parent="Camera" unique_id=1895974661 groups=["cameraButtons"] instance=ExtResource("2_deu8g")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -2, -1.25, -2)
+goingRight = false
+_handInputTargets = Dictionary[int, Dictionary]({
+0: {},
+1: {},
+2: {},
+3: {},
+4: {}
+})
+
+[node name="AlienHands" parent="Camera" unique_id=1243474369 instance=ExtResource("3_jg5fp")]
+
+[node name="alienDaddyRIG_12" parent="Camera/AlienHands" index="0" unique_id=1246719506]
+transform = Transform3D(-1.5, 0, 0, 0, 1.5, -1.3113416e-07, 0, 1.3113416e-07, 1.5, 0, -0.49, 0)
+
+[node name="HandControl" parent="." unique_id=713415373 node_paths=PackedStringArray("mHandTarget", "kHandLTarget", "kHandRTarget", "cHandLTarget", "cHandRTarget") instance=ExtResource("4_l35xd")]
+mHandTarget = NodePath("../Camera/AlienHands/mTarget")
+kHandLTarget = NodePath("../Camera/AlienHands/kLTarget")
+kHandRTarget = NodePath("../Camera/AlienHands/kRTarget")
+cHandLTarget = NodePath("../Camera/AlienHands/cLTarget")
+cHandRTarget = NodePath("../Camera/AlienHands/cRTarget")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1389699873]
+transform = Transform3D(1, 0, 0, 0, 0.19541556, 0.9807205, 0, -0.9807205, 0.19541556, 0, 0, -1.1822615)
+
+[node name="Battery" parent="." unique_id=1592482267 instance=ExtResource("5_jsqd3")]
+transform = Transform3D(0.93692863, 0.34952065, 0, -0.34952065, 0.93692863, 0, 0, 0, 1, -6.2423553, 0.813514, -14.018925)
+freeze = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1477872571]
+environment = SubResource("Environment_se0eo")
+
+[node name="ShipGreyboxCombiner" parent="." unique_id=991475515 instance=ExtResource("7_05j4n")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 31.498058)
+
+[node name="Computer" parent="." unique_id=1549007900 instance=ExtResource("8_ufqju")]
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 0, -0.9447787, -2.112)
+
+[node name="Screen" parent="Computer" index="0" unique_id=990515359]
+texture = SubResource("ViewportTexture_jg5fp")
+
+[node name="Speedlines" parent="." unique_id=1459631009 instance=ExtResource("9_4dmr8")]
+transform = Transform3D(0.09397489, 0, 0, 0, 0.20200296, 0, 0, 0, 1.3193672, -0.047362804, 0.4875651, -5.620336)
+
+[node name="Node3D" parent="." unique_id=844961160 instance=ExtResource("10_45gs1")]
+transform = Transform3D(0.98639494, 0, 0.16439344, 0, 1, 0, -0.16439344, 0, 0.98639494, -1.6247631, -0.2223754, -2.681415)
+visible = false
+
+[node name="FloorCollider" type="StaticBody3D" parent="." unique_id=407658480]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.537998, 0)
+physics_material_override = ExtResource("11_yyk6s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloorCollider" unique_id=1718208408]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.74542236, 0, -0.9850464)
+shape = SubResource("BoxShape3D_1jowa")
+
+[node name="shipBase_03" parent="." unique_id=750806140 instance=ExtResource("12_deu8g")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -10.315558, -1.5365319, -7.560165)
+
+[node name="shipBase_04" parent="." unique_id=2108045465 instance=ExtResource("13_jg5fp")]
+transform = Transform3D(-1.7, 0, -2.2649371e-07, 0, 1.7, 0, 2.5669289e-07, 0, -1.5, 0, -2.767, 0)
+
+[editable path="Camera/button_object"]
+[editable path="Camera/button_object2"]
+[editable path="Camera/AlienHands"]
+[editable path="Camera/AlienHands/alienDaddyRIG_12"]
+[editable path="Battery"]
+[editable path="Computer"]
+[editable path="Computer/Screen/SubViewport/TypingUIContainer"]

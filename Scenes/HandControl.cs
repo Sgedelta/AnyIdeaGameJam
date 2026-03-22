@@ -179,7 +179,14 @@ public partial class HandControl : Node2D
                             return;
                         }
                         inControl = Vector2.Down;
+                        GD.Print(kHandLTarget.GlobalPosition);
                         break;
+                    case Key.F1:
+                        Camera3D cam = GetViewport().GetCamera3D();
+                        Vector3 toMove = cam.Transform.Basis.Z;
+                        GD.Print(-toMove);
+                        kHandLTarget.GlobalPosition = -toMove;
+                            break;
                     case Key.Down:
                         if (!keyboardControlR)
                         {
