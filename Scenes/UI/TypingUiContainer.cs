@@ -27,7 +27,7 @@ public partial class TypingUiContainer : PanelContainer
 		//FocusEntered += ShowScreen;
 		//FocusExited += HideScreen;
 
-    }
+	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
@@ -39,8 +39,8 @@ public partial class TypingUiContainer : PanelContainer
 	{
 		if(focus)
 		{
-            _le_input.GrabFocus();
-        }
+			_le_input.GrabFocus();
+		}
 		else
 		{
 			_le_input.ReleaseFocus();
@@ -73,9 +73,9 @@ public partial class TypingUiContainer : PanelContainer
 	private void ProcessTextInput()
 	{
 		string exactText = _le_input.Text;
-        _rich_output.Clear();
-        //no one told you it was okay to program like this.
-        switch (exactText)
+		_rich_output.Clear();
+		//no one told you it was okay to program like this.
+		switch (exactText)
 		{
 			case "engine_on":
 				//ToDo GENERATE CAPTCHA AND PASS TO GM
@@ -87,13 +87,13 @@ public partial class TypingUiContainer : PanelContainer
 				_rich_output.AppendText($"[code]Port Engine Password is[/code]");
 				break;
 
-            case "starboard_pass":
-                //ToDo GENERATE PASS AND PASS TO GM
-                _rich_output.AppendText($"[code]Starboard Engine Password is[/code]");
-                break;
+			case "starboard_pass":
+				//ToDo GENERATE PASS AND PASS TO GM
+				_rich_output.AppendText($"[code]Starboard Engine Password is[/code]");
+				break;
 
-            case "HELP!":
-				_rich_output.AppendText("[code][font_size=50]Valid Inputs:[br]HELP! - Get Help![br]port_pass - see port engine password[br]starboard_pass - see starboard engine password[br]engine_on - begin engine engage sequence[/font_size][code]");
+			case "HELP!":
+				_rich_output.AppendText("[code]Valid Inputs:[br]HELP! - Get Help![br]port_pass - see port engine password[br]starboard_pass - see starboard engine password[br]engine_on - begin engine engage sequence[code]");
 				break;
 
 			default:
@@ -125,10 +125,10 @@ public partial class TypingUiContainer : PanelContainer
 		}
 		_showing = true;
 
-        _rich_output.Clear();
-        _le_input.Text = "";
+		_rich_output.Clear();
+		_le_input.Text = "";
 
-        if (_showHideTween != null && _showHideTween.IsRunning())
+		if (_showHideTween != null && _showHideTween.IsRunning())
 		{
 			_showHideTween.Kill();
 		}
@@ -155,20 +155,20 @@ public partial class TypingUiContainer : PanelContainer
 		
 		_showing = false;
 
-        _rich_output.Clear();
-        _le_input.Text = "";
+		_rich_output.Clear();
+		_le_input.Text = "";
 
-        if (_showHideTween != null && _showHideTween.IsRunning())
-        {
-            _showHideTween.Kill();
-        }
+		if (_showHideTween != null && _showHideTween.IsRunning())
+		{
+			_showHideTween.Kill();
+		}
 
-        _showHideTween = CreateTween();
-        _showHideTween = CreateTween().SetParallel(true);
+		_showHideTween = CreateTween();
+		_showHideTween = CreateTween().SetParallel(true);
 
-        
-        _showHideTween.TweenProperty(this, "size", hideScale, showHideSpeed);
-        _showHideTween.TweenProperty(this, "position", hidePos - new Vector2(0, hideScale.Y), showHideSpeed);
-        _showHideTween.TweenProperty(this, "position", hidePos, showHideSpeed * .2).SetDelay(showHideSpeed);
-    }
+		
+		_showHideTween.TweenProperty(this, "size", hideScale, showHideSpeed);
+		_showHideTween.TweenProperty(this, "position", hidePos - new Vector2(0, hideScale.Y), showHideSpeed);
+		_showHideTween.TweenProperty(this, "position", hidePos, showHideSpeed * .2).SetDelay(showHideSpeed);
+	}
 }
