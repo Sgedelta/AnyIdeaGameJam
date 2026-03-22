@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://blg1dumkp5h7c"]
 
-[ext_resource type="Theme" path="res://Assets/mainMenuUI.tres" id="1_28flt"]
+[ext_resource type="Theme" uid="uid://bg0vwtgh7p4a4" path="res://Assets/mainMenuUI.tres" id="1_28flt"]
 [ext_resource type="Script" uid="uid://bfq4tf0dhynj6" path="res://Scenes/MainMenu.cs" id="1_48xlc"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_erv1k"]
