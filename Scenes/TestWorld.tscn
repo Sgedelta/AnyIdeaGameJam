@@ -75,7 +75,6 @@ transform = Transform3D(1, 0, 0, 0, 0.19541556, 0.9807205, 0, -0.9807205, 0.1954
 
 [node name="Battery" parent="." unique_id=1592482267 instance=ExtResource("5_1jowa")]
 transform = Transform3D(0.93692863, 0.34952065, 0, -0.34952065, 0.93692863, 0, 0, 0, 1, 0.3912815, 0.28266132, -4.262452)
-freeze = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1477872571]
 environment = SubResource("Environment_se0eo")
