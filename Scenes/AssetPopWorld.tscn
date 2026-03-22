@@ -19,10 +19,10 @@
 [ext_resource type="Material" uid="uid://cex2qc2r078vd" path="res://Assets/Materials/Textures/hullMat.tres" id="16_45gs1"]
 [ext_resource type="PackedScene" uid="uid://k17d2ik4nuac" path="res://Assets/3D/cake.fbx" id="18_yyk6s"]
 [ext_resource type="Material" uid="uid://ddwr38fhv1r3" path="res://Assets/Materials/Textures/cakeMAT.tres" id="19_2l41g"]
-[ext_resource type="PackedScene" path="res://Scenes/right_valve_thruster.tscn" id="20_yyk6s"]
-[ext_resource type="PackedScene" path="res://Scenes/left_valve_thruster.tscn" id="21_2l41g"]
-[ext_resource type="PackedScene" path="res://Scenes/front_left_valve_thruster.tscn" id="22_cymet"]
-[ext_resource type="PackedScene" path="res://Scenes/front_right_valve_thruster.tscn" id="23_uqg11"]
+[ext_resource type="PackedScene" uid="uid://oxdwcnn38rqm" path="res://Scenes/right_valve_thruster.tscn" id="20_yyk6s"]
+[ext_resource type="PackedScene" uid="uid://dtfsxrqpdtafh" path="res://Scenes/left_valve_thruster.tscn" id="21_2l41g"]
+[ext_resource type="PackedScene" uid="uid://m3eqtrj6daib" path="res://Scenes/front_left_valve_thruster.tscn" id="22_cymet"]
+[ext_resource type="PackedScene" uid="uid://bnb63xs0viae6" path="res://Scenes/front_right_valve_thruster.tscn" id="23_uqg11"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cymet"]
 albedo_texture = ExtResource("4_4dmr8")
@@ -51,7 +51,7 @@ sky_material = SubResource("PanoramaSkyMaterial_ed2pg")
 background_mode = 2
 sky = SubResource("Sky_rdsav")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_djixh"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_cymet"]
 viewport_path = NodePath("Screen/SubViewport")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2l41g"]
@@ -66,10 +66,10 @@ size = Vector3(1, 7, 14)
 [sub_resource type="BoxShape3D" id="BoxShape3D_uqg11"]
 size = Vector3(14, 7, 1)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_cymet"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_uqg11"]
 viewport_path = NodePath("Screen/SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_uqg11"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_djixh"]
 viewport_path = NodePath("Screen/SubViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_malqr"]
@@ -323,7 +323,7 @@ transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, -2.557, -30.848)
 transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 0, -0.9447787, -2.112)
 
 [node name="Screen" parent="Computer" index="0" unique_id=990515359]
-texture = SubResource("ViewportTexture_djixh")
+texture = SubResource("ViewportTexture_cymet")
 
 [node name="Speedlines" parent="." unique_id=1459631009 instance=ExtResource("9_4dmr8")]
 transform = Transform3D(0.09397489, 0, 0, 0, 0.20200296, 0, 0, 0, 1.3193672, -0.047362804, 0.4875651, -5.620336)
@@ -405,23 +405,47 @@ shape = SubResource("BoxShape3D_uqg11")
 [node name="right_valve_thruster" parent="." unique_id=2053884060 instance=ExtResource("20_yyk6s")]
 transform = Transform3D(-6.556708e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.556708e-08, 5.4626074, 0, 0)
 
+[node name="BatteryReceptical" parent="right_valve_thruster" index="1" unique_id=1981157617 groups=["RRecep"]]
+
+[node name="DoorPivot" parent="right_valve_thruster" index="3" unique_id=941818453 groups=["RDoor"]]
+
+[node name="valve" parent="right_valve_thruster/DoorPivot" index="1" unique_id=1192847290 groups=["RValve"]]
+
 [node name="Screen" parent="right_valve_thruster" index="4" unique_id=1025664600]
-texture = SubResource("ViewportTexture_cymet")
+texture = SubResource("ViewportTexture_uqg11")
 
 [node name="left_valve_thruster" parent="." unique_id=1693458027 instance=ExtResource("21_2l41g")]
 transform = Transform3D(-6.556708e-08, 0, 1.5, 0, 1.5, 0, -1.5, 0, -6.556708e-08, -5.435914, 0, 0)
 
+[node name="BatteryReceptical" parent="left_valve_thruster" index="1" unique_id=1981157617 groups=["LRecep"]]
+
+[node name="DoorPivot" parent="left_valve_thruster" index="3" unique_id=941818453 groups=["LDoor"]]
+
+[node name="valve" parent="left_valve_thruster/DoorPivot" index="1" unique_id=1192847290 groups=["LValve"]]
+
 [node name="Screen" parent="left_valve_thruster" index="4" unique_id=1025664600]
-texture = SubResource("ViewportTexture_uqg11")
+texture = SubResource("ViewportTexture_djixh")
 
 [node name="front_left_valve_thruster" parent="." unique_id=1034884493 instance=ExtResource("22_cymet")]
 transform = Transform3D(1.299038, 0, 0.75, 0, 1.5, 0, -0.75, 0, 1.299038, -2.1787245, -5.9604645e-08, -4.4573956)
+
+[node name="BatteryReceptical" parent="front_left_valve_thruster" index="1" unique_id=1981157617 groups=["FLRecep"]]
+
+[node name="DoorPivot" parent="front_left_valve_thruster" index="3" unique_id=941818453 groups=["FLDoor"]]
+
+[node name="valve" parent="front_left_valve_thruster/DoorPivot" index="1" unique_id=1192847290 groups=["FLValve"]]
 
 [node name="Screen" parent="front_left_valve_thruster" index="4" unique_id=1025664600]
 texture = SubResource("ViewportTexture_malqr")
 
 [node name="front_right_valve_thruster2" parent="." unique_id=1257279248 instance=ExtResource("23_uqg11")]
 transform = Transform3D(1.299038, 0, -0.75, 0, 1.5, 0, 0.75, 0, 1.299038, 2.17, 0, -4.45)
+
+[node name="BatteryReceptical" parent="front_right_valve_thruster2" index="1" unique_id=1981157617 groups=["FRRecep"]]
+
+[node name="DoorPivot" parent="front_right_valve_thruster2" index="3" unique_id=941818453 groups=["FRDoor"]]
+
+[node name="valve" parent="front_right_valve_thruster2/DoorPivot" index="1" unique_id=1192847290 groups=["FRValve"]]
 
 [node name="Screen" parent="front_right_valve_thruster2" index="4" unique_id=1025664600]
 texture = SubResource("ViewportTexture_xdwae")
@@ -438,6 +462,7 @@ texture = SubResource("ViewportTexture_xdwae")
 [editable path="cake"]
 [editable path="right_valve_thruster"]
 [editable path="right_valve_thruster/BatteryReceptical"]
+[editable path="right_valve_thruster/DoorPivot/batteryPortDoor_01"]
 [editable path="right_valve_thruster/DoorPivot/valve"]
 [editable path="left_valve_thruster"]
 [editable path="left_valve_thruster/BatteryReceptical"]
@@ -448,5 +473,6 @@ texture = SubResource("ViewportTexture_xdwae")
 [editable path="front_left_valve_thruster/Screen/SubViewport/TypingUIContainer"]
 [editable path="front_right_valve_thruster2"]
 [editable path="front_right_valve_thruster2/BatteryReceptical"]
+[editable path="front_right_valve_thruster2/DoorPivot/batteryPortDoor_01"]
 [editable path="front_right_valve_thruster2/DoorPivot/valve"]
 [editable path="front_right_valve_thruster2/Screen/SubViewport/TypingUIContainer"]
