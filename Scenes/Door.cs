@@ -146,8 +146,12 @@ public partial class Door : StaticBody3D, IHandable
 		// If valve door is already open, do nothing
 		if (IsOpen) return;
 
-		// If valve door is locked, unlock it
-		if (IsLocked) IsLocked = false;
+        _popOpenTween = CreateTween();
+
+        _popOpenTween.TweenProperty(this, "rotation", new Vector3(0, Mathf.DegToRad(20.0f), 0), _popOpenAnimationSpeed);
+
+        // If valve door is locked, unlock it
+        if (IsLocked) IsLocked = false;
 	}
 
 	public void _on_valve_counter_rotation_completed()
