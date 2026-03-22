@@ -258,10 +258,12 @@ public partial class HandControl : Node2D
                 if(je.Axis == JoyAxis.TriggerLeft)
                 {
                     SetHandExtent(HandType.ContL, je.AxisValue);
+                    return;
                 } 
                 else if(je.Axis == JoyAxis.TriggerRight)
                 {
                     SetHandExtent(HandType.ContR, je.AxisValue);
+                    return;
                 }
 
                 if ((je.Axis == JoyAxis.LeftX || je.Axis == JoyAxis.LeftY) && !controllerControlL ||
@@ -269,15 +271,34 @@ public partial class HandControl : Node2D
                 {
                     return;
                 }
+
                 
 
-                if(je.Axis == JoyAxis.LeftX || je.Axis == JoyAxis.RightX)
+
+
+                if (je.Axis == JoyAxis.LeftX || je.Axis == JoyAxis.RightX)
                 {
-                    inControl.X = je.AxisValue;
+                    //psuedo deadzone
+                    if (je.AxisValue > -.2f && je.AxisValue < .2f)
+                    {
+                        inControl.X = 0;
+                    }
+                    else
+                    {
+                        inControl.X = je.AxisValue;
+                    }
                 }
                 if (je.Axis == JoyAxis.LeftY || je.Axis == JoyAxis.RightY)
                 {
-                    inControl.Y = je.AxisValue;
+                    //psuedo deadzone
+                    if (je.AxisValue > -.2f && je.AxisValue < .2f)
+                    {
+                        inControl.Y = 0;
+                    }
+                    else
+                    {
+                        inControl.Y = je.AxisValue;
+                    }
                 }
 
 

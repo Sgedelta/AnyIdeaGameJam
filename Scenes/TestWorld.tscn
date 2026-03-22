@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://sr6350pw18lo" path="res://Scenes/speedlines.tscn" id="5_g0pj6"]
 [ext_resource type="PackedScene" uid="uid://ct8r5tilx1632" path="res://Scenes/computer.tscn" id="5_rdsav"]
 [ext_resource type="PackedScene" uid="uid://ccetrajvpu778" path="res://Scenes/button_object.tscn" id="7_7oy3y"]
-[ext_resource type="PackedScene" uid="uid://ci6e4jyohf33s" path="res://Scenes/valve_thruster.tscn" id="8_4e6cy"]
+[ext_resource type="PackedScene" path="res://Scenes/valve_thruster.tscn" id="8_4e6cy"]
 [ext_resource type="PhysicsMaterial" uid="uid://dnrgyxqqmryww" path="res://Assets/Materials/PhysicsMats/Bouncy.tres" id="11_0rqgs"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ed2pg"]
@@ -35,10 +35,24 @@ _cameraSpeed = 0.5
 
 [node name="button_object" parent="Camera" unique_id=544792818 groups=["cameraButtons"] instance=ExtResource("7_7oy3y")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 2, -1.25, -2)
+_handInputTargets = Dictionary[int, Dictionary]({
+0: {},
+1: {},
+2: {},
+3: {},
+4: {}
+})
 
 [node name="button_object2" parent="Camera" unique_id=1895974661 groups=["cameraButtons"] instance=ExtResource("7_7oy3y")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -2, -1.25, -2)
 goingRight = false
+_handInputTargets = Dictionary[int, Dictionary]({
+0: {},
+1: {},
+2: {},
+3: {},
+4: {}
+})
 
 [node name="AlienHands" parent="Camera" unique_id=1243474369 instance=ExtResource("2_4e6cy")]
 
@@ -102,6 +116,8 @@ physics_material_override = ExtResource("11_0rqgs")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.74542236, 0, -0.9850464)
 shape = SubResource("BoxShape3D_1jowa")
 
+[editable path="Camera/button_object"]
+[editable path="Camera/button_object2"]
 [editable path="Camera/AlienHands"]
 [editable path="Camera/AlienHands/alienDaddyRIG_12"]
 [editable path="Battery"]
