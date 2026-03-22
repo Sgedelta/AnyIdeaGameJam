@@ -12,6 +12,12 @@ public partial class AsteroidField : Node3D
 
 	public Area3D shipCollider;
 
+	right_valve_thruster rightThruster;
+	left_valve_thruster leftThruster;
+
+    public bool rightThrust = false;
+	public bool leftThrust = false;
+
 	public Array<Area3D> asteroidColliders = new Array<Area3D>();
 
 	// Called when the node enters the scene tree for the first time.
@@ -31,7 +37,12 @@ public partial class AsteroidField : Node3D
 			asteroidColliders.Add(tempAsteroidList[i] as Area3D);
             asteroidColliders[i].AreaEntered += HandleAsteroidCollision;
 		}
-        //if (asteroidColliders.Count > 0) GD.Print("aseroi 2");
+		//if (asteroidColliders.Count > 0) GD.Print("aseroi 2");
+
+
+		//Thruster get
+		rightThruster = GetTree().GetFirstNodeInGroup("rightThruster") as right_valve_thruster;
+		leftThruster = GetTree().GetFirstNodeInGroup("leftThruster") as left_valve_thruster;
 
 
     }

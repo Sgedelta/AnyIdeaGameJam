@@ -36,6 +36,8 @@ mainCamera=""
 cameraButtons=""
 ship=""
 asteroid=""
+rightThruster=""
+leftThruster=""
 
 [input]
 

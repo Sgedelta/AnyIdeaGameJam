@@ -8,10 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://dxb1lup65dj5n" path="res://Assets/Materials/Textures/alienDaddyRIG_12_standardSurface1_BaseColor.png" id="5_45gs1"]
 [ext_resource type="Texture2D" uid="uid://dtale27i7hab0" path="res://Assets/Sprites/Space_Skymap.png" id="6_c45ay"]
 [ext_resource type="PackedScene" uid="uid://c2kw46q0bpc3r" path="res://Scenes/ship_greybox.tscn" id="7_05j4n"]
-[ext_resource type="PackedScene" path="res://Scenes/asteroid_field.tscn" id="7_deu8g"]
+[ext_resource type="PackedScene" uid="uid://cqy5d4syqsc0d" path="res://Scenes/asteroid_field.tscn" id="7_deu8g"]
 [ext_resource type="PackedScene" uid="uid://ct8r5tilx1632" path="res://Scenes/computer.tscn" id="8_ufqju"]
 [ext_resource type="PackedScene" uid="uid://sr6350pw18lo" path="res://Scenes/speedlines.tscn" id="9_4dmr8"]
-[ext_resource type="PackedScene" path="res://Scenes/valve_thruster.tscn" id="10_45gs1"]
 [ext_resource type="PackedScene" uid="uid://bpvvsk7sck7vt" path="res://Assets/3D/oven_02.fbx" id="11_l35xd"]
 [ext_resource type="PhysicsMaterial" uid="uid://dnrgyxqqmryww" path="res://Assets/Materials/PhysicsMats/Bouncy.tres" id="11_yyk6s"]
 [ext_resource type="Material" uid="uid://c33xljph1i1o8" path="res://Assets/Materials/OvenMat.tres" id="12_jsqd3"]
@@ -20,6 +19,8 @@
 [ext_resource type="Material" uid="uid://cex2qc2r078vd" path="res://Assets/Materials/Textures/hullMat.tres" id="16_45gs1"]
 [ext_resource type="PackedScene" uid="uid://k17d2ik4nuac" path="res://Assets/3D/cake.fbx" id="18_yyk6s"]
 [ext_resource type="Material" uid="uid://ddwr38fhv1r3" path="res://Assets/Materials/Textures/cakeMAT.tres" id="19_2l41g"]
+[ext_resource type="PackedScene" path="res://Scenes/right_valve_thruster.tscn" id="20_yyk6s"]
+[ext_resource type="PackedScene" path="res://Scenes/left_valve_thruster.tscn" id="21_2l41g"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cymet"]
 albedo_texture = ExtResource("4_4dmr8")
@@ -46,7 +47,7 @@ sky_material = SubResource("PanoramaSkyMaterial_ed2pg")
 background_mode = 2
 sky = SubResource("Sky_rdsav")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_45gs1"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_4dmr8"]
 viewport_path = NodePath("Screen/SubViewport")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1jowa"]
@@ -83,187 +84,187 @@ _handInputTargets = Dictionary[int, Dictionary]({
 [node name="alienDaddyRIG_12" parent="Camera/AlienHands" index="0" unique_id=1246719506]
 transform = Transform3D(-1.5, 0, 0, 0, 1.5, -1.3113416e-07, 0, 1.3113416e-07, 1.5, 0, -0.49, 0)
 
-[node name="L_TentacleGeo" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="0" unique_id=1041901034]
+[node name="L_TentacleGeo" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="0" unique_id=1827178669]
 surface_material_override/0 = SubResource("StandardMaterial3D_cymet")
 
-[node name="R_TentacleGeo" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="1" unique_id=936819193]
+[node name="R_TentacleGeo" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="1" unique_id=1286120203]
 surface_material_override/0 = SubResource("StandardMaterial3D_uqg11")
 
-[node name="Mouse_handGeo" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="2" unique_id=2084191044]
+[node name="Mouse_handGeo" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="2" unique_id=1335064237]
 surface_material_override/0 = SubResource("StandardMaterial3D_yyk6s")
 
-[node name="pCube1" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="3" unique_id=1680317303]
+[node name="pCube1" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="3" unique_id=432914524]
 surface_material_override/0 = SubResource("StandardMaterial3D_45gs1")
 
-[node name="pCylinder1" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="4" unique_id=685428627]
+[node name="pCylinder1" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="4" unique_id=315611156]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCube2" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="5" unique_id=308546358]
+[node name="pCube2" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="5" unique_id=1407842259]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCube3" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="6" unique_id=288686896]
+[node name="pCube3" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="6" unique_id=1440966570]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCube4" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="7" unique_id=990925425]
+[node name="pCube4" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="7" unique_id=347223191]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCube5" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="8" unique_id=372696104]
+[node name="pCube5" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="8" unique_id=997505422]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCube6" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="9" unique_id=491296241]
+[node name="pCube6" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="9" unique_id=1566476208]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCube7" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="10" unique_id=44270759]
+[node name="pCube7" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="10" unique_id=1604536281]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCube8" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="11" unique_id=539514409]
+[node name="pCube8" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="11" unique_id=872586938]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCube9" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="12" unique_id=836914209]
+[node name="pCube9" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="12" unique_id=1895167468]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCube10" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="13" unique_id=655972010]
+[node name="pCube10" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="13" unique_id=1178066527]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCube11" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="14" unique_id=1876981698]
+[node name="pCube11" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="14" unique_id=1528450585]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCube12" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="15" unique_id=1014775555]
+[node name="pCube12" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="15" unique_id=1028678764]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCube13" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="16" unique_id=460718831]
+[node name="pCube13" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="16" unique_id=1013891152]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCylinder2" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="17" unique_id=816605549]
+[node name="pCylinder2" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="17" unique_id=2082183656]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCylinder3" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="18" unique_id=1903655039]
+[node name="pCylinder3" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="18" unique_id=1098356610]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCylinder4" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="19" unique_id=352462179]
+[node name="pCylinder4" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="19" unique_id=147316673]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCylinder5" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="20" unique_id=1150004763]
+[node name="pCylinder5" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="20" unique_id=1971531391]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCylinder6" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="21" unique_id=341322911]
+[node name="pCylinder6" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="21" unique_id=1324944518]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCylinder7" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="22" unique_id=733563710]
+[node name="pCylinder7" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="22" unique_id=1894334175]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCylinder8" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="23" unique_id=1165279203]
+[node name="pCylinder8" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="23" unique_id=977769872]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCylinder9" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="24" unique_id=433642160]
+[node name="pCylinder9" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="24" unique_id=1242941829]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCylinder10" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="25" unique_id=2040629415]
+[node name="pCylinder10" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="25" unique_id=1477034466]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCylinder11" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="26" unique_id=2006155896]
+[node name="pCylinder11" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="26" unique_id=1649738862]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCylinder12" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="27" unique_id=628631290]
+[node name="pCylinder12" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="27" unique_id=2002823717]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCylinder13" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="28" unique_id=948391966]
+[node name="pCylinder13" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="28" unique_id=300529628]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCylinder14" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="29" unique_id=452908696]
+[node name="pCylinder14" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="29" unique_id=2143804331]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCylinder15" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="30" unique_id=1724121328]
+[node name="pCylinder15" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="30" unique_id=1508177906]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCylinder16" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="31" unique_id=768137381]
+[node name="pCylinder16" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="31" unique_id=46618305]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCube14" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="32" unique_id=503483377]
+[node name="pCube14" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="32" unique_id=1967987729]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCylinder17" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="33" unique_id=394792697]
+[node name="pCylinder17" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="33" unique_id=797399285]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCube22" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="34" unique_id=104577660]
+[node name="pCube22" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="34" unique_id=513352229]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCube32" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="35" unique_id=1020002078]
+[node name="pCube32" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="35" unique_id=1790522345]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCube42" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="36" unique_id=1624838926]
+[node name="pCube42" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="36" unique_id=983128624]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCube52" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="37" unique_id=255504152]
+[node name="pCube52" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="37" unique_id=399852716]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCube62" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="38" unique_id=531160132]
+[node name="pCube62" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="38" unique_id=338473567]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCube72" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="39" unique_id=208913498]
+[node name="pCube72" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="39" unique_id=1784684655]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCube82" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="40" unique_id=2082099959]
+[node name="pCube82" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="40" unique_id=2033466162]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCube92" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="41" unique_id=877386587]
+[node name="pCube92" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="41" unique_id=531642115]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCube102" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="42" unique_id=510232407]
+[node name="pCube102" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="42" unique_id=1539548547]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCube112" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="43" unique_id=376528465]
+[node name="pCube112" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="43" unique_id=795707067]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCube122" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="44" unique_id=50626334]
+[node name="pCube122" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="44" unique_id=1223361303]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCube132" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="45" unique_id=643013823]
+[node name="pCube132" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="45" unique_id=398910383]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCylinder22" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="46" unique_id=182378511]
+[node name="pCylinder22" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="46" unique_id=1411555027]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCylinder32" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="47" unique_id=1165714731]
+[node name="pCylinder32" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="47" unique_id=1619513740]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCylinder42" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="48" unique_id=84880177]
+[node name="pCylinder42" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="48" unique_id=1710374112]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCylinder52" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="49" unique_id=1911775120]
+[node name="pCylinder52" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="49" unique_id=1345846679]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCylinder62" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="50" unique_id=1753076369]
+[node name="pCylinder62" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="50" unique_id=704781659]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCylinder72" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="51" unique_id=529551394]
+[node name="pCylinder72" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="51" unique_id=733674297]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCylinder82" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="52" unique_id=967270400]
+[node name="pCylinder82" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="52" unique_id=1392634901]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCylinder92" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="53" unique_id=470077693]
+[node name="pCylinder92" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="53" unique_id=828709376]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCylinder102" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="54" unique_id=1723836350]
+[node name="pCylinder102" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="54" unique_id=1514824218]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCylinder112" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="55" unique_id=1440902126]
+[node name="pCylinder112" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="55" unique_id=524735685]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCylinder122" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="56" unique_id=1523459798]
+[node name="pCylinder122" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="56" unique_id=2085956332]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCylinder132" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="57" unique_id=1344459077]
+[node name="pCylinder132" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="57" unique_id=326605568]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCylinder142" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="58" unique_id=1328529908]
+[node name="pCylinder142" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="58" unique_id=1430773855]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCylinder152" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="59" unique_id=762001794]
+[node name="pCylinder152" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="59" unique_id=543293299]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
-[node name="pCylinder162" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1404815962) index="60" unique_id=1457334562]
+[node name="pCylinder162" parent="Camera/AlienHands/alienDaddyRIG_12/alienDaddyRigJNT_grp/Skeleton3D" parent_id_path=PackedInt32Array(1243474369, 1246719506, 1202967965) index="60" unique_id=1778532725]
 surface_material_override/0 = SubResource("StandardMaterial3D_2l41g")
 
 [node name="HandControl" parent="." unique_id=713415373 node_paths=PackedStringArray("mHandTarget", "kHandLTarget", "kHandRTarget", "cHandLTarget", "cHandRTarget") instance=ExtResource("4_l35xd")]
@@ -289,25 +290,21 @@ transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 2.10604, -2.5567117,
 transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 0, -0.9447787, -2.112)
 
 [node name="Screen" parent="Computer" index="0" unique_id=990515359]
-texture = SubResource("ViewportTexture_45gs1")
+texture = SubResource("ViewportTexture_4dmr8")
 
 [node name="Speedlines" parent="." unique_id=1459631009 instance=ExtResource("9_4dmr8")]
 transform = Transform3D(0.09397489, 0, 0, 0, 0.20200296, 0, 0, 0, 1.3193672, -0.047362804, 0.4875651, -5.620336)
 
-[node name="Node3D" parent="." unique_id=844961160 instance=ExtResource("10_45gs1")]
-transform = Transform3D(0.98639494, 0, 0.16439344, 0, 1, 0, -0.16439344, 0, 0.98639494, -1.6247631, -0.2223754, -2.681415)
-visible = false
-
 [node name="oven_02" parent="." unique_id=1219690945 instance=ExtResource("11_l35xd")]
 transform = Transform3D(-1.7484555e-07, 0, 4, 0, 4, 0, -4, 0, -1.7484555e-07, 0, -1.5276583, 4.767134)
 
-[node name="ovenHandle" parent="oven_02/oven" parent_id_path=PackedInt32Array(1219690945, 164724268) index="0" unique_id=711484165]
+[node name="ovenHandle" parent="oven_02/oven" parent_id_path=PackedInt32Array(1219690945, 1965424130) index="0" unique_id=3148326]
 material_override = ExtResource("12_jsqd3")
 
-[node name="ovenDoor" parent="oven_02/oven" parent_id_path=PackedInt32Array(1219690945, 164724268) index="1" unique_id=1685732198]
+[node name="ovenDoor" parent="oven_02/oven" parent_id_path=PackedInt32Array(1219690945, 1965424130) index="1" unique_id=332624954]
 material_override = ExtResource("12_jsqd3")
 
-[node name="ovenBase" parent="oven_02/oven" parent_id_path=PackedInt32Array(1219690945, 164724268) index="2" unique_id=1171476480]
+[node name="ovenBase" parent="oven_02/oven" parent_id_path=PackedInt32Array(1219690945, 1965424130) index="2" unique_id=1963223324]
 material_override = ExtResource("12_jsqd3")
 material_overlay = ExtResource("12_jsqd3")
 
@@ -322,11 +319,11 @@ shape = SubResource("BoxShape3D_1jowa")
 [node name="shipBase_04" parent="." unique_id=2108045465 instance=ExtResource("13_jg5fp")]
 transform = Transform3D(-1.7, 0, -2.2649371e-07, 0, 1.7, 0, 2.5669289e-07, 0, -1.5, 0, -2.767, 0)
 
-[node name="Chasis" parent="shipBase_04" index="0" unique_id=1271059523]
+[node name="Chasis" parent="shipBase_04" index="0" unique_id=224348793]
 material_override = ExtResource("16_45gs1")
 surface_material_override/0 = ExtResource("16_45gs1")
 
-[node name="TopTubing" parent="shipBase_04" index="2" unique_id=1386301162]
+[node name="TopTubing" parent="shipBase_04" index="2" unique_id=1388876929]
 material_override = ExtResource("16_45gs1")
 
 [node name="Table" type="Node3D" parent="." unique_id=969831789]
@@ -334,15 +331,21 @@ material_override = ExtResource("16_45gs1")
 [node name="BatteryPort_01" parent="." unique_id=416936600 instance=ExtResource("13_l35xd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.551579, -2.9609907, -9.179165)
 
-[node name="batteryPortdoor" parent="BatteryPort_01/batteryPortGrp" parent_id_path=PackedInt32Array(416936600, 746759608) index="1" unique_id=1235669421]
+[node name="batteryPortdoor" parent="BatteryPort_01/batteryPortGrp" parent_id_path=PackedInt32Array(416936600, 681562088) index="1" unique_id=1897156606]
 transform = Transform3D(-58.056442, 0, 3.8677025e-16, 0, 128.12842, 0, -7.109629e-15, 0, -3.158323, 0.7133231, 0.42891335, 0.23320198)
 
 [node name="cake" parent="." unique_id=1929374770 instance=ExtResource("18_yyk6s")]
 transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 7.050164, -3.0379984, -0.39453316)
 
-[node name="cake" parent="cake" index="0" unique_id=1808706789]
+[node name="cake" parent="cake" index="0" unique_id=1160236647]
 transform = Transform3D(42.096, 0, 0, 0, 42.096, 0, 0, 0, 42.096, -7.0847254, 1.3374625, 4.674632)
 surface_material_override/0 = ExtResource("19_2l41g")
+
+[node name="right_valve_thruster" parent="." unique_id=2053884060 groups=["rightThruster"] instance=ExtResource("20_yyk6s")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 5.25, 0, 0)
+
+[node name="left_valve_thruster" parent="." unique_id=147495974 groups=["leftThruster"] instance=ExtResource("21_2l41g")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.258, 0, 0)
 
 [editable path="Camera/button_object"]
 [editable path="Camera/button_object2"]
