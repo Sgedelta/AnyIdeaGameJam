@@ -84,8 +84,7 @@ environment = SubResource("Environment_se0eo")
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
 [node name="Computer" parent="." unique_id=1549007900 instance=ExtResource("5_rdsav")]
-transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 0.4382323, -1, -2.1120648)
-visible = false
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 0.4382323, -1, -2.5528655)
 
 [node name="Screen" parent="Computer" index="1" unique_id=990515359]
 texture = SubResource("ViewportTexture_l0hd3")
