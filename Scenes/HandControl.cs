@@ -32,8 +32,16 @@ public partial class HandControl : Node2D
 	public float kRHandLength = 1f;
 	public float cRHandLength = 1f;
 
+	public bool mHandExtended { get { return mHandLength > HandExtents.Length() / 2 + HandExtents.X; } }
+    public bool kLHandExtended { get { return kLHandLength > HandExtents.Length() / 2 + HandExtents.X; } }
 
-	public Vector2 kLHandVel = Vector2.Zero;
+    public bool kRHandExtended { get { return kRHandLength > HandExtents.Length() / 2 + HandExtents.X; } }
+
+    public bool cLHandExtended { get { return cLHandLength > HandExtents.Length() / 2 + HandExtents.X; } }
+
+    public bool cRHandExtended { get { return cRHandLength > HandExtents.Length() / 2 + HandExtents.X; } }
+
+    public Vector2 kLHandVel = Vector2.Zero;
 	public Vector2 kRHandVel = Vector2.Zero;
 	public Vector2 cLHandVel = Vector2.Zero;
 	public Vector2 cRHandVel = Vector2.Zero;
@@ -323,7 +331,11 @@ public partial class HandControl : Node2D
 						cRHandVel.Y = inControl.Y;
 						break;
 
-				}
+                    case JoyAxis.RightX:
+                        cRHandVel.X = inControl.X;
+                        break;
+
+                }
 			break;
         }
 		
