@@ -107,6 +107,11 @@ public partial class AsteroidField : Node3D
 		if(!alive) return;
 
 		GameManager.Instance.timer -= (float)delta;
+		if(GameManager.Instance.timer <= 0)
+		{
+            alive = false;
+            GetTree().ChangeSceneToFile("res://Scenes/UI/LoseUI.tscn");
+        }
 
 		float zVel = forwardThrust;
 		
