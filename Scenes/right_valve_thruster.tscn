@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://ci6e4jyohf33s"]
+[gd_scene format=3 uid="uid://oxdwcnn38rqm"]
 
 [ext_resource type="Script" uid="uid://uhlng0unopcr" path="res://Scenes/Door.cs" id="1_7fe0k"]
 [ext_resource type="PackedScene" uid="uid://c1wai34u14ogt" path="res://Scenes/valve.tscn" id="1_mu8c2"]
@@ -36,10 +36,20 @@ script = ExtResource("1_7fe0k")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.490914, 0, -0.011843562)
 _rot_cc = true
 _is_right_stick = true
+_handInputTargets = Dictionary[int, Dictionary]({
+4: {
+1: NodePath("../Node3D"),
+2: NodePath("../Node3D"),
+4: NodePath("HandlePos")
+}
+})
 _valveDisplay = NodePath("MeshInstance3D")
 
 [node name="MeshInstance3D" parent="DoorPivot/valve" index="0" unique_id=1430034741]
 material_override = SubResource("StandardMaterial3D_yift7")
+
+[node name="Node3D" type="Node3D" parent="DoorPivot" unique_id=256965740]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0227292, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=927871506]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.013458252, 0.012878418, 0)

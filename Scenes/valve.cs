@@ -106,8 +106,11 @@ public partial class valve : Node, IHandable
 
     public override void _Input(InputEvent @event)
 	{
-		if(isLocked)
-			return;
+		if(!IsActive || isLocked)
+		{
+            return;
+        }
+			
 		if(@event is not InputEventJoypadMotion)
 		{
 			return; //we ONLY care about joypad motion for valves
