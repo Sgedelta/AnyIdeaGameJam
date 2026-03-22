@@ -284,7 +284,7 @@ environment = SubResource("Environment_se0eo")
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 31.498058)
 
 [node name="AsteroidField" parent="." unique_id=97329334 instance=ExtResource("7_deu8g")]
-transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 2.10604, -2.5567117, -30.84763)
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, -2.557, -30.848)
 
 [node name="Computer" parent="." unique_id=1549007900 instance=ExtResource("8_ufqju")]
 transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 0, -0.9447787, -2.112)
