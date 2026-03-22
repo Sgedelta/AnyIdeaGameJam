@@ -24,3 +24,12 @@ sides = 12
 transform = Transform3D(0.7782219, 0, 0, 0, 0.09247404, 0, 0, 0, 0.830207, 0, 0.1593501, 0)
 sides = 12
 material = SubResource("StandardMaterial3D_avupe")
+
+[node name="LHandPos" type="Node3D" parent="." unique_id=357062006]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3941195, 0)
+
+[node name="RHandPos" type="Node3D" parent="." unique_id=234279946]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3941195, 0)
+
+[node name="MHandPos" type="Node3D" parent="." unique_id=647329554]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3941195, 0)
