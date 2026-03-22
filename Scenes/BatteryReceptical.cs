@@ -4,7 +4,9 @@ using System;
 public partial class BatteryReceptical : Area3D
 {
 
-	public bool AllowInsert = true;
+    [Signal] public delegate void OnPoweredChangedEventHandler(bool powered);
+
+    public bool AllowInsert = true;
 
 	[Export] public Node3D BatterySnapLoc;
 
@@ -69,6 +71,7 @@ public partial class BatteryReceptical : Area3D
         batt.Inserted = insert;
         batt.InsertLoc = this;
         Powered = insert;
+		EmitSignal(SignalName.OnPoweredChanged, insert);
     }
 	
 
