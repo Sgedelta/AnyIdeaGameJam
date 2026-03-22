@@ -15,6 +15,8 @@ public partial class AsteroidField : Node3D
 	right_valve_thruster rightThruster;
 	left_valve_thruster leftThruster;
 
+	bool alive = true;
+
     public bool rightThrust = false;
 	public bool leftThrust = false;
 	public int forwardThrust = 0;
@@ -26,6 +28,7 @@ public partial class AsteroidField : Node3D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		alive = true;
         shipCollider = GetTree().GetFirstNodeInGroup("ship").GetNode<Area3D>("Area3D");
 		//if (shipCollider != null) GD.Print("Shippa!");
         goalCollision = GetNode<Area3D>("Goal");
@@ -101,6 +104,7 @@ public partial class AsteroidField : Node3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		if(!alive) return;
 		float zVel = forwardThrust;
 		
 
@@ -132,12 +136,14 @@ public partial class AsteroidField : Node3D
 
 	
 	public void HandleGoalCollision( Area3D areaChungus)
-	{
-		GetTree().ChangeSceneToFile("res://Scenes/UI/WinUI.tscn");
+    {
+        alive = false;
+        GetTree().ChangeSceneToFile("res://Scenes/UI/WinUI.tscn");
     }
 
 	public void HandleAsteroidCollision(Area3D areaChungus)
-	{
+    {
+        alive = false;
         GetTree().ChangeSceneToFile("res://Scenes/UI/LoseUI.tscn");
     }
 }
