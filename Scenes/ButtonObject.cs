@@ -128,27 +128,6 @@ public partial class ButtonObject : StaticBody3D, IHandable
         Camera3D cam = GetViewport().GetCamera3D();
 
 	}
-	public void CheckFocus(InputEventMouseButton e)
-	{
-		PhysicsDirectSpaceState3D spState = GetWorld3D().DirectSpaceState;
-		Vector2 mPos = e.Position;
-		Camera3D cam = GetViewport().GetCamera3D();
-
-		var origin = cam.ProjectRayOrigin(mPos);
-		var end = origin + cam.ProjectRayNormal(mPos) * 100;
-		var query = PhysicsRayQueryParameters3D.Create(origin, end);
-
-        if (result.ContainsKey("collider_id") && ((StaticBody3D)result["collider"]) == this)
-        {
-            
-        }
-
-		if (result.ContainsKey("collider_id") && ((StaticBody3D)result["collider"]) == this)
-		{
-			UpdateCameraTween();
-		}
-
-	}
 
 	public void UpdateCameraTween()
 	{
