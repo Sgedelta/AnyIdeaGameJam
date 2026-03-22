@@ -23,10 +23,10 @@ public partial class HandControl : Node2D
     [Export] private Node3D cHandRTarget;
     [Export] private float cHandLength = 1.5f;
 
-    private Vector2 kLHandVel = Vector2.Zero;
-    private Vector2 kRHandVel = Vector2.Zero;
-    private Vector2 cLHandVel = Vector2.Zero;
-    private Vector2 cRHandVel = Vector2.Zero;
+    public Vector2 kLHandVel = Vector2.Zero;
+    public Vector2 kRHandVel = Vector2.Zero;
+    public Vector2 cLHandVel = Vector2.Zero;
+    public Vector2 cRHandVel = Vector2.Zero;
 
     private IHandable mHandable;
 
@@ -340,8 +340,9 @@ public partial class HandControl : Node2D
 
     }
 
-    public void KeyLeftCastCheck()
+    public void KeyLeftCastCheck(bool state)
     {
+
         Camera3D cam = GetViewport().GetCamera3D();
         PhysicsDirectSpaceState3D spState = cam.GetWorld3D().DirectSpaceState;
 

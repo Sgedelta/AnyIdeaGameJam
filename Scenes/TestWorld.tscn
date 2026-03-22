@@ -1,12 +1,14 @@
 [gd_scene format=3 uid="uid://b77o8iiek1xnq"]
 
 [ext_resource type="PackedScene" uid="uid://s405dih1rl6d" path="res://Scenes/camera_control.tscn" id="1_k2eo1"]
+[ext_resource type="PackedScene" uid="uid://tvng83y8umbd" path="res://Scenes/alien_hands.tscn" id="2_4e6cy"]
 [ext_resource type="Texture2D" uid="uid://dtale27i7hab0" path="res://Assets/Sprites/Space_Skymap.png" id="3_4snwc"]
+[ext_resource type="PackedScene" uid="uid://vd7iv10tqu55" path="res://Scenes/hand_control.tscn" id="4_77oos"]
 [ext_resource type="PackedScene" uid="uid://c2kw46q0bpc3r" path="res://Scenes/ship_greybox.tscn" id="4_ed2pg"]
 [ext_resource type="PackedScene" uid="uid://sr6350pw18lo" path="res://Scenes/speedlines.tscn" id="5_g0pj6"]
 [ext_resource type="PackedScene" uid="uid://ct8r5tilx1632" path="res://Scenes/computer.tscn" id="5_rdsav"]
-[ext_resource type="PackedScene" uid="uid://ccetrajvpu778" path="res://Scenes/button_object.tscn" id="7_7oy3y"]
-[ext_resource type="PackedScene" uid="uid://ci6e4jyohf33s" path="res://Scenes/valve_thruster.tscn" id="8_4e6cy"]
+[ext_resource type="PackedScene" path="res://Scenes/button_object.tscn" id="7_7oy3y"]
+[ext_resource type="PackedScene" path="res://Scenes/valve_thruster.tscn" id="8_4e6cy"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ed2pg"]
 panorama = ExtResource("3_4snwc")
@@ -21,7 +23,6 @@ sky = SubResource("Sky_rdsav")
 [node name="Node3D2" type="Node3D" unique_id=441259406]
 
 [node name="Camera" parent="." unique_id=129220480 instance=ExtResource("1_k2eo1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 _cameraSpeed = 0.5
 
 [node name="button_object" parent="Camera" unique_id=544792818 groups=["cameraButtons"] instance=ExtResource("7_7oy3y")]
@@ -30,6 +31,33 @@ transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 2, -1.25, -2)
 [node name="button_object2" parent="Camera" unique_id=1895974661 groups=["cameraButtons"] instance=ExtResource("7_7oy3y")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -2, -1.25, -2)
 goingRight = false
+
+[node name="AlienHands" parent="Camera" unique_id=1243474369 instance=ExtResource("2_4e6cy")]
+
+[node name="alienDaddyRIG_12" parent="Camera/AlienHands" index="0" unique_id=1246719506]
+transform = Transform3D(-1.5, 0, -1.3113416e-07, 0, 1.5, 0, 1.3113416e-07, 0, -1.5, 0, -0.49, 0)
+
+[node name="Node3D" parent="Camera/AlienHands/mTarget" parent_id_path=PackedInt32Array(1243474369, 2133893599) index="0" unique_id=1801971786]
+visible = false
+
+[node name="Node3D" parent="Camera/AlienHands/kLTarget" parent_id_path=PackedInt32Array(1243474369, 959537194) index="0" unique_id=1256291331]
+visible = false
+
+[node name="Node3D" parent="Camera/AlienHands/kRTarget" parent_id_path=PackedInt32Array(1243474369, 89587551) index="0" unique_id=1369074731]
+visible = false
+
+[node name="Node3D" parent="Camera/AlienHands/cLTarget" parent_id_path=PackedInt32Array(1243474369, 1981344023) index="0" unique_id=1082305198]
+visible = false
+
+[node name="Node3D" parent="Camera/AlienHands/cRTarget" parent_id_path=PackedInt32Array(1243474369, 542594666) index="0" unique_id=1383205625]
+visible = false
+
+[node name="HandControl" parent="." unique_id=713415373 node_paths=PackedStringArray("mHandTarget", "kHandLTarget", "kHandRTarget", "cHandLTarget", "cHandRTarget") instance=ExtResource("4_77oos")]
+mHandTarget = NodePath("../Camera/AlienHands/mTarget")
+kHandLTarget = NodePath("../Camera/AlienHands/kLTarget")
+kHandRTarget = NodePath("../Camera/AlienHands/kRTarget")
+cHandLTarget = NodePath("../Camera/AlienHands/cLTarget")
+cHandRTarget = NodePath("../Camera/AlienHands/cRTarget")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1389699873]
 transform = Transform3D(1, 0, 0, 0, 0.19541556, 0.9807205, 0, -0.9807205, 0.19541556, 0, 0, -1.1822615)
@@ -40,11 +68,18 @@ environment = SubResource("Environment_se0eo")
 [node name="ShipGreyboxCombiner" parent="." unique_id=991475515 instance=ExtResource("4_ed2pg")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
-[node name="Computer" parent="." unique_id=1549007900 instance=ExtResource("5_rdsav")]
+[node name="Computer" parent="." unique_id=1549007900 node_paths=PackedStringArray("_handTargets") instance=ExtResource("5_rdsav")]
 transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 0.4382323, -1, -2.1120648)
+_handTargets = {
+1: NodePath("LHandPos"),
+2: NodePath("RHandPos")
+}
 
 [node name="Speedlines" parent="." unique_id=1459631009 instance=ExtResource("5_g0pj6")]
 transform = Transform3D(0.12568662, 0, 0, 0, 0.13916422, 0, 0, 0, 1, 0.0006580651, 1.2128685, -5.08145)
 
 [node name="Node3D" parent="." unique_id=844961160 instance=ExtResource("8_4e6cy")]
 transform = Transform3D(0.98639494, 0, 0.16439344, 0, 1, 0, -0.16439344, 0, 0.98639494, -1.6247631, -0.2223754, -2.681415)
+
+[editable path="Camera/AlienHands"]
+[editable path="Camera/AlienHands/alienDaddyRIG_12"]

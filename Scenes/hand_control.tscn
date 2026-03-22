@@ -12,6 +12,9 @@ kHandSpeed = 750.0
 cHandL = NodePath("ControllerLeftHand")
 cHandR = NodePath("ControllerRightHand")
 cHandSpeed = 750.0
+mHandLength = 4.0
+kHandLength = 4.0
+cHandLength = 4.0
 
 [node name="MouseHand" type="Node2D" parent="." unique_id=2130609846]
 position = Vector2(1983, 1008)

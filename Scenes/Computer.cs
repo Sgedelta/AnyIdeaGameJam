@@ -73,21 +73,41 @@ public partial class Computer : StaticBody3D, IHandable
                 case HandType.KeyL:
                     GameManager.Instance.HCont.kLHandOverride = _handTargets[t];
                     GameManager.Instance.HCont.keyboardControlL = !state;
+                    if(state)
+					{
+						GameManager.Instance.HCont.kLHandVel = Vector2.Zero;
+
+                    }
                     break;
 
                 case HandType.KeyR:
                     GameManager.Instance.HCont.kRHandOverride = _handTargets[t];
                     GameManager.Instance.HCont.keyboardControlR = !state;
+                    if (state)
+                    {
+                        GameManager.Instance.HCont.kRHandVel = Vector2.Zero;
+
+                    }
                     break;
 
                 case HandType.ContL:
                     GameManager.Instance.HCont.cLHandOverride = _handTargets[t];
                     GameManager.Instance.HCont.controllerControlL = !state;
+                    if (state)
+                    {
+                        GameManager.Instance.HCont.cLHandVel = Vector2.Zero;
+
+                    }
                     break;
 
                 case HandType.ContR:
                     GameManager.Instance.HCont.cRHandOverride = _handTargets[t];
                     GameManager.Instance.HCont.controllerControlR = !state;
+                    if (state)
+                    {
+                        GameManager.Instance.HCont.cRHandVel = Vector2.Zero;
+
+                    }
                     break;
             }
 		}
