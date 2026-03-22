@@ -73,23 +73,23 @@ public partial class HandControl : Node2D
         CastTargetsIntoWorld();
         if (!mouseControl)
         {
-            mHandTarget.Position = mHandOverride.GlobalPosition;
+            mHandTarget.GlobalPosition = mHandOverride.GlobalPosition;
         }
         if (!keyboardControlL)
         {
-            kHandLTarget.Position = kLHandOverride.GlobalPosition;
+            kHandLTarget.GlobalPosition = kLHandOverride.GlobalPosition;
         }
         if (!keyboardControlR)
         {
-            kHandRTarget.Position = kRHandOverride.GlobalPosition;
+            kHandRTarget.GlobalPosition = kRHandOverride.GlobalPosition;
         }
         if(!controllerControlL)
         {
-            cHandLTarget.Position = cLHandOverride.GlobalPosition;
+            cHandLTarget.GlobalPosition = cLHandOverride.GlobalPosition;
         }
         if (!controllerControlR)
         {
-            cHandRTarget.Position = cRHandOverride.GlobalPosition;
+            cHandRTarget.GlobalPosition = cRHandOverride.GlobalPosition;
         }
 
     }
@@ -331,47 +331,47 @@ public partial class HandControl : Node2D
     private void CastTargetsIntoWorld()
     {
         Camera3D cam = GetViewport().GetCamera3D();
-        PhysicsDirectSpaceState3D spState = cam.GetWorld3D().DirectSpaceState;
+        PhysicsDirectSpaceState3D spState = GetNode<Node3D>("w3dRef").GetWorld3D().DirectSpaceState;
 
         var mHandOrigin = cam.GlobalPosition;//cam.ProjectRayOrigin(mHand.Position);
         var mHandEnd = mHandOrigin + cam.ProjectRayNormal(mHand.Position) * mHandLength;
         var mHandQuery = PhysicsRayQueryParameters3D.Create(mHandOrigin, mHandEnd);
 
         var kLHandOrigin = cam.GlobalPosition;//cam.ProjectRayOrigin(kHandL.Position);
-        var kLHandEnd = kLHandOrigin + cam.ProjectRayNormal(kHandL.Position) * kLHandLength;
+        var kLHandEnd = kLHandOrigin + cam.ProjectRayNormal(kHandL.GlobalPosition) * kLHandLength;
         var kLHandQuery = PhysicsRayQueryParameters3D.Create(kLHandOrigin, kLHandEnd);
 
         var kRHandOrigin = cam.GlobalPosition;//cam.ProjectRayOrigin(kHandR.Position);
-        var kRHandEnd = kRHandOrigin + cam.ProjectRayNormal(kHandR.Position) * kRHandLength;
+        var kRHandEnd = kRHandOrigin + cam.ProjectRayNormal(kHandR.GlobalPosition) * kRHandLength;
         var kRHandQuery = PhysicsRayQueryParameters3D.Create(kRHandOrigin, kRHandEnd);
 
         var cLHandOrigin = cam.GlobalPosition;//cam.ProjectRayOrigin(cHandL.Position);
-        var cLHandEnd = cLHandOrigin + cam.ProjectRayNormal(cHandL.Position) * cLHandLength;
+        var cLHandEnd = cLHandOrigin + cam.ProjectRayNormal(cHandL.GlobalPosition) * cLHandLength;
         var cLHandQuery = PhysicsRayQueryParameters3D.Create(cLHandOrigin, cLHandEnd);
 
         var cRHandOrigin = cam.GlobalPosition;//cam.ProjectRayOrigin(cHandR.Position);
-        var cRHandEnd = cRHandOrigin + cam.ProjectRayNormal(cHandR.Position) * cRHandLength;
+        var cRHandEnd = cRHandOrigin + cam.ProjectRayNormal(cHandR.GlobalPosition) * cRHandLength;
         var cRHandQuery = PhysicsRayQueryParameters3D.Create(cRHandOrigin, cRHandEnd);
 
         var result = spState.IntersectRay(mHandQuery);
 
-        mHandTarget.Position = result.Count > 0 ? (Vector3)result["position"] : mHandEnd;
+        mHandTarget.GlobalPosition = result.Count > 0 ? (Vector3)result["position"] : mHandEnd;
 
         result = spState.IntersectRay(kLHandQuery);
 
-        kHandLTarget.Position = result.Count > 0 ? (Vector3)result["position"] : kLHandEnd;
+        kHandLTarget.GlobalPosition = result.Count > 0 ? (Vector3)result["position"] : kLHandEnd;
 
         result = spState.IntersectRay(kRHandQuery);
 
-        kHandRTarget.Position = result.Count > 0 ? (Vector3)result["position"] : kRHandEnd;
+        kHandRTarget.GlobalPosition = result.Count > 0 ? (Vector3)result["position"] : kRHandEnd;
 
         result = spState.IntersectRay(cLHandQuery);
 
-        cHandLTarget.Position = result.Count > 0 ? (Vector3)result["position"] : cLHandEnd;
+        cHandLTarget.GlobalPosition = result.Count > 0 ? (Vector3)result["position"] : cLHandEnd;
 
         result = spState.IntersectRay(cRHandQuery);
 
-        cHandRTarget.Position = result.Count > 0 ? (Vector3)result["position"] : cRHandEnd;
+        cHandRTarget.GlobalPosition = result.Count > 0 ? (Vector3)result["position"] : cRHandEnd;
 
 
     }
@@ -390,7 +390,7 @@ public partial class HandControl : Node2D
         PhysicsDirectSpaceState3D spState = cam.GetWorld3D().DirectSpaceState;
 
         var mHandOrigin = cam.GlobalPosition;//cam.ProjectRayOrigin(mHand.Position);
-        var mHandEnd = mHandOrigin + cam.ProjectRayNormal(mHand.Position) * mHandLength;
+        var mHandEnd = mHandOrigin + cam.ProjectRayNormal(mHand.GlobalPosition) * mHandLength;
         var mHandQuery = PhysicsRayQueryParameters3D.Create(mHandOrigin, mHandEnd);
 
         var result = spState.IntersectRay(mHandQuery);
@@ -430,7 +430,7 @@ public partial class HandControl : Node2D
         PhysicsDirectSpaceState3D spState = cam.GetWorld3D().DirectSpaceState;
 
         var kLHandOrigin = cam.GlobalPosition;//cam.ProjectRayOrigin(kHandL.Position);
-        var kLHandEnd = kLHandOrigin + cam.ProjectRayNormal(kHandL.Position) * kLHandLength;
+        var kLHandEnd = kLHandOrigin + cam.ProjectRayNormal(kHandL.GlobalPosition) * kLHandLength;
         var kLHandQuery = PhysicsRayQueryParameters3D.Create(kLHandOrigin, kLHandEnd);
 
         var result = spState.IntersectRay(kLHandQuery);
@@ -468,7 +468,7 @@ public partial class HandControl : Node2D
         PhysicsDirectSpaceState3D spState = cam.GetWorld3D().DirectSpaceState;
 
         var kRHandOrigin = cam.GlobalPosition;//cam.ProjectRayOrigin(kHandR.Position);
-        var kRHandEnd = kRHandOrigin + cam.ProjectRayNormal(kHandR.Position) * kRHandLength;
+        var kRHandEnd = kRHandOrigin + cam.ProjectRayNormal(kHandR.GlobalPosition) * kRHandLength;
         var kRHandQuery = PhysicsRayQueryParameters3D.Create(kRHandOrigin, kRHandEnd);
 
         var result = spState.IntersectRay(kRHandQuery);
@@ -507,7 +507,7 @@ public partial class HandControl : Node2D
         PhysicsDirectSpaceState3D spState = cam.GetWorld3D().DirectSpaceState;
 
         var cLHandOrigin = cam.GlobalPosition;//cam.ProjectRayOrigin(cHandL.Position);
-        var cLHandEnd = cLHandOrigin + cam.ProjectRayNormal(cHandL.Position) * cLHandLength;
+        var cLHandEnd = cLHandOrigin + cam.ProjectRayNormal(cHandL.GlobalPosition) * cLHandLength;
         var cLHandQuery = PhysicsRayQueryParameters3D.Create(cLHandOrigin, cLHandEnd);
 
         var result = spState.IntersectRay(cLHandQuery);
@@ -545,7 +545,7 @@ public partial class HandControl : Node2D
         PhysicsDirectSpaceState3D spState = cam.GetWorld3D().DirectSpaceState;
 
         var cRHandOrigin = cam.GlobalPosition;//cam.ProjectRayOrigin(cHandR.Position);
-        var cRHandEnd = cRHandOrigin + cam.ProjectRayNormal(cHandR.Position) * cRHandLength;
+        var cRHandEnd = cRHandOrigin + cam.ProjectRayNormal(cHandR.GlobalPosition) * cRHandLength;
         var cRHandQuery = PhysicsRayQueryParameters3D.Create(cRHandOrigin, cRHandEnd);
 
         var result = spState.IntersectRay(cRHandQuery);

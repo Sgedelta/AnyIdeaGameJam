@@ -42,3 +42,5 @@ position = Vector2(3150, 404)
 
 [node name="Sprite2D" type="Sprite2D" parent="KeyboardRightHand" unique_id=1169493329]
 texture = ExtResource("2_y3vfw")
+
+[node name="w3dRef" type="Node3D" parent="." unique_id=1371921499]
