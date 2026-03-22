@@ -5,6 +5,9 @@ using static Godot.HttpRequest;
 
 public partial class HandControl : Node2D
 {
+    private float MAX_X = 3940.0f;
+    private float MAX_Y = 2160.0f;
+    private float MIN_X, MIN_Y = 0.0f;
 
 	[ExportGroup("Hand and Target")]
 	[Export] private Node2D mHand;
@@ -69,6 +72,9 @@ public partial class HandControl : Node2D
 
         cHandL.Position += cLHandVel * cHandSpeed * (float)delta;
         cHandR.Position += cRHandVel * cHandSpeed * (float)delta;
+
+        CheckControllerBounds();
+        CheckKeyboardBounds();
 
         CastTargetsIntoWorld();
         if (!mouseControl)
@@ -602,4 +608,57 @@ public partial class HandControl : Node2D
         }
     }
 
+    public void CheckKeyboardBounds()
+    {
+        // Check X axis boundary for Left Hand
+        if (kHandL.Position.X >= MAX_X || kHandL.Position.X <= MIN_X)
+        {
+            kHandL.Position = new Vector2(Mathf.Clamp(kHandL.Position.X, MIN_X, MAX_X), kHandL.Position.Y);
+        }
+
+        // Check Y axis boundary for Left Hand
+        if(kHandL.Position.Y >= MAX_Y || kHandL.Position.Y <= MIN_Y)
+        {
+            kHandL.Position = new Vector2(kHandL.Position.X, Mathf.Clamp(kHandL.Position.Y, MIN_Y, MAX_Y));
+        }
+
+        // Check X axis boundary for Right Hand
+        if (kHandR.Position.X >= MAX_X || kHandR.Position.X <= MIN_X)
+        {
+            kHandR.Position = new Vector2(Mathf.Clamp(kHandR.Position.X, MIN_X, MAX_X), kHandR.Position.Y);
+        }
+
+        // Check Y axis boundary for Right Hand
+        if (kHandR.Position.Y >= MAX_Y || kHandR.Position.Y <= MIN_Y)
+        {
+            kHandR.Position = new Vector2(kHandR.Position.X, Mathf.Clamp(kHandR.Position.Y, MIN_Y, MAX_Y));
+        }
+    }
+
+    public void CheckControllerBounds()
+    {
+        // Check X axis boundary for Left Hand
+        if (cHandL.Position.X >= MAX_X || cHandL.Position.X <= MIN_X)
+        {
+            cHandL.Position = new Vector2(Mathf.Clamp(cHandL.Position.X, MIN_X, MAX_X), cHandL.Position.Y);
+        }
+
+        // Check Y axis boundary for Left Hand
+        if (cHandL.Position.Y >= MAX_Y || cHandL.Position.Y <= MIN_Y)
+        {
+            cHandL.Position = new Vector2(cHandL.Position.X, Mathf.Clamp(cHandL.Position.Y, MIN_Y, MAX_Y));
+        }
+
+        // Check X axis boundary for Right Hand
+        if (cHandR.Position.X >= MAX_X || cHandR.Position.X <= MIN_X)
+        {
+            cHandR.Position = new Vector2(Mathf.Clamp(cHandR.Position.X, MIN_X, MAX_X), cHandR.Position.Y);
+        }
+
+        // Check Y axis boundary for Right Hand
+        if (cHandR.Position.Y >= MAX_Y || cHandR.Position.Y <= MIN_Y)
+        {
+            cHandR.Position = new Vector2(cHandR.Position.X, Mathf.Clamp(cHandR.Position.Y, MIN_Y, MAX_Y));
+        }
+    }
 }
