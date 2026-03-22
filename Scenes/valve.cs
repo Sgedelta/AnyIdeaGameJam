@@ -19,8 +19,7 @@ public partial class Valve : Node
 
 	private float _deadzone = .3f;
 
-	[Export] MeshInstance3D _valveDisplay;
-
+	[Export] public MeshInstance3D _valveDisplay;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -122,7 +121,7 @@ public partial class Valve : Node
 	{
 		if( _halfRotsCompleted == _numHalfRotsNeeded )
 		{
-			EmitSignal(SignalName.RotationCompleted);
+            EmitSignal(SignalName.RotationCompleted);
 		}
 		else if(_halfRotsCompleted == 0)
 		{

@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://ci6e4jyohf33s"]
+
+[ext_resource type="Script" uid="uid://uhlng0unopcr" path="res://Scenes/Door.cs" id="1_7fe0k"]
+[ext_resource type="PackedScene" uid="uid://c1wai34u14ogt" path="res://Scenes/valve.tscn" id="1_mu8c2"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_7ve1r"]
+
+[node name="Node3D" type="Node3D" unique_id=844961160]
+
+[node name="BatteryContainer" type="MeshInstance3D" parent="." unique_id=2094303822]
+transform = Transform3D(2.0878859, 0, 0, 0, 1.4303395, 0, 0, 0, 0.99999905, 0, 0, 0)
+mesh = SubResource("BoxMesh_7ve1r")
+
+[node name="DoorPivot" type="MeshInstance3D" parent="." unique_id=878374372]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.47208726, 0, 0.57501656)
+script = ExtResource("1_7fe0k")
+
+[node name="Valve" parent="DoorPivot" unique_id=1192847290 instance=ExtResource("1_mu8c2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.490914, 0, -0.011843562)
+
+[connection signal="CounterRotationCompleted" from="DoorPivot/Valve" to="DoorPivot" method="_on_valve_counter_rotation_completed"]
+[connection signal="RotationCompleted" from="DoorPivot/Valve" to="DoorPivot" method="_on_valve_rotation_completed"]
