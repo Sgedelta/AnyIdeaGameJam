@@ -91,33 +91,38 @@ settings/0/joints/2/rotation_axis = 3
 settings/0/joints/2/limitation = null
 
 [node name="mTarget" type="Node3D" parent="." unique_id=2133893599]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.560689, -0.515174)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17082259, -0.64484)
 
 [node name="Node3D" type="MeshInstance3D" parent="mTarget" unique_id=1801971786]
+visible = false
 mesh = SubResource("SphereMesh_vh66l")
 
 [node name="kLTarget" type="Node3D" parent="." unique_id=959537194]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4518684, 0.72508526, -0.37521374)
 
 [node name="Node3D" type="MeshInstance3D" parent="kLTarget" unique_id=1256291331]
+visible = false
 mesh = SubResource("SphereMesh_vh66l")
 
 [node name="kRTarget" type="Node3D" parent="." unique_id=89587551]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.39806083, 0.77274436, -0.3756957)
 
 [node name="Node3D" type="MeshInstance3D" parent="kRTarget" unique_id=1369074731]
+visible = false
 mesh = SubResource("SphereMesh_vh66l")
 
 [node name="cLTarget" type="Node3D" parent="." unique_id=1981344023]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25538394, 0.42657095, -0.22525644)
 
 [node name="Node3D" type="MeshInstance3D" parent="cLTarget" unique_id=1082305198]
+visible = false
 mesh = SubResource("SphereMesh_vh66l")
 
 [node name="cRTarget" type="Node3D" parent="." unique_id=542594666]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.30855808, 0.49043727, -0.11186969)
 
 [node name="Node3D" type="MeshInstance3D" parent="cRTarget" unique_id=1383205625]
+visible = false
 mesh = SubResource("SphereMesh_vh66l")
 
 [editable path="alienDaddyRIG_12"]

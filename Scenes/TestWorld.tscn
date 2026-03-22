@@ -45,21 +45,6 @@ goingRight = false
 [node name="alienDaddyRIG_12" parent="Camera/AlienHands" index="0" unique_id=1246719506]
 transform = Transform3D(-1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, -0.49, 0)
 
-[node name="Node3D" parent="Camera/AlienHands/mTarget" parent_id_path=PackedInt32Array(1243474369, 2133893599) index="0" unique_id=1801971786]
-visible = false
-
-[node name="Node3D" parent="Camera/AlienHands/kLTarget" parent_id_path=PackedInt32Array(1243474369, 959537194) index="0" unique_id=1256291331]
-visible = false
-
-[node name="Node3D" parent="Camera/AlienHands/kRTarget" parent_id_path=PackedInt32Array(1243474369, 89587551) index="0" unique_id=1369074731]
-visible = false
-
-[node name="Node3D" parent="Camera/AlienHands/cLTarget" parent_id_path=PackedInt32Array(1243474369, 1981344023) index="0" unique_id=1082305198]
-visible = false
-
-[node name="Node3D" parent="Camera/AlienHands/cRTarget" parent_id_path=PackedInt32Array(1243474369, 542594666) index="0" unique_id=1383205625]
-visible = false
-
 [node name="HandControl" parent="." unique_id=713415373 node_paths=PackedStringArray("mHandTarget", "kHandLTarget", "kHandRTarget", "cHandLTarget", "cHandRTarget") instance=ExtResource("4_77oos")]
 mHandTarget = NodePath("../Camera/AlienHands/mTarget")
 kHandLTarget = NodePath("../Camera/AlienHands/kLTarget")
@@ -72,6 +57,7 @@ transform = Transform3D(1, 0, 0, 0, 0.19541556, 0.9807205, 0, -0.9807205, 0.1954
 
 [node name="Battery" parent="." unique_id=1592482267 instance=ExtResource("5_1jowa")]
 transform = Transform3D(0.93692863, 0.34952065, 0, -0.34952065, 0.93692863, 0, 0, 0, 1, 0.28519654, 0.813514, -3.5262585)
+freeze = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1477872571]
 environment = SubResource("Environment_se0eo")
@@ -81,6 +67,7 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0
 
 [node name="Computer" parent="." unique_id=1549007900 instance=ExtResource("5_rdsav")]
 transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 0.4382323, -1, -2.1120648)
+_handInputTargets = Dictionary[int, Dictionary]({})
 
 [node name="Screen" parent="Computer" index="1" unique_id=990515359]
 texture = SubResource("ViewportTexture_0rqgs")

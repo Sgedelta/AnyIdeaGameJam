@@ -36,6 +36,10 @@ public partial class HandControl : Node2D
     public Vector2 cRHandVel = Vector2.Zero;
 
     private IHandable mHandable;
+    private IHandable kLHandable;
+    private IHandable kRHandable;
+    private IHandable cLHandable;
+    private IHandable cRHandable;
 
     public Node3D mHandOverride;
     public Node3D kLHandOverride;
@@ -130,6 +134,8 @@ public partial class HandControl : Node2D
                     return;
                 }
 
+                //these *could* go in switch but... naw
+
                 if(ke.Keycode == Key.Ctrl)
                 {
                     SetHandExtent(
@@ -137,8 +143,18 @@ public partial class HandControl : Node2D
                         ke.Pressed ? 1 : 0
                         );
                 }
-
-                //TODO: probably put grab check here
+                else if(ke.Keycode == Key.Shift)
+                {
+                    GD.Print($"{ke.Keycode} | {ke.Location}");
+                    if(ke.Location == KeyLocation.Left)
+                    {
+                        KeyLeftCastCheck(ke.Pressed);
+                    }
+                    else
+                    {
+                        KeyRightCastCheck(ke.Pressed);
+                    }
+                }
 
                 switch (ke.Keycode)
                 {
@@ -223,7 +239,17 @@ public partial class HandControl : Node2D
                 break;
 
             case InputEventJoypadButton:
-                //TODO: fill out like mouse button
+                InputEventJoypadButton jbe = @event as InputEventJoypadButton;
+
+                if (jbe.ButtonIndex == JoyButton.LeftShoulder)
+                {
+                    ContLeftCastCheck(jbe.Pressed);
+                }
+                if(jbe.ButtonIndex == JoyButton.RightShoulder)
+                {
+                    ContRightCastCheck(jbe.Pressed);
+                }
+
                 break;
 
             case InputEventJoypadMotion:
@@ -360,6 +386,7 @@ public partial class HandControl : Node2D
         {
             return; 
         }
+
         mHandable = (IHandable)other;
 
         if(mHandable.HandInputTargets.Keys.Contains(HandType.Mouse))
@@ -371,6 +398,12 @@ public partial class HandControl : Node2D
 
     public void KeyLeftCastCheck(bool state)
     {
+
+        if (!state && kLHandable != null && kLHandable.IsActive)
+        {
+            kLHandable.SetActive(HandType.KeyL, false);
+            return;
+        }
 
         Camera3D cam = GetViewport().GetCamera3D();
         PhysicsDirectSpaceState3D spState = cam.GetWorld3D().DirectSpaceState;
@@ -393,10 +426,23 @@ public partial class HandControl : Node2D
         {
             return;
         }
+
+        kLHandable = (IHandable)other;
+
+        if (kLHandable.HandInputTargets.Keys.Contains(HandType.KeyL))
+        {
+            kLHandable.SetActive(HandType.KeyL, state);
+        }
     }
 
-    public void KeyRightCastCheck()
+    public void KeyRightCastCheck(bool state)
     {
+        if (!state && kRHandable != null && kRHandable.IsActive)
+        {
+            kRHandable.SetActive(HandType.KeyR, false);
+            return;
+        }
+
         Camera3D cam = GetViewport().GetCamera3D();
         PhysicsDirectSpaceState3D spState = cam.GetWorld3D().DirectSpaceState;
 
@@ -418,10 +464,24 @@ public partial class HandControl : Node2D
         {
             return;
         }
+
+        kRHandable = (IHandable)other;
+
+        if (kRHandable.HandInputTargets.Keys.Contains(HandType.KeyR))
+        {
+            kRHandable.SetActive(HandType.KeyR, state);
+        }
     }
 
-    public void ContLeftCastCheck()
+    public void ContLeftCastCheck(bool state)
     {
+
+        if (!state && cLHandable != null && cLHandable.IsActive)
+        {
+            cLHandable.SetActive(HandType.ContL, false);
+            return;
+        }
+
         Camera3D cam = GetViewport().GetCamera3D();
         PhysicsDirectSpaceState3D spState = cam.GetWorld3D().DirectSpaceState;
 
@@ -443,10 +503,23 @@ public partial class HandControl : Node2D
         {
             return;
         }
+
+        cLHandable = (IHandable)other;
+
+        if (cLHandable.HandInputTargets.Keys.Contains(HandType.ContL))
+        {
+            cLHandable.SetActive(HandType.ContL, state);
+        }
     }
 
-    public void ContRightCastCheck()
+    public void ContRightCastCheck(bool state)
     {
+        if (!state && cRHandable != null && cRHandable.IsActive)
+        {
+            cRHandable.SetActive(HandType.ContR, false);
+            return;
+        }
+
         Camera3D cam = GetViewport().GetCamera3D();
         PhysicsDirectSpaceState3D spState = cam.GetWorld3D().DirectSpaceState;
 
@@ -467,6 +540,13 @@ public partial class HandControl : Node2D
         if (other is not IHandable)
         {
             return;
+        }
+
+        cRHandable = (IHandable)other;
+
+        if (cRHandable.HandInputTargets.Keys.Contains(HandType.ContR))
+        {
+            cRHandable.SetActive(HandType.ContR, state);
         }
     }
 

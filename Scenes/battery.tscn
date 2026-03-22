@@ -39,7 +39,7 @@ height = 0.2734375
 shape = SubResource("CapsuleShape3D_mxnnr")
 
 [node name="LeftHandSpot" type="Node3D" parent="." unique_id=1885501117]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.087389, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3608115, 0)
 
 [node name="RightHandSpot" type="Node3D" parent="." unique_id=723050264]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.0931914, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1446512, 0)

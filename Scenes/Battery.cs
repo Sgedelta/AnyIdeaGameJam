@@ -161,7 +161,7 @@ public partial class Battery : RigidBody3D, IHandable
                 {
                     _heldHands.Add(controlledHand);
                 }
-                else
+                else if(_heldHands.Contains(controlledHand))
                 {
                      _heldHands.Remove(controlledHand);
                 }

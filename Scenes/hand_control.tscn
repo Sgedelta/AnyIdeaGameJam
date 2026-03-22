@@ -17,33 +17,28 @@ cHandSpeed = 2500.0
 position = Vector2(1983, 1008)
 
 [node name="Sprite2D" type="Sprite2D" parent="MouseHand" unique_id=958592611]
-visible = false
 texture = ExtResource("2_y3vfw")
 
 [node name="ControllerLeftHand" type="Node2D" parent="." unique_id=1803702541]
 position = Vector2(599, 1738)
 
 [node name="Sprite2D" type="Sprite2D" parent="ControllerLeftHand" unique_id=1134813349]
-visible = false
 texture = ExtResource("2_y3vfw")
 
 [node name="ControllerRightHand" type="Node2D" parent="." unique_id=2134222724]
 position = Vector2(3105, 1724)
 
 [node name="Sprite2D" type="Sprite2D" parent="ControllerRightHand" unique_id=573632827]
-visible = false
 texture = ExtResource("2_y3vfw")
 
 [node name="KeyboardLeftHand" type="Node2D" parent="." unique_id=573591256]
 position = Vector2(632, 382)
 
 [node name="Sprite2D" type="Sprite2D" parent="KeyboardLeftHand" unique_id=2129676895]
-visible = false
 texture = ExtResource("2_y3vfw")
 
 [node name="KeyboardRightHand" type="Node2D" parent="." unique_id=832264964]
 position = Vector2(3150, 404)
 
 [node name="Sprite2D" type="Sprite2D" parent="KeyboardRightHand" unique_id=1169493329]
-visible = false
 texture = ExtResource("2_y3vfw")
