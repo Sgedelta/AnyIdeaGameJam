@@ -18,7 +18,7 @@ size = Vector3(0.7647705, 1.4434738, 0.12054443)
 [sub_resource type="ViewportTexture" id="ViewportTexture_qe1q4"]
 viewport_path = NodePath("Screen/SubViewport")
 
-[node name="front_right_valve_thruster" type="StaticBody3D" unique_id=2053884060]
+[node name="front_right_valve_thruster" type="StaticBody3D" unique_id=2053884060 node_paths=PackedStringArray("br", "door")]
 script = ExtResource("1_3w1vm")
 _handInputTargets = Dictionary[int, Dictionary]({
 0: {
@@ -27,6 +27,8 @@ _handInputTargets = Dictionary[int, Dictionary]({
 2: NodePath("RHandPos")
 }
 })
+br = NodePath("BatteryReceptical")
+door = NodePath("DoorPivot")
 
 [node name="batteryPortChamber_01" parent="." unique_id=347355076 instance=ExtResource("2_6hbjf")]
 transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 0, 0)

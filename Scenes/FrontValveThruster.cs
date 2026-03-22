@@ -12,11 +12,16 @@ public partial class FrontValveThruster : StaticBody3D, IHandable
 
     public bool IsActive { get; set; } = false;
 
+    [Export] BatteryReceptical br;
+    [Export] Door door;
+
     public override void _Ready()
     {
         _typingUI = GetNode<TypingUiContainer>("Screen/SubViewport/TypingUIContainer");
         _subviewport = GetNode<SubViewport>("Screen/SubViewport");
         _typingUI.Connect(TypingUiContainer.SignalName.PasswordCorrect, Callable.From(OnPasswordSuccess));
+        door.Connect(Door.SignalName.Opened, Callable.From(() => { br.SetAllowInsert(true); }));
+        door.Connect(Door.SignalName.Closed, Callable.From(() => { br.SetAllowInsert(false); }));
     }
 
     private void OnPasswordSuccess()

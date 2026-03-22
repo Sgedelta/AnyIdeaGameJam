@@ -8,8 +8,8 @@ public partial class Door : StaticBody3D, IHandable
 	
 
 
-	[Signal] public delegate void RotationCompletedEventHandler();
-	[Signal] public delegate void CounterRotationCompletedEventHandler();
+	[Signal] public delegate void OpenedEventHandler();
+	[Signal] public delegate void ClosedEventHandler();
 	
 	public bool IsOpen = false;
 	public bool IsLocked { get; set; } = true;
@@ -120,6 +120,10 @@ public partial class Door : StaticBody3D, IHandable
 				_rotateTween = CreateTween();
 
 				_rotateTween.TweenProperty(this, "rotation", new Vector3(0, Mathf.DegToRad(117.2f), 0) * rotDir, _rotateAnimationSpeed);
+				if(!IsOpen)
+				{
+					EmitSignal(SignalName.Opened);
+				}
 				IsOpen = true;
 			}
 		}
@@ -137,7 +141,11 @@ public partial class Door : StaticBody3D, IHandable
 				_rotateTween = CreateTween();
 
 				_rotateTween.TweenProperty(this, "rotation", new Vector3(0, 0, 0), _rotateAnimationSpeed);
-				IsOpen = false;
+                if (IsOpen)
+                {
+                    EmitSignal(SignalName.Closed);
+                }
+                IsOpen = false;
 			}
 		}
 	}

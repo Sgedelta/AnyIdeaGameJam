@@ -32,6 +32,9 @@ viewport_path = NodePath("Screen/SubViewport")
 [sub_resource type="BoxShape3D" id="BoxShape3D_1jowa"]
 size = Vector3(17.3656, 1, 20.907837)
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_bnm2d"]
+viewport_path = NodePath("Screen/SubViewport")
+
 [node name="Node3D2" type="Node3D" unique_id=441259406]
 
 [node name="Camera" parent="." unique_id=129220480 instance=ExtResource("1_k2eo1")]
@@ -73,8 +76,9 @@ cHandRTarget = NodePath("../Camera/AlienHands/cRTarget")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1389699873]
 transform = Transform3D(1, 0, 0, 0, 0.19541556, 0.9807205, 0, -0.9807205, 0.19541556, 0, 0, -1.1822615)
 
-[node name="Battery" parent="." unique_id=1592482267 instance=ExtResource("5_1jowa")]
-transform = Transform3D(0.93692863, 0.34952065, 0, -0.34952065, 0.93692863, 0, 0, 0, 1, 0.3912815, 0.28266132, -4.262452)
+[node name="Battery" parent="." unique_id=1592482267 node_paths=PackedStringArray("InsertLoc") instance=ExtResource("5_1jowa")]
+transform = Transform3D(0.93692863, 0.34952065, 0, -0.34952065, 0.93692863, 0, 0, 0, 1, -1.5535868, 0.8471668, -4.162794)
+InsertLoc = NodePath("../front_right_valve_thruster2/BatteryReceptical")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1477872571]
 environment = SubResource("Environment_se0eo")
@@ -118,6 +122,9 @@ transform = Transform3D(1.6171513, 0, -1.1767845, 0, 2, 0, 1.1767845, 0, 1.61715
 [node name="front_right_valve_thruster2" parent="." unique_id=1503496492 instance=ExtResource("15_hlj8m")]
 transform = Transform3D(1.6742545, 0, 1.0940163, 0, 2, 0, -1.0940163, 0, 1.6742545, -1.8024374, -1.445287, -3.4008904)
 
+[node name="Screen" parent="front_right_valve_thruster2" index="4" unique_id=1025664600]
+texture = SubResource("ViewportTexture_bnm2d")
+
 [editable path="Camera/button_object"]
 [editable path="Camera/button_object2"]
 [editable path="Camera/AlienHands"]
@@ -127,3 +134,8 @@ transform = Transform3D(1.6742545, 0, 1.0940163, 0, 2, 0, -1.0940163, 0, 1.67425
 [editable path="Computer"]
 [editable path="Computer/Screen/SubViewport/TypingUIContainer"]
 [editable path="Computer/keyboard_01"]
+[editable path="front_right_valve_thruster2"]
+[editable path="front_right_valve_thruster2/BatteryReceptical"]
+[editable path="front_right_valve_thruster2/DoorPivot/valve"]
+[editable path="front_right_valve_thruster2/DoorPivot/valve/valveHandle_01"]
+[editable path="front_right_valve_thruster2/Screen/SubViewport/TypingUIContainer"]

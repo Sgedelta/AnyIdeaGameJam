@@ -6,7 +6,7 @@ public partial class BatteryReceptical : Area3D
 
     [Signal] public delegate void OnPoweredChangedEventHandler(bool powered);
 
-    public bool AllowInsert = true;
+    public bool AllowInsert = false;
 
 	[Export] public Node3D BatterySnapLoc;
 

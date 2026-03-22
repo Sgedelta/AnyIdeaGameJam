@@ -12,12 +12,16 @@ public partial class left_valve_thruster: StaticBody3D, IHandable
 
 	public bool IsActive { get; set; } = false;
 
-	public override void _Ready()
+    [Export] BatteryReceptical br;
+    [Export] Door door;
+    public override void _Ready()
 	{
 		_numpadUI = GetNode<Control>("Screen/SubViewport/NumpadUI");
 		_subviewport = GetNode<SubViewport>("Screen/SubViewport");
 		_numpadUI.Connect("password_correct", Callable.From(OnPasswordSuccess));
-	}
+        door.Connect(Door.SignalName.Opened, Callable.From(() => { br.SetAllowInsert(true); }));
+        door.Connect(Door.SignalName.Closed, Callable.From(() => { br.SetAllowInsert(false); }));
+    }
 	
 	private void OnPasswordSuccess()
 	{
