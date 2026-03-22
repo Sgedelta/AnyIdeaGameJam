@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bomyf5vdv05ro" path="res://Scenes/battery_receptical.tscn" id="5_icgjy"]
 [ext_resource type="PackedScene" uid="uid://ct8r5tilx1632" path="res://Scenes/computer.tscn" id="5_rdsav"]
 [ext_resource type="PackedScene" uid="uid://ccetrajvpu778" path="res://Scenes/button_object.tscn" id="7_7oy3y"]
-[ext_resource type="PackedScene" uid="uid://ci6e4jyohf33s" path="res://Scenes/valve_thruster.tscn" id="8_4e6cy"]
+[ext_resource type="PackedScene" uid="uid://ci6e4jyohf33s" path="res://Scenes/right_valve_thruster.tscn" id="8_4e6cy"]
 [ext_resource type="PhysicsMaterial" uid="uid://dnrgyxqqmryww" path="res://Assets/Materials/PhysicsMats/Bouncy.tres" id="11_0rqgs"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ed2pg"]
@@ -93,9 +93,8 @@ texture = SubResource("ViewportTexture_icgjy")
 [node name="Speedlines" parent="." unique_id=1459631009 instance=ExtResource("5_g0pj6")]
 transform = Transform3D(0.12568662, 0, 0, 0, 0.13916422, 0, 0, 0, 1, 0.0006580651, 1.2128685, -5.08145)
 
-[node name="Node3D" parent="." unique_id=844961160 instance=ExtResource("8_4e6cy")]
-transform = Transform3D(0.98639494, 0, 0.16439344, 0, 1, 0, -0.16439344, 0, 0.98639494, -1.6247631, -0.2223754, -2.681415)
-visible = false
+[node name="right_valve_thruster" parent="." unique_id=844961160 instance=ExtResource("8_4e6cy")]
+transform = Transform3D(0.07464816, 0, -0.9972099, 0, 1, 0, 0.9972099, 0, 0.07464816, 4.6704936, -0.2223754, -0.047927856)
 
 [node name="FloorCollider" type="StaticBody3D" parent="." unique_id=407658480]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.537998, 0)
