@@ -73,6 +73,28 @@ public partial class CameraController : Camera3D
 		_controlTween = CreateTween();
 
 		_controlTween.TweenProperty(this, "rotation", new Vector3(Mathf.DegToRad(locToGoTo.X), Mathf.DegToRad(locToGoTo.Y), Mathf.DegToRad(locToGoTo.Z)), _cameraSpeed);
-	}
+
+        /*
+		 * positions[] = [forward, right, backward, left]
+		 * currentPosition = forward
+		 * MoveRight
+		 * {
+		 *	currentPosition = currentPosition +1
+		 *	MoveTo(currentPosition)
+		 * }
+		 * MoveLeft
+		 * {
+		 *	currentPosition = currentPosition -1
+		 *	MoveTo(currentPosition)
+		 * }
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 *	
+		*/
+
+    }
 
 }

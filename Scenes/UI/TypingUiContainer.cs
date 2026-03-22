@@ -15,7 +15,6 @@ public partial class TypingUiContainer : PanelContainer
 	[Export] Vector2 showScale = new Vector2(600, 450);
 	[Export] Vector2 hideScale = new Vector2(600, 100);
 
-
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -78,26 +77,32 @@ public partial class TypingUiContainer : PanelContainer
         switch (exactText)
 		{
 			case "engine_on":
+				GameManager.Instance.CaptchaAnswer = GameManager.Instance.CreatePassword("captcha", 10);
 				//ToDo GENERATE CAPTCHA AND PASS TO GM
-				_rich_output.AppendText($"[code]Enter Captcha In Engine to Power On.[br][/code][font=res://Assets/Fonts/crooked/Crooked.ttf]{GameManager.Instance.CreatePassword("captcha", 10)}[/font]");
+				_rich_output.AppendText($"[code]Please prove you are not human.[br][/code][font=res://Assets/Fonts/crooked/Crooked.ttf][s]{GameManager.Instance.CaptchaAnswer}[/s][/font]");
 				break;
 
 			case "port_pass":
-				//ToDo GENERATE PASS AND PASS TO GM
-				_rich_output.AppendText($"[code]Port Engine Password is[/code]");
+				GameManager.Instance.DirKeypadAnswer = GameManager.Instance.CreatePassword("sequence", 6);
+                //ToDo GENERATE PASS AND PASS TO GM
+                _rich_output.AppendText($"[code]Port Engine Password is: {GameManager.Instance.DirKeypadAnswer}[/code]");
 				break;
 
             case "starboard_pass":
+                GameManager.Instance.NumKeypadAnswer = GameManager.Instance.CreatePassword("pin", 6);
                 //ToDo GENERATE PASS AND PASS TO GM
-                _rich_output.AppendText($"[code]Starboard Engine Password is[/code]");
+                _rich_output.AppendText($"[code]Starboard Engine Password is: {GameManager.Instance.NumKeypadAnswer}[/code]");
                 break;
 
             case "HELP!":
 				_rich_output.AppendText("[code][font_size=50]Valid Inputs:[br]HELP! - Get Help![br]port_pass - see port engine password[br]starboard_pass - see starboard engine password[br]engine_on - begin engine engage sequence[/font_size][code]");
 				break;
-
 			default:
-				_rich_output.AppendText("[code]Invalid Input! use \"HELP!\"![/code]");
+				if(exactText == GameManager.Instance.CaptchaAnswer)
+				{
+                    _rich_output.AppendText("[code]Yippee! That's right![/code]");
+                }
+				else _rich_output.AppendText("[code]Invalid Input! use \"HELP!\"![/code]");
 				break;
 
 		}
