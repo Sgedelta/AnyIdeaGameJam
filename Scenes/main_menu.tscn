@@ -2,6 +2,9 @@
 
 [ext_resource type="Theme" uid="uid://bg0vwtgh7p4a4" path="res://Assets/mainMenuUI.tres" id="1_28flt"]
 [ext_resource type="Script" uid="uid://bfq4tf0dhynj6" path="res://Scenes/MainMenu.cs" id="1_48xlc"]
+[ext_resource type="Texture2D" uid="uid://dtale27i7hab0" path="res://Assets/Sprites/Space_Skymap.png" id="2_n45e2"]
+[ext_resource type="FontFile" uid="uid://upqkiuxloue1" path="res://Assets/Fonts/crooked/Crooked.ttf" id="3_1ehe0"]
+[ext_resource type="FontFile" uid="uid://d2ihkomdals62" path="res://Assets/Fonts/ra_mono/Ra-Mono.otf" id="3_ce3w2"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_erv1k"]
 
@@ -14,6 +17,12 @@ startButton = NodePath("Start")
 howToButton = NodePath("HowToPlay")
 quitButton = NodePath("Quit")
 
+[node name="SpaceSkymap" type="Sprite2D" parent="." unique_id=1639796558]
+position = Vector2(2911.3591, 2141.698)
+rotation = -2.8797934
+scale = Vector2(5.186231, 5.099093)
+texture = ExtResource("2_n45e2")
+
 [node name="Start" type="Button" parent="." unique_id=1186513055]
 layout_mode = 0
 offset_left = 1664.3369
@@ -21,6 +30,7 @@ offset_top = 593.0397
 offset_right = 2176.337
 offset_bottom = 849.0397
 theme = ExtResource("1_28flt")
+theme_override_fonts/font = ExtResource("3_ce3w2")
 text = "START"
 icon = SubResource("ViewportTexture_erv1k")
 
@@ -31,7 +41,8 @@ offset_top = 956.6117
 offset_right = 2176.337
 offset_bottom = 1212.6116
 theme = ExtResource("1_28flt")
-text = "How To Play"
+theme_override_fonts/font = ExtResource("3_ce3w2")
+text = "HOW TO PLAY"
 
 [node name="Quit" type="Button" parent="." unique_id=1596656155]
 layout_mode = 0
@@ -40,5 +51,18 @@ offset_top = 1353.9583
 offset_right = 2176.337
 offset_bottom = 1609.9583
 theme = ExtResource("1_28flt")
+theme_override_fonts/font = ExtResource("3_ce3w2")
 text = "QUIT
 "
+
+[node name="Label" type="Label" parent="." unique_id=25685761]
+layout_mode = 0
+offset_left = 767.603
+offset_top = 6.954
+offset_right = 3152.398
+offset_bottom = 646.68195
+theme_override_fonts/font = ExtResource("3_1ehe0")
+theme_override_font_sizes/font_size = 200
+text = "OH F*#@! THE CAKE!"
+horizontal_alignment = 1
+vertical_alignment = 1
