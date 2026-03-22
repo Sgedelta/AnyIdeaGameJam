@@ -1,6 +1,7 @@
 using Godot;
 using Godot.Collections;
 using System;
+using System.Runtime.CompilerServices;
 
 public partial class Door : StaticBody3D, IHandable
 {
@@ -16,6 +17,8 @@ public partial class Door : StaticBody3D, IHandable
 	private Tween _rotateTween;
 	private float _rotateAnimationSpeed = 0.5f;
 
+	private Tween _popOpenTween;
+	private float _popOpenAnimationSpeed = 0.3f;
 
 	[Export] int rotDir = 1;
 
