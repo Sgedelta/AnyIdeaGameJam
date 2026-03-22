@@ -33,6 +33,7 @@ project/assembly_name="AnyIdeaGame"
 [global_group]
 
 mainCamera=""
+cameraButtons=""
 
 [input]
 

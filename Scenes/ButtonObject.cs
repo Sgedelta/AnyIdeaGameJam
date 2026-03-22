@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 using System;
 
 public partial class ButtonObject : StaticBody3D
@@ -7,11 +8,19 @@ public partial class ButtonObject : StaticBody3D
 	Color onColor = new Color (1f,0,0);
 	Color offColor = new Color (0,0,0.3f);
     [Export]
-    string lookDestination = "";
+    bool goingRight = true;    //this is whether the button goes left or right
+
+    CameraController camera;
+
+    private string[] directions = ["forward", "right", "backward", "left"];
+    int directionIndex = 0;
 	bool isOn = false;
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
+
+    Array<Node> buttons = new Array<Node> ();
+    // Called when the node enters the scene tree for the first time.
+    public override void _Ready()
 	{
+        buttons = GetTree().GetNodesInGroup("cameraButtons");
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -21,7 +30,7 @@ public partial class ButtonObject : StaticBody3D
 
     public override void _Input(InputEvent @event)
     {
-        if (@event.IsAction("mouse_left") && @event.IsActionReleased("mouse_left"))
+        if (@event.IsAction("mouse_left") && @event.IsActionPressed("mouse_left"))
         {
             CheckFocus(@event as InputEventMouseButton);
         }
@@ -41,11 +50,38 @@ public partial class ButtonObject : StaticBody3D
 
         if (result.ContainsKey("collider_id") && ((StaticBody3D)result["collider"]) == this)
         {
-            GD.Print("trying to grab control");
-            CameraController camera = (CameraController)GetViewport().GetCamera3D();
-            camera.TweenCameraToLoc(lookDestination);
+            camera = (CameraController)GetViewport().GetCamera3D();
+
+            if (camera != null && !camera.tweenIsRunning)
+            {
+                directionIndex = goingRight ? directionIndex + 1 : directionIndex - 1;
+                foreach (var button in buttons)
+                {
+                    ButtonObject buttonObject = button as ButtonObject;
+                    buttonObject.UpdateDirectionIndex(directionIndex);
+                }
+                if (directionIndex < 0)
+                {
+                    directionIndex = directions.Length - 1;
+                }
+                if (directionIndex >= directions.Length)
+                {
+                    directionIndex = 0;
+                }
+                GD.Print(directionIndex);
+                camera.TweenCameraToLoc(directions[directionIndex]);
+            }
         }
 
     }
 
+    public void UpdateDirectionIndex(int targetIndex)
+    {
+        if (directionIndex != targetIndex)
+        {
+            directionIndex = targetIndex;
+        }
+    }
 }
+
+

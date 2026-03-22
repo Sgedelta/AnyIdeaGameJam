@@ -17,8 +17,13 @@ public partial class CameraController : Camera3D
 	private Tween _controlTween;
 	[Export] private float _cameraSpeed = 1;
 
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
+	public bool tweenIsRunning = false;
+
+
+    public int directionIndex = 0;
+
+    // Called when the node enters the scene tree for the first time.
+    public override void _Ready()
 	{
 		//Tween tester = CreateTween();
 		//
@@ -37,7 +42,10 @@ public partial class CameraController : Camera3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-
+		if(_controlTween != null)
+		{
+			tweenIsRunning = _controlTween.IsRunning();
+		}
 	}
 
 
