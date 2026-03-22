@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c5xgqhmayoxeb" path="res://Scenes/CameraController.cs" id="1_jsgnu"]
 
-[node name="Camera" type="Camera3D" unique_id=129220480]
+[node name="Camera" type="Camera3D" unique_id=129220480 groups=["mainCamera"]]
 script = ExtResource("1_jsgnu")
 _cameraLocs = Dictionary[String, Vector3]({
 "backward": Vector3(0, 180, 0),

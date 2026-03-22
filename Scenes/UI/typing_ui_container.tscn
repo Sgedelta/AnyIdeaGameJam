@@ -31,8 +31,8 @@ theme_override_constants/margin_bottom = 100
 [node name="Display" type="RichTextLabel" parent="DisplayMargins" unique_id=1736141508]
 layout_mode = 2
 theme = ExtResource("1_vwtrp")
-theme_override_font_sizes/normal_font_size = 50
-theme_override_font_sizes/mono_font_size = 50
+theme_override_font_sizes/normal_font_size = 75
+theme_override_font_sizes/mono_font_size = 75
 text = "testing"
 horizontal_alignment = 1
 vertical_alignment = 1
