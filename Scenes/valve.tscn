@@ -4,10 +4,20 @@
 
 [sub_resource type="TubeTrailMesh" id="TubeTrailMesh_eyhu5"]
 
-[node name="valve" type="Node3D" unique_id=1192847290]
+[sub_resource type="BoxShape3D" id="BoxShape3D_6aevd"]
+size = Vector3(1, 1, 0.18408203)
+
+[node name="valve" type="StaticBody3D" unique_id=133148633]
 script = ExtResource("1_6aevd")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1430034741]
 transform = Transform3D(1, 0, 0, 0, -5.5039555e-09, -1, 0, 0.12591583, -4.371139e-08, 0, 0, 0)
 rotation_order = 1
 mesh = SubResource("TubeTrailMesh_eyhu5")
+
+[node name="HandlePos" type="Node3D" parent="." unique_id=1701428303]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4196682, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=143721365]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.013916016)
+shape = SubResource("BoxShape3D_6aevd")
