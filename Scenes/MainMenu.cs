@@ -25,6 +25,7 @@ public partial class MainMenu : Control
 
     public void LoadGameplay()
     {
+        GameManager.Instance.timer = GameManager.Instance.timerReset;
         GetTree().ChangeSceneToFile("res://Scenes/AssetPopWorld.tscn");
     }
     public void HowToPlay()

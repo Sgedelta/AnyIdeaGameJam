@@ -79,13 +79,17 @@ viewport_path = NodePath("Screen/SubViewport")
 [sub_resource type="ViewportTexture" id="ViewportTexture_uvu7x"]
 viewport_path = NodePath("Screen/SubViewport")
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_uqg11"]
+height = 3.7895508
+radius = 0.78759766
+
 [node name="Node3D2" type="Node3D" unique_id=441259406]
 
 [node name="Battery" parent="." unique_id=708775602 instance=ExtResource("7_uqg11")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.81530666, 0.06810212, 1.9821358)
+transform = Transform3D(0.9962959, -0.085990764, 0, 0.085990764, 0.9962959, 0, 0, 0, 1, -0.81530666, 0.06810212, 1.9821358)
 
 [node name="Battery2" parent="." unique_id=2042890088 instance=ExtResource("7_uqg11")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0490632, 0.016269207, 1.9821358)
+transform = Transform3D(0.99857605, 0.05334683, 0, -0.05334683, 0.99857605, 0, 0, 0, 1, 1.0490632, 0.016269207, 1.9821358)
 
 [node name="Camera" parent="." unique_id=129220480 instance=ExtResource("1_bs6yi")]
 _cameraSpeed = 0.5
@@ -375,7 +379,7 @@ transform = Transform3D(42.096, 0, 0, 0, 42.096, 0, 0, 0, 42.096, -7.0847254, 1.
 surface_material_override/0 = ExtResource("19_2l41g")
 
 [node name="FloorCollider" type="StaticBody3D" parent="." unique_id=407658480]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.537998, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.9223053, 0)
 physics_material_override = ExtResource("11_yyk6s")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FloorCollider" unique_id=1718208408]
@@ -399,7 +403,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.646, 0, 0)
 shape = SubResource("BoxShape3D_cymet")
 
 [node name="FrontWall" type="StaticBody3D" parent="." unique_id=1406666290]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.0445256)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.22006321)
 physics_material_override = ExtResource("11_yyk6s")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FrontWall" unique_id=1783711407]
@@ -465,6 +469,13 @@ door = NodePath("DoorPivot")
 
 [node name="Screen" parent="front_right_valve_thruster2" index="4" unique_id=1025664600]
 texture = SubResource("ViewportTexture_uvu7x")
+
+[node name="QOLCollision" type="StaticBody3D" parent="." unique_id=205866562]
+physics_material_override = ExtResource("11_yyk6s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="QOLCollision" unique_id=1069077128]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11758423, -2.711621, -0.068725586)
+shape = SubResource("CylinderShape3D_uqg11")
 
 [editable path="Camera/button_object"]
 [editable path="Camera/button_object2"]

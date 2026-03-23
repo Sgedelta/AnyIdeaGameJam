@@ -11,7 +11,7 @@ public enum ThrusterLocation
 public partial class AsteroidField : Node3D
 {
 	[Export]
-	public float shipSpeed = 2f;
+	public float shipSpeed = 3f;
 	public Vector3 shipVelocity = Vector3.Zero;
 
     [Export] Node3D forwardLines;
@@ -155,20 +155,20 @@ public partial class AsteroidField : Node3D
         //left
         if (leftBatteryPowered && !leftDoorOpen && leftValveLocked)
         {
-            leftThrust = true;
-        }
-        else
-        {
-            leftThrust = false;
-        }
-
-        if (rightBatteryPowered && !rightDoorOpen && rightValveLocked)
-        {
             rightThrust = true;
         }
         else
         {
             rightThrust = false;
+        }
+
+        if (rightBatteryPowered && !rightDoorOpen && rightValveLocked)
+        {
+            leftThrust = true;
+        }
+        else
+        {
+            leftThrust = false;
         }
 
 
@@ -193,6 +193,10 @@ public partial class AsteroidField : Node3D
         }
 
         forwardThrust = thrust1 + thrust2;
+        if(forwardThrust == 2)
+        {
+            forwardThrust = 6;
+        }
         GD.Print(forwardThrust);
 
 

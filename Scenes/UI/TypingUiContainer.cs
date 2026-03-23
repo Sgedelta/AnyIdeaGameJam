@@ -93,7 +93,7 @@ public partial class TypingUiContainer : PanelContainer
 			{
                 _rich_output.AppendText("[code]Invalid Input! Captcha Regenerated![/code]");
             }
-            GameManager.Instance.CreatePassword("captcha", 10);
+            GameManager.Instance.CaptchaAnswer = GameManager.Instance.CreatePassword("captcha", 10);
 
             return;
 		}
@@ -104,7 +104,7 @@ public partial class TypingUiContainer : PanelContainer
 			case "engine_on":
 				GameManager.Instance.CaptchaAnswer = GameManager.Instance.CreatePassword("captcha", 10);
 				//ToDo GENERATE CAPTCHA AND PASS TO GM
-				_rich_output.AppendText($"[code]Please prove you are not human.[br][/code][font=res://Assets/Fonts/crooked/Crooked.ttf][s]{GameManager.Instance.CaptchaAnswer}[/s][/font]");
+				_rich_output.AppendText($"[code]Please prove you are not human by putting Captcha into engine.[br][/code][font=res://Assets/Fonts/crooked/Crooked.ttf][s]{GameManager.Instance.CaptchaAnswer}[/s][/font]");
 				break;
 
 			case "starboard_pass":
